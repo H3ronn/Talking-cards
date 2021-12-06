@@ -6,9 +6,9 @@ const App = () => {
       <nav>
         <ul>
           <li>Card list</li>
-          <li>Create card</li >
+          <li>Create card</li>
           <li>FAQ</li>
-          <li>Help</li>
+          <li>Healp</li>
           <button>Login/Register</button>
         </ul>
       </nav>
