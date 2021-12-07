@@ -6,7 +6,7 @@ const NavigationWrapper = styled.nav`
   grid-template-columns: 1fr 0.1fr;
   align-items: center;
   padding: 20px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.lightGrey};
   div {
     display: flex;
     align-items: center;
@@ -19,10 +19,10 @@ const Title = styled.h1`
 `;
 
 const Link = styled.a`
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.grey};
   text-decoration: none;
-  font-size: 14px;
-  padding: 0 15px;
+  font-size: 16px;
+  padding: 5px 15px 0 15px;
   white-space: nowrap;
 
   &:first-of-type {

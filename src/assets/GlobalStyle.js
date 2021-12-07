@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap'); */
 export const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 
   html {
@@ -16,7 +16,6 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    overflow-y: hidden
   }
 
   a, button {

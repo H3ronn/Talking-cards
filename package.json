@@ -47,11 +47,5 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "compilerOptions": {
-    "baseUrl": "src"
-  },
-  "include": [
-    "src"
-  ]
+  }
 }
