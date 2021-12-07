@@ -26,10 +26,10 @@ const StyledInputFile = styled.input.attrs({ type: 'file' })`
   }
 `;
 
-const InputFile = ({ id, name, label }) => {
+const InputFile = ({ onChange, id, name, label }) => {
   return (
     <Wrapper>
-      <StyledInputFile id={id} name={name} label={label} />
+      <StyledInputFile onChange={onChange} id={id} name={name} label={label} />
       <Label htmlFor={id}>{label}</Label>
     </Wrapper>
   );
