@@ -14,7 +14,7 @@ const CardWrapper = styled.div`
   width: 450px;
   height: 500px;
   margin-top: 5px;
-  background-color: coral;
+  background-color: ${({ theme }) => theme.colors.blue};
   display: grid;
   grid-template-rows: 9fr 1fr;
   align-items: center;
@@ -46,6 +46,12 @@ const StyledButton = styled.button`
   cursor: pointer;
   border: none;
   font-size: 20px;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
 `;
 
 const ButtonsWrapper = styled.div`

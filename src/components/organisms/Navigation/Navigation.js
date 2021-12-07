@@ -7,6 +7,8 @@ const NavigationWrapper = styled.nav`
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.lightGrey};
+  box-shadow: -2px 4px 10px rgba(155, 124, 142, 0.09);
+
   div {
     display: flex;
     align-items: center;
