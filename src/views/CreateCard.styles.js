@@ -9,7 +9,7 @@ export const CardWrapper = styled.div`
   width: 450px;
   height: 500px;
   margin-top: 5px;
-  background-color: ${({ theme }) => theme.colors.blue};
+  background-color: ${({ theme, backgroundColor }) => (backgroundColor ? backgroundColor : theme.colors.blue)};
   display: grid;
   grid-template-rows: 9fr 1fr;
   align-items: center;
