@@ -1,24 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 
 const Line = styled.div`
-  width: 100%;
+  width: 20px;
   height: 3px;
   background-color: black;
-  margin-bottom: 4px;
   border-radius: 10px;
   transform-origin: left;
   &:nth-child(2) {
     width: 15px;
+    margin: 4px 0;
   }
 `;
 
 const Wrapper = styled.button`
   border: none;
-  background-color: transparent;
-  padding: 0;
-  width: 20px;
-  height: 20px;
+  background-color: ${({ isOpen }) => (isOpen ? 'transparent' : 'white')};
+  border-radius: 2px;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  z-index: 10;
+
+  @media (min-width: 750px) {
+    display: none;
+  }
 
   ${Line} {
     transition: ${({ isOpen }) =>
@@ -41,9 +48,9 @@ const Wrapper = styled.button`
   }
 `;
 
-const MenuButton = ({ isOpen, onClick }) => {
+const MenuButton = ({ isOpen, onClick, ...props }) => {
   return (
-    <Wrapper isOpen={isOpen} onClick={onClick}>
+    <Wrapper isOpen={isOpen} onClick={onClick} {...props}>
       <Line></Line>
       <Line></Line>
       <Line></Line>

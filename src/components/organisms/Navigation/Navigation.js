@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import MenuButton from 'components/atoms/MenuButton/MenuButton';
+import MobileNavigation from '../MobileNavigation/MobileNavigation';
+import Title from 'components/atoms/Title/Title';
+
+const LinksWrapper = styled.div``;
 
 const NavigationWrapper = styled.nav`
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 0.1fr;
   align-items: center;
@@ -9,15 +15,16 @@ const NavigationWrapper = styled.nav`
   border-bottom: 1px solid ${({ theme }) => theme.colors.lightGrey};
   box-shadow: -2px 4px 10px rgba(155, 124, 142, 0.09);
 
-  div {
+  @media (max-width: 750px) {
+    grid-template-columns: 1fr;
+  }
+  ${LinksWrapper} {
+    @media (max-width: 750px) {
+      display: none;
+    }
     display: flex;
     align-items: center;
   }
-`;
-
-const Title = styled.h1`
-  margin: 0;
-  white-space: nowrap;
 `;
 
 const Link = styled.a`
@@ -32,21 +39,32 @@ const Link = styled.a`
   }
 
   &:last-of-type {
+    @media (max-width: 750px) {
+      justify-self: center;
+    }
     justify-self: end;
   }
 `;
 
 const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpenMenu = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
     <NavigationWrapper>
-      <div>
+      <MenuButton onClick={handleOpenMenu} isOpen={isOpen} />
+      <LinksWrapper>
         <Title>Talking cards</Title>
         <Link href="/">Card list</Link>
         <Link href="/">Create card</Link>
         <Link href="/">FAQ</Link>
         <Link href="/">Help</Link>
-      </div>
+      </LinksWrapper>
       <Link href="/">Login/Register</Link>
+      <MobileNavigation isOpen={isOpen} />
     </NavigationWrapper>
   );
 };

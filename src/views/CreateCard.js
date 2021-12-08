@@ -77,6 +77,7 @@ const CreateCard = () => {
         <p>
           Font size:
           <input type="range" min={0} max={100} value={fontSize} onChange={handleSetFontSize} />
+          <span>{fontSize}px</span>
         </p>
       </ButtonsWrapper>
     </Wrapper>
