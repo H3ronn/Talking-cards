@@ -23,6 +23,7 @@ export const Caption = styled.p`
   text-align: center;
   font-size: ${({ fontSize }) => `${fontSize}px`};
   color: ${({ color }) => color};
+  transform: ${({ spaceValue }) => `translateY(${spaceValue}px)`};
   margin: 0;
   margin-top: 80px;
 `;
@@ -37,6 +38,7 @@ export const ImageWrapper = styled.div`
 
 export const Image = styled.img`
   max-width: 400px;
+  /* transform: scale(1.5); */
 `;
 
 export const StyledButton = styled.button`

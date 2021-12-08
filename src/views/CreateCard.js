@@ -3,6 +3,7 @@ import { Wrapper, CardWrapper, Caption, ImageWrapper, Image, StyledButton, Butto
 import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
+import RangeInput from 'components/molecules/RangeInput/RangeInput';
 
 const CreateCard = () => {
   const [caption, setCaption] = useState('Caption');
@@ -10,6 +11,7 @@ const CreateCard = () => {
   const [backgroundColor, setBackgroundColor] = useState('#0000ff');
   const [captionColor, setCaptionColor] = useState('#ffffff');
   const [fontSize, setFontSize] = useState(50);
+  const [spaceValue, setSpaceValue] = useState(0);
   const cardRef = useRef(null);
 
   const handleCaptionChange = (e) => {
@@ -33,6 +35,10 @@ const CreateCard = () => {
     setFontSize(e.target.value);
   };
 
+  const handleSetSpaceValue = (e) => {
+    setSpaceValue(e.target.value);
+  };
+
   const downloadJpg = () => {
     domtoimage.toBlob(cardRef.current).then((blob) => {
       saveAs(blob, caption);
@@ -45,7 +51,7 @@ const CreateCard = () => {
         <ImageWrapper>
           <Image src={selectedImage ? selectedImage : require('./defaultImage.jpg').default} alt="" />
         </ImageWrapper>
-        <Caption color={captionColor} fontSize={fontSize}>
+        <Caption color={captionColor} fontSize={fontSize} spaceValue={spaceValue}>
           {caption}
         </Caption>
       </CardWrapper>
@@ -73,13 +79,8 @@ const CreateCard = () => {
         />
         <StyledButton onClick={downloadJpg}>Download jpg</StyledButton>
       </ButtonsWrapper>
-      <ButtonsWrapper>
-        <p>
-          Font size:
-          <input type="range" min={0} max={100} value={fontSize} onChange={handleSetFontSize} />
-          <span>{fontSize}px</span>
-        </p>
-      </ButtonsWrapper>
+      <RangeInput label="Font size" value={fontSize} id="fontSize" unit="px" onChange={handleSetFontSize} />
+      <RangeInput label="Space" value={spaceValue} id="spaceValue" unit="px" onChange={handleSetSpaceValue} min="-100" max="100" />
     </Wrapper>
   );
 };
