@@ -4,6 +4,7 @@ import Label from '../Label/Label';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 0 10px;
 
   Label {
     display: block;
@@ -16,7 +17,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const StyledInputFile = styled.input.attrs({ type: 'file' })`
+const StyledInputButton = styled.input`
   opacity: 0;
   width: 0.1px;
   height: 0.1px;
@@ -28,13 +29,13 @@ const StyledInputFile = styled.input.attrs({ type: 'file' })`
   }
 `;
 
-const InputFile = ({ onChange, id, name, label }) => {
+const InputButton = ({ type = 'file', onChange, id, name, label, ...props }) => {
   return (
     <Wrapper>
-      <StyledInputFile onChange={onChange} id={id} name={name} label={label} />
+      <StyledInputButton type={type} onChange={onChange} id={id} name={name} label={label} {...props} />
       <Label htmlFor={id}>{label}</Label>
     </Wrapper>
   );
 };
 
-export default InputFile;
+export default InputButton;

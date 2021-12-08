@@ -1,15 +1,15 @@
 import React, { useState, useRef } from 'react';
-import { Wrapper, CardWrapper, Caption, ImageWrapper, Image, StyledButton, ButtonsWrapper } from './CreateCard.styles';
-import InputField from 'components/molecules/InputField/InputField';
-import InputFile from 'components/atoms/InputFile/InputFile';
+import { Wrapper, CardWrapper, Caption, ImageWrapper, Image, StyledButton, ButtonsWrapper, StyledInputField } from './CreateCard.styles';
+import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
-import MenuButton from 'components/atoms/MenuButton/MenuButton';
 
 const CreateCard = () => {
   const [caption, setCaption] = useState('Caption');
   const [selectedImage, setSelectedImage] = useState(null);
-  const [backgroundColor, setBackgroundColor] = useState('');
+  const [backgroundColor, setBackgroundColor] = useState('#0000ff');
+  const [captionColor, setCaptionColor] = useState('#ffffff');
+  const [fontSize, setFontSize] = useState(50);
   const cardRef = useRef(null);
 
   const handleCaptionChange = (e) => {
@@ -19,6 +19,18 @@ const CreateCard = () => {
 
   const handleImageChange = (e) => {
     setSelectedImage(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const handleChangeBgColor = (e) => {
+    setBackgroundColor(e.target.value);
+  };
+
+  const handleChangeCaptionColor = (e) => {
+    setCaptionColor(e.target.value);
+  };
+
+  const handleSetFontSize = (e) => {
+    setFontSize(e.target.value);
   };
 
   const downloadJpg = () => {
@@ -33,16 +45,40 @@ const CreateCard = () => {
         <ImageWrapper>
           <Image src={selectedImage ? selectedImage : require('./defaultImage.jpg').default} alt="" />
         </ImageWrapper>
-        <Caption>{caption}</Caption>
+        <Caption color={captionColor} fontSize={fontSize}>
+          {caption}
+        </Caption>
       </CardWrapper>
-      <InputField name="caption" id="caption" label="Caption" onChange={handleCaptionChange} />
+      <StyledInputField name="caption" id="caption" label="Caption" onChange={handleCaptionChange} />
       <ButtonsWrapper>
-        <InputFile name="file" id="file" label="Choose file" onChange={handleImageChange} />
-        <StyledButton onClick={downloadJpg}>Download jpg</StyledButton>
-        <input type="color" onChange={(e) => setBackgroundColor(e.target.value)} />
+        <InputButton name="file" id="file" label="Choose image" accept="image/*" onChange={handleImageChange} />
+        <InputButton
+          type="color"
+          id="captionColor"
+          name="captionColor"
+          label="Choose caption color"
+          value={captionColor}
+          onChange={handleChangeCaptionColor}
+        />
         {/* przetestować debounce dla setBackgroundColor bo jak się szybko rusza to laguje */}
       </ButtonsWrapper>
-      <MenuButton />
+      <ButtonsWrapper>
+        <InputButton
+          type="color"
+          id="bgColor"
+          name="bgColor"
+          value={backgroundColor}
+          label="Choose background color"
+          onChange={handleChangeBgColor}
+        />
+        <StyledButton onClick={downloadJpg}>Download jpg</StyledButton>
+      </ButtonsWrapper>
+      <ButtonsWrapper>
+        <p>
+          Font size:
+          <input type="range" min={0} max={100} value={fontSize} onChange={handleSetFontSize} />
+        </p>
+      </ButtonsWrapper>
     </Wrapper>
   );
 };
