@@ -1,86 +1,74 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useReducer } from 'react';
 import { Wrapper, CardWrapper, Caption, ImageWrapper, Image, StyledButton, ButtonsWrapper, StyledInputField } from './CreateCard.styles';
 import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 import RangeInput from 'components/molecules/RangeInput/RangeInput';
 
-const CreateCard = () => {
-  const [caption, setCaption] = useState('Caption');
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [backgroundColor, setBackgroundColor] = useState('#0000ff');
-  const [captionColor, setCaptionColor] = useState('#ffffff');
-  const [fontSize, setFontSize] = useState(50);
-  const [spaceValue, setSpaceValue] = useState(0);
-  const cardRef = useRef(null);
+const initialState = {
+  caption: 'Caption',
+  captionColor: '#ffffff',
+  fontSize: 50,
+  selectedImage: null,
+  bgColor: '#0000ff',
+  spaceValue: 0,
+};
 
-  const handleCaptionChange = (e) => {
-    setCaption(e.target.value);
-    if (!e.target.value) setCaption('Caption');
+const reducer = (state, action) => {
+  console.log(state, action);
+  return { ...state, [action.type]: action.payload };
+};
+
+const CreateCard = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const cardRef = useRef(null);
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const handleEditCard = (e) => {
+    dispatch({ type: e.target.name, payload: e.target.value });
   };
 
   const handleImageChange = (e) => {
-    setSelectedImage(URL.createObjectURL(e.target.files[0]));
-  };
-
-  const handleChangeBgColor = (e) => {
-    setBackgroundColor(e.target.value);
-  };
-
-  const handleChangeCaptionColor = (e) => {
-    setCaptionColor(e.target.value);
-  };
-
-  const handleSetFontSize = (e) => {
-    setFontSize(e.target.value);
-  };
-
-  const handleSetSpaceValue = (e) => {
-    setSpaceValue(e.target.value);
+    if (e.target.files[0]) {
+      setSelectedImage(URL.createObjectURL(e.target.files[0]));
+    }
   };
 
   const downloadJpg = () => {
     domtoimage.toBlob(cardRef.current).then((blob) => {
-      saveAs(blob, caption);
+      saveAs(blob, state.caption);
     });
   };
 
   return (
     <Wrapper>
-      <CardWrapper ref={cardRef} backgroundColor={backgroundColor}>
+      <CardWrapper ref={cardRef} backgroundColor={state.bgColor}>
         <ImageWrapper>
           <Image src={selectedImage ? selectedImage : require('./defaultImage.jpg').default} alt="" />
         </ImageWrapper>
-        <Caption color={captionColor} fontSize={fontSize} spaceValue={spaceValue}>
-          {caption}
+        <Caption color={state.captionColor} fontSize={state.fontSize} spaceValue={state.spaceValue}>
+          {state.caption}
         </Caption>
       </CardWrapper>
-      <StyledInputField name="caption" id="caption" label="Caption" onChange={handleCaptionChange} />
+      <StyledInputField name="caption" id="caption" label="Caption" onChange={handleEditCard} />
       <ButtonsWrapper>
-        <InputButton name="file" id="file" label="Choose image" accept="image/*" onChange={handleImageChange} />
+        <InputButton name="image" id="file" label="Choose image" accept="image/*" onChange={handleImageChange} />
         <InputButton
           type="color"
           id="captionColor"
           name="captionColor"
           label="Choose caption color"
-          value={captionColor}
-          onChange={handleChangeCaptionColor}
+          value={state.captionColor}
+          onChange={handleEditCard}
         />
         {/* przetestować debounce dla setBackgroundColor bo jak się szybko rusza to laguje */}
       </ButtonsWrapper>
       <ButtonsWrapper>
-        <InputButton
-          type="color"
-          id="bgColor"
-          name="bgColor"
-          value={backgroundColor}
-          label="Choose background color"
-          onChange={handleChangeBgColor}
-        />
+        <InputButton type="color" id="bgColor" name="bgColor" value={state.bgColor} label="Choose background color" onChange={handleEditCard} />
         <StyledButton onClick={downloadJpg}>Download jpg</StyledButton>
       </ButtonsWrapper>
-      <RangeInput label="Font size" value={fontSize} id="fontSize" unit="px" onChange={handleSetFontSize} />
-      <RangeInput label="Space" value={spaceValue} id="spaceValue" unit="px" onChange={handleSetSpaceValue} min="-100" max="100" />
+      <RangeInput label="Font size" value={state.fontSize} id="fontSize" name="fontSize" unit="px" onChange={handleEditCard} />
+      <RangeInput label="Space" value={state.spaceValue} id="spaceValue" name="spaceValue" unit="px" onChange={handleEditCard} min="-100" max="100" />
     </Wrapper>
   );
 };
