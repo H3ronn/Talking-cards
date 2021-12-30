@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import MenuButton from 'components/atoms/MenuButton/MenuButton';
 import MobileNavigation from '../MobileNavigation/MobileNavigation';
 import Title from 'components/atoms/Title/Title';
+import { NavLink } from 'react-router-dom';
 
 const LinksWrapper = styled.div``;
 
@@ -27,7 +28,7 @@ const NavigationWrapper = styled.nav`
   }
 `;
 
-const Link = styled.a`
+const Link = styled(NavLink).attrs({ style: ({ isActive }) => (isActive ? { textDecoration: 'underline' } : null) })`
   color: ${({ theme }) => theme.colors.grey};
   text-decoration: none;
   font-size: 16px;
@@ -58,12 +59,12 @@ const Navigation = () => {
       <MenuButton onClick={handleOpenMenu} isOpen={isOpen} />
       <LinksWrapper>
         <Title>Talking cards</Title>
-        <Link href="/">Card list</Link>
-        <Link href="/">Create card</Link>
-        <Link href="/">FAQ</Link>
-        <Link href="/">Help</Link>
+        <Link to="/list">Card list</Link>
+        <Link to="/create">Create card</Link>
+        <Link to="/faq">FAQ</Link>
+        <Link to="/help">Help</Link>
       </LinksWrapper>
-      <Link href="/">Login/Register</Link>
+      <Link to="/login">Login/Register</Link>
       <MobileNavigation isOpen={isOpen} />
     </NavigationWrapper>
   );

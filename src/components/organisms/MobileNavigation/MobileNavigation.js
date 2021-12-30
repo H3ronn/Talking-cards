@@ -1,6 +1,7 @@
 import Title from 'components/atoms/Title/Title';
 import React from 'react';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 const Wrapper = styled.nav`
   position: fixed;
@@ -31,22 +32,26 @@ const Wrapper = styled.nav`
   }
 `;
 
+const StyledNavLink = styled(NavLink).attrs({ style: ({ isActive }) => (isActive ? { textDecoration: 'underline' } : null) })`
+  text-decoration: none;
+`;
+
 const MobileNavigation = ({ isOpen = true }) => {
   return (
     <Wrapper isOpen={isOpen}>
       <Title>Talking cards</Title>
       <ul>
         <li>
-          <a href="/">Card list</a>
+          <StyledNavLink to="/list">Card list</StyledNavLink>
         </li>
         <li>
-          <a href="/">Create card</a>
+          <StyledNavLink to="/create">Create card</StyledNavLink>
         </li>
         <li>
-          <a href="/">FAQ</a>
+          <StyledNavLink to="/faq">FAQ</StyledNavLink>
         </li>
         <li>
-          <a href="/">Help</a>
+          <StyledNavLink to="/help">Help</StyledNavLink>
         </li>
       </ul>
     </Wrapper>

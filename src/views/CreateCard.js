@@ -15,7 +15,7 @@ const initialState = {
 };
 
 const reducer = (state, action) => {
-  console.log(state, action);
+  // console.log(state, action);
   return { ...state, [action.type]: action.payload };
 };
 
@@ -25,6 +25,7 @@ const CreateCard = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleEditCard = (e) => {
+    console.log(state);
     dispatch({ type: e.target.name, payload: e.target.value });
   };
 
@@ -66,6 +67,9 @@ const CreateCard = () => {
       <ButtonsWrapper>
         <InputButton type="color" id="bgColor" name="bgColor" value={state.bgColor} label="Choose background color" onChange={handleEditCard} />
         <StyledButton onClick={downloadJpg}>Download jpg</StyledButton>
+      </ButtonsWrapper>
+      <ButtonsWrapper>
+        <StyledButton>Save card</StyledButton>
       </ButtonsWrapper>
       <RangeInput label="Font size" value={state.fontSize} id="fontSize" name="fontSize" unit="px" onChange={handleEditCard} />
       <RangeInput label="Space" value={state.spaceValue} id="spaceValue" name="spaceValue" unit="px" onChange={handleEditCard} min="-100" max="100" />
