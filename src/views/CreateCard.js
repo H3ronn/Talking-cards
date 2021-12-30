@@ -1,9 +1,10 @@
-import React, { useState, useRef, useReducer } from 'react';
+import React, { useState, useRef, useReducer, useContext } from 'react';
 import { Wrapper, CardWrapper, Caption, ImageWrapper, Image, StyledButton, ButtonsWrapper, StyledInputField } from './CreateCard.styles';
 import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 import RangeInput from 'components/molecules/RangeInput/RangeInput';
+import { CardContext } from './Root';
 
 const initialState = {
   caption: 'Caption',
@@ -23,6 +24,7 @@ const CreateCard = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const cardRef = useRef(null);
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { addCard } = useContext(CardContext);
 
   const handleEditCard = (e) => {
     console.log(state);
@@ -69,7 +71,7 @@ const CreateCard = () => {
         <StyledButton onClick={downloadJpg}>Download jpg</StyledButton>
       </ButtonsWrapper>
       <ButtonsWrapper>
-        <StyledButton>Save card</StyledButton>
+        <StyledButton onClick={() => addCard(state)}>Save card</StyledButton>
       </ButtonsWrapper>
       <RangeInput label="Font size" value={state.fontSize} id="fontSize" name="fontSize" unit="px" onChange={handleEditCard} />
       <RangeInput label="Space" value={state.spaceValue} id="spaceValue" name="spaceValue" unit="px" onChange={handleEditCard} min="-100" max="100" />
