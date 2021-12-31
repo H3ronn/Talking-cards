@@ -37,9 +37,9 @@ export const Image = styled.img`
   /* transform: scale(1.5); */
 `;
 
-const Card = React.forwardRef(({ image, bgColor, captionColor, fontSize, spaceValue, caption }, ref) => {
+const Card = React.forwardRef(({ image, bgColor, captionColor, fontSize, spaceValue, caption, ...props }, ref) => {
   return (
-    <CardWrapper ref={ref} backgroundColor={bgColor}>
+    <CardWrapper ref={ref} backgroundColor={bgColor} {...props}>
       {console.log(ref)}
       <ImageWrapper>
         <Image src={image ? image : require('./defaultImage.jpg').default} alt="" />

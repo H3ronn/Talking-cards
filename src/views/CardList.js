@@ -7,14 +7,47 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100vw;
 `;
 
 const Gallery = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(450px, auto));
+  width: 100%;
+  justify-content: center;
+  grid-gap: 10px;
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: center; */
 
   & > div {
-    margin: 5px;
+  }
+`;
+
+const StyledCard = styled(Card)`
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:hover {
+    &:after {
+      transform: translateY(0);
+    }
+  }
+
+  &:after {
+    content: 'Click to edit';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    font-size: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* background-color: white; */
+    width: 100%;
+    height: 100%;
+    transform: translateY(-100%);
+    transition: transform 0.2s ease-in-out;
   }
 `;
 
@@ -26,7 +59,7 @@ const CardList = () => {
       <h1>Your Cards!</h1>
       <Gallery>
         {cards.map((card, id) => (
-          <Card
+          <StyledCard
             image={card.image}
             bgColor={card.bgColor}
             captionColor={card.captionColor}
@@ -35,6 +68,7 @@ const CardList = () => {
             caption={card.caption}
             key={id}
           />
+          // <div>elo</div>
         ))}
       </Gallery>
     </Wrapper>
