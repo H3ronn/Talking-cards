@@ -63,8 +63,8 @@ const CardProvider = ({ children }) => {
       },
     ]);
   };
-  const deleteCard = () => {
-    console.log('deleteCard');
+  const deleteCard = (id) => {
+    setCards((prevState) => prevState.filter((el) => el.id !== id));
   };
 
   return <CardContext.Provider value={{ cards, addCard, deleteCard }}>{children}</CardContext.Provider>;

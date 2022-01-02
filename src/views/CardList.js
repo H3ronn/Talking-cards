@@ -58,21 +58,17 @@ const CardList = () => {
     <Wrapper>
       <h1>Your Cards!</h1>
       <Gallery>
-        {[...cards].reverse().map((card) => (
+        {[...cards].reverse().map(({ image, bgColor, captionColor, fontSize, spaceValue, caption, id }) => (
           <StyledCard
-            image={card.image}
-            bgColor={card.bgColor}
-            captionColor={card.captionColor}
-            fontSize={card.fontSize}
-            spaceValue={card.spaceValue}
-            caption={card.caption}
-            key={card.id}
+            image={image}
+            bgColor={bgColor}
+            captionColor={captionColor}
+            fontSize={fontSize}
+            spaceValue={spaceValue}
+            caption={caption}
+            key={id}
           />
-          // <div>elo</div>
         ))}
-        {/* {cards.reverse().map((el, id) => {
-          console.log(el, id);
-        })} */}
       </Gallery>
     </Wrapper>
   );
