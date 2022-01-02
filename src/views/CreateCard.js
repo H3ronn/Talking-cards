@@ -1,5 +1,5 @@
 import React, { useRef, useReducer, useContext } from 'react';
-import { Wrapper, CardWrapper, Caption, ImageWrapper, Image, StyledButton, ButtonsWrapper, StyledInputField } from './CreateCard.styles';
+import { Wrapper, StyledButton, ButtonsWrapper, StyledInputField } from './CreateCard.styles';
 import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
@@ -28,7 +28,6 @@ const CreateCard = () => {
 
   const handleEditCard = (e) => {
     dispatch({ type: e.target.name, payload: e.target.value });
-    console.log(state);
   };
 
   const handleImageChange = (e) => {
@@ -46,14 +45,6 @@ const CreateCard = () => {
 
   return (
     <Wrapper>
-      {/* <CardWrapper ref={cardRef} backgroundColor={state.bgColor}>
-        <ImageWrapper>
-          <Image src={state.image ? state.image : require('./defaultImage.jpg').default} alt="" />
-        </ImageWrapper>
-        <Caption color={state.captionColor} fontSize={state.fontSize} spaceValue={state.spaceValue}>
-          {state.caption}
-        </Caption>
-      </CardWrapper> */}
       <Card
         image={state.image}
         ref={cardRef}

@@ -40,7 +40,6 @@ export const Image = styled.img`
 const Card = React.forwardRef(({ image, bgColor, captionColor, fontSize, spaceValue, caption, ...props }, ref) => {
   return (
     <CardWrapper ref={ref} backgroundColor={bgColor} {...props}>
-      {console.log(ref)}
       <ImageWrapper>
         <Image src={image ? image : require('./defaultImage.jpg').default} alt="" />
       </ImageWrapper>
