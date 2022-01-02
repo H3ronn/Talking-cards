@@ -1,6 +1,6 @@
 import Card from 'components/organisms/Card/Card';
+import { CardContext } from 'providers/CardProvider';
 import React, { useContext } from 'react';
-import { CardContext } from './Root';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`

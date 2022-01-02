@@ -4,8 +4,8 @@ import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 import RangeInput from 'components/molecules/RangeInput/RangeInput';
-import { CardContext } from './Root';
 import Card from 'components/organisms/Card/Card';
+import { CardContext } from 'providers/CardProvider';
 
 const initialState = {
   caption: 'Caption',
