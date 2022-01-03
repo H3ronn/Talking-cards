@@ -26,7 +26,6 @@ export const CardWrapper = styled.div`
 
 export const ImageWrapper = styled.div`
   width: 400px;
-  /* height: 400px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,7 +42,6 @@ export const Caption = styled.p`
 
 export const Image = styled.img`
   max-width: 400px;
-  /* transform: scale(1.5); */
 `;
 
 const Card = React.forwardRef(({ image, bgColor, captionColor, fontSize, spaceValue, caption, withHover, id, ...props }, ref) => {

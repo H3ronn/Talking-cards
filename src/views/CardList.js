@@ -16,9 +16,6 @@ const Gallery = styled.div`
   width: 100%;
   justify-content: center;
   grid-gap: 10px;
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: center; */
 
   & > div {
   }
@@ -36,7 +33,6 @@ const StyledCard = styled(Card)`
     position: absolute;
     font-size: 50px;
     background-color: rgba(255, 255, 255, 0.8);
-    /* background-color: white; */
     width: 100%;
     height: 100%;
     transform: translateY(-100%);

@@ -10,7 +10,6 @@ const HoverWrapper = styled.div`
   font-size: 50px;
   background-color: rgba(255, 255, 255, 0.8);
   width: 100%;
-  /* height: 20%; */
   transform: translateY(-100%);
   transition: transform 0.2s ease-in-out;
 

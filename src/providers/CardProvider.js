@@ -54,7 +54,6 @@ const CardProvider = ({ children }) => {
   const [cards, setCards] = useState(initialCardContext);
 
   const addCard = (card) => {
-    // setCards((prevState) => [...prevState, card]);
     setCards((prevState) => [
       ...prevState,
       {
