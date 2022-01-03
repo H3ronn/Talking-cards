@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 const Wrapper = styled.nav`
+  z-index: ${({ theme }) => theme.zIndex.mobileNavigation};
   position: fixed;
   top: 0;
   left: 0;
@@ -13,6 +14,7 @@ const Wrapper = styled.nav`
   padding: 50px;
   transition: transform 0.3s ease-in-out;
   transform: ${({ isOpen }) => (isOpen ? 'translateX(0)' : 'translateX(-100%)')};
+  /* visibility: ${({ isOpen }) => (isOpen ? 'visable' : 'hidden')}; */
 
   ${Title} {
     font-size: 30px;
@@ -36,7 +38,7 @@ const StyledNavLink = styled(NavLink).attrs({ style: ({ isActive }) => (isActive
   text-decoration: none;
 `;
 
-const MobileNavigation = ({ isOpen = true }) => {
+const MobileNavigation = ({ isOpen = false }) => {
   return (
     <Wrapper isOpen={isOpen}>
       <Title>Talking cards</Title>

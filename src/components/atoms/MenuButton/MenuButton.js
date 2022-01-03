@@ -21,7 +21,7 @@ const Wrapper = styled.button`
   width: 30px;
   height: 30px;
   position: fixed;
-  z-index: 10;
+  z-index: ${({ theme }) => theme.zIndex.mobileNavigationButton};
 
   @media (min-width: 750px) {
     display: none;

@@ -5,4 +5,8 @@ export const theme = {
     lightGrey: '#E5E7EB',
     red: '#F05252',
   },
+  zIndex: {
+    mobileNavigation: 5,
+    mobileNavigationButton: 10,
+  },
 };

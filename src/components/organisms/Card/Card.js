@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import CardHover from 'components/molecules/CardHover/CardHover';
+import { CardContext } from 'providers/CardProvider';
+
+const StyledCardHover = styled(CardHover)``; //Without this ${CardHover} hover dont work idk why
 
 export const CardWrapper = styled.div`
   width: 450px;
@@ -13,6 +17,11 @@ export const CardWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+
+  &:hover ${StyledCardHover}, &:focus ${StyledCardHover} {
+    transform: translateY(0);
+  }
 `;
 
 export const ImageWrapper = styled.div`
@@ -37,7 +46,8 @@ export const Image = styled.img`
   /* transform: scale(1.5); */
 `;
 
-const Card = React.forwardRef(({ image, bgColor, captionColor, fontSize, spaceValue, caption, ...props }, ref) => {
+const Card = React.forwardRef(({ image, bgColor, captionColor, fontSize, spaceValue, caption, withHover, id, ...props }, ref) => {
+  const { deleteCard } = useContext(CardContext);
   return (
     <CardWrapper ref={ref} backgroundColor={bgColor} {...props}>
       <ImageWrapper>
@@ -46,6 +56,7 @@ const Card = React.forwardRef(({ image, bgColor, captionColor, fontSize, spaceVa
       <Caption color={captionColor} fontSize={fontSize} spaceValue={spaceValue}>
         {caption}
       </Caption>
+      {withHover ? <StyledCardHover deleteFn={() => deleteCard(id)} /> : null}
     </CardWrapper>
   );
 });

@@ -27,15 +27,8 @@ const Gallery = styled.div`
 const StyledCard = styled(Card)`
   position: relative;
   overflow: hidden;
-  cursor: pointer;
 
-  &:hover {
-    &:after {
-      transform: translateY(0);
-    }
-  }
-
-  &:after {
+  pre {
     content: 'Click to edit';
     display: flex;
     align-items: center;
@@ -60,12 +53,15 @@ const CardList = () => {
       <Gallery>
         {[...cards].reverse().map(({ image, bgColor, captionColor, fontSize, spaceValue, caption, id }) => (
           <StyledCard
+            tabIndex={0}
+            withHover
             image={image}
             bgColor={bgColor}
             captionColor={captionColor}
             fontSize={fontSize}
             spaceValue={spaceValue}
             caption={caption}
+            id={id}
             key={id}
           />
         ))}
