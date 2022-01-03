@@ -14,7 +14,6 @@ const Wrapper = styled.nav`
   padding: 50px;
   transition: transform 0.3s ease-in-out;
   transform: ${({ isOpen }) => (isOpen ? 'translateX(0)' : 'translateX(-100%)')};
-  /* visibility: ${({ isOpen }) => (isOpen ? 'visable' : 'hidden')}; */
 
   ${Title} {
     font-size: 30px;
@@ -26,7 +25,7 @@ const Wrapper = styled.nav`
   }
 
   a {
-    display: block;
+    display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
     font-size: 20px;
     color: #111827;
     font-weight: bold;
