@@ -26,7 +26,7 @@ const Wrapper = styled.nav`
   }
 
   a {
-    display: block;
+    display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
     font-size: 20px;
     color: #111827;
     font-weight: bold;
