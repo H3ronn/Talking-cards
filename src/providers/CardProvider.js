@@ -1,5 +1,6 @@
 import React, { useState, createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
 
 const initialCardContext = [
   {
@@ -58,18 +59,13 @@ const CardProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const addCard = (card) => {
-    if (cards.length < 1) {
-      card.id = 1;
-      setCards([card]);
-    } else {
-      setCards((prevState) => [
-        ...prevState,
-        {
-          ...card,
-          id: prevState[prevState.length - 1].id + 1 || 1,
-        },
-      ]);
-    }
+    setCards((prevState) => [
+      ...prevState,
+      {
+        ...card,
+        id: uuid(),
+      },
+    ]);
   };
 
   const deleteCard = (id) => {
