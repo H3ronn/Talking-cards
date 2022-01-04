@@ -1,5 +1,5 @@
 import React, { useRef, useReducer, useContext, useEffect } from 'react';
-import { Wrapper, StyledButton, ButtonsWrapper, StyledInputField } from 'views/CreateCard.styles';
+import { Wrapper, StyledButton, ButtonsWrapper, StyledInputField } from './EditCardSection.styles';
 import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
