@@ -44,6 +44,15 @@ export const Image = styled.img`
   max-width: 400px;
 `;
 
+// const initialStyle = {
+//   caption: 'Caption',
+//   captionColor: '#ffffff',
+//   fontSize: 50,
+//   image: null,
+//   bgColor: '#0000ff',
+//   spaceValue: 0,
+// };
+
 const Card = React.forwardRef(({ cardStyle, withHover, id, ...props }, ref) => {
   const { deleteCard, editCard } = useContext(CardContext);
 
@@ -61,13 +70,6 @@ const Card = React.forwardRef(({ cardStyle, withHover, id, ...props }, ref) => {
   );
 });
 
-Card.propTypes = {
-  image: PropTypes.string,
-  bgColor: PropTypes.string,
-  captionColor: PropTypes.string,
-  fontSize: PropTypes.number,
-  spaceValue: PropTypes.number,
-  caption: PropTypes.string,
-};
+Card.propTypes = {};
 
 export default Card;

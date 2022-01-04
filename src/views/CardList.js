@@ -1,7 +1,8 @@
-import Card from 'components/organisms/Card/Card';
-import { CardContext } from 'providers/CardProvider';
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import Title from 'components/atoms/Title/Title';
+import Card from 'components/organisms/Card/Card';
+import { CardContext } from 'providers/CardProvider';
 
 const Wrapper = styled.div`
   display: flex;
@@ -45,7 +46,7 @@ const CardList = () => {
 
   return (
     <Wrapper>
-      <h1>Your Cards!</h1>
+      <Title>Your Cards!</Title>
       <Gallery>
         {[...cards].reverse().map((card) => (
           <StyledCard tabIndex={0} withHover cardStyle={card} id={card.id} key={card.id} />

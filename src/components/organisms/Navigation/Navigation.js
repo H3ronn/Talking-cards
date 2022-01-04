@@ -28,6 +28,10 @@ const NavigationWrapper = styled.nav`
   }
 `;
 
+const StyledTitle = styled(Title)`
+  margin: 0;
+`;
+
 const Link = styled(NavLink).attrs({ style: ({ isActive }) => (isActive ? { textDecoration: 'underline' } : null) })`
   color: ${({ theme }) => theme.colors.grey};
   text-decoration: none;
@@ -58,7 +62,7 @@ const Navigation = () => {
     <NavigationWrapper>
       <MenuButton onClick={handleOpenMenu} isOpen={isOpen} />
       <LinksWrapper>
-        <Title>Talking cards</Title>
+        <StyledTitle>Talking cards</StyledTitle>
         <Link to="/list">Card list</Link>
         <Link to="/create">Create card</Link>
         <Link to="/faq">FAQ</Link>

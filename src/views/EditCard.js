@@ -1,7 +1,15 @@
 import React, { useContext, useEffect } from 'react';
-import Card from 'components/organisms/Card/Card';
+import styled from 'styled-components';
 import { CardContext } from 'providers/CardProvider';
 import { useNavigate } from 'react-router-dom';
+import EditCardSection from 'components/templates/EditCardSection/EditCardSection';
+import Title from 'components/atoms/Title/Title';
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const EditCard = () => {
   const { selectedCard } = useContext(CardContext);
@@ -14,18 +22,10 @@ const EditCard = () => {
   }, [navigate, selectedCard]);
 
   return (
-    <>
-      {/* <Card
-        image={selectedCard.image}
-        bgColor={selectedCard.bgColor}
-        captionColor={selectedCard.captionColor}
-        fontSize={selectedCard.fontSize}
-        spaceValue={selectedCard.spaceValue}
-        caption={selectedCard.caption}
-        id={selectedCard.id}
-      /> */}
-      <Card cardStyle={selectedCard} id={selectedCard.id} />
-    </>
+    <Wrapper>
+      <Title>Edit your card</Title>
+      <EditCardSection cardStyle={selectedCard} />
+    </Wrapper>
   );
 };
 
