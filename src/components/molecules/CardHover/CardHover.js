@@ -37,7 +37,7 @@ const Button = styled.button`
 const CardHover = ({ editFn, deleteFn, ...props }) => {
   return (
     <HoverWrapper {...props}>
-      <Button>Edit</Button>
+      <Button onClick={editFn}>Edit</Button>
       <Button onClick={deleteFn}>Delete</Button>
     </HoverWrapper>
   );

@@ -44,8 +44,10 @@ export const Image = styled.img`
   max-width: 400px;
 `;
 
-const Card = React.forwardRef(({ image, bgColor, captionColor, fontSize, spaceValue, caption, withHover, id, ...props }, ref) => {
-  const { deleteCard } = useContext(CardContext);
+const Card = React.forwardRef(({ cardStyle, withHover, id, ...props }, ref) => {
+  const { deleteCard, editCard } = useContext(CardContext);
+
+  const { bgColor, image, captionColor, fontSize, spaceValue, caption } = cardStyle;
   return (
     <CardWrapper ref={ref} backgroundColor={bgColor} {...props}>
       <ImageWrapper>
@@ -54,7 +56,7 @@ const Card = React.forwardRef(({ image, bgColor, captionColor, fontSize, spaceVa
       <Caption color={captionColor} fontSize={fontSize} spaceValue={spaceValue}>
         {caption}
       </Caption>
-      {withHover ? <StyledCardHover deleteFn={() => deleteCard(id)} /> : null}
+      {withHover ? <StyledCardHover deleteFn={() => deleteCard(id)} editFn={() => editCard(id)} /> : null}
     </CardWrapper>
   );
 });

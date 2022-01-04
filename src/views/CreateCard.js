@@ -43,39 +43,25 @@ const CreateCard = () => {
     });
   };
 
+  const { bgColor, captionColor, fontSize, spaceValue } = state;
   return (
     <Wrapper>
-      <Card
-        image={state.image}
-        ref={cardRef}
-        bgColor={state.bgColor}
-        captionColor={state.captionColor}
-        fontSize={state.fontSize}
-        spaceValue={state.spaceValue}
-        caption={state.caption}
-      />
+      <Card cardStyle={state} ref={cardRef} />
       <StyledInputField name="caption" id="caption" label="Caption" onChange={handleEditCard} />
       <ButtonsWrapper>
         <InputButton name="image" id="file" label="Choose image" accept="image/*" onChange={handleImageChange} />
-        <InputButton
-          type="color"
-          id="captionColor"
-          name="captionColor"
-          label="Choose caption color"
-          value={state.captionColor}
-          onChange={handleEditCard}
-        />
+        <InputButton type="color" id="captionColor" name="captionColor" label="Choose caption color" value={captionColor} onChange={handleEditCard} />
         {/* przetestować debounce dla setBackgroundColor bo jak się szybko rusza to laguje */}
       </ButtonsWrapper>
       <ButtonsWrapper>
-        <InputButton type="color" id="bgColor" name="bgColor" value={state.bgColor} label="Choose background color" onChange={handleEditCard} />
+        <InputButton type="color" id="bgColor" name="bgColor" value={bgColor} label="Choose background color" onChange={handleEditCard} />
         <StyledButton onClick={downloadJpg}>Download jpg</StyledButton>
       </ButtonsWrapper>
       <ButtonsWrapper>
-        <StyledButton onClick={() => addCard(state)}>Save card</StyledButton>
+        <StyledButton onClick={() => addCard(state)}>Add card</StyledButton>
       </ButtonsWrapper>
-      <RangeInput label="Font size" value={state.fontSize} id="fontSize" name="fontSize" unit="px" onChange={handleEditCard} />
-      <RangeInput label="Space" value={state.spaceValue} id="spaceValue" name="spaceValue" unit="px" onChange={handleEditCard} min="-100" max="100" />
+      <RangeInput label="Font size" value={fontSize} id="fontSize" name="fontSize" unit="px" onChange={handleEditCard} />
+      <RangeInput label="Space" value={spaceValue} id="spaceValue" name="spaceValue" unit="px" onChange={handleEditCard} min="-100" max="100" />
     </Wrapper>
   );
 };

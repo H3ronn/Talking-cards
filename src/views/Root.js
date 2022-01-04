@@ -7,6 +7,7 @@ import Navigation from 'components/organisms/Navigation/Navigation';
 import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import CardList from './CardList';
 import CardProvider from 'providers/CardProvider';
+import EditCard from './EditCard';
 
 const Root = () => {
   return (
@@ -19,6 +20,7 @@ const Root = () => {
             <Route path="/" element={<Navigate to="create" />} />
             <Route path="/list" element={<CardList />} />
             <Route path="/create" element={<CreateCard />} />
+            <Route path="/edit" element={<EditCard />} />
             <Route path="/faq" element={<h1>faq</h1>} />
             <Route path="/help" element={<h1>help</h1>} />
             <Route path="/login" element={<h1>login/register</h1>} />

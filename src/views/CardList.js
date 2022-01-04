@@ -47,19 +47,8 @@ const CardList = () => {
     <Wrapper>
       <h1>Your Cards!</h1>
       <Gallery>
-        {[...cards].reverse().map(({ image, bgColor, captionColor, fontSize, spaceValue, caption, id }) => (
-          <StyledCard
-            tabIndex={0}
-            withHover
-            image={image}
-            bgColor={bgColor}
-            captionColor={captionColor}
-            fontSize={fontSize}
-            spaceValue={spaceValue}
-            caption={caption}
-            id={id}
-            key={id}
-          />
+        {[...cards].reverse().map((card) => (
+          <StyledCard tabIndex={0} withHover cardStyle={card} id={card.id} key={card.id} />
         ))}
       </Gallery>
     </Wrapper>

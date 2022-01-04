@@ -1,4 +1,5 @@
 import React, { useState, createContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const initialCardContext = [
   {
@@ -48,10 +49,13 @@ const initialCardContext = [
   },
 ];
 
-export const CardContext = createContext({ cards: [], addCard: () => {}, deleteCard: () => {} });
+export const CardContext = createContext({ cards: [], selectedCard: {}, addCard: () => {}, deleteCard: () => {} });
 
 const CardProvider = ({ children }) => {
   const [cards, setCards] = useState(initialCardContext);
+  const [selectedCard, setSelectedCard] = useState(null);
+
+  const navigate = useNavigate();
 
   const addCard = (card) => {
     setCards((prevState) => [
@@ -62,11 +66,19 @@ const CardProvider = ({ children }) => {
       },
     ]);
   };
+
   const deleteCard = (id) => {
     setCards((prevState) => prevState.filter((el) => el.id !== id));
   };
 
-  return <CardContext.Provider value={{ cards, addCard, deleteCard }}>{children}</CardContext.Provider>;
+  const editCard = (id) => {
+    console.log(123);
+    setSelectedCard(cards.find((el) => el.id === id));
+    // return <Navigate to="create" />;
+    navigate('/edit');
+  };
+
+  return <CardContext.Provider value={{ cards, selectedCard, addCard, deleteCard, editCard }}>{children}</CardContext.Provider>;
 };
 
 export default CardProvider;
