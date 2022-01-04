@@ -58,13 +58,18 @@ const CardProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const addCard = (card) => {
-    setCards((prevState) => [
-      ...prevState,
-      {
-        ...card,
-        id: prevState[prevState.length - 1].id + 1,
-      },
-    ]);
+    if (cards.length < 1) {
+      card.id = 1;
+      setCards([card]);
+    } else {
+      setCards((prevState) => [
+        ...prevState,
+        {
+          ...card,
+          id: prevState[prevState.length - 1].id + 1 || 1,
+        },
+      ]);
+    }
   };
 
   const deleteCard = (id) => {
