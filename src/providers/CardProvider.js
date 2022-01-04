@@ -61,8 +61,8 @@ const CardProvider = ({ children }) => {
     setCards((prevState) => [
       ...prevState,
       {
-        id: prevState[prevState.length - 1].id + 1,
         ...card,
+        id: prevState[prevState.length - 1].id + 1,
       },
     ]);
   };
@@ -72,13 +72,17 @@ const CardProvider = ({ children }) => {
   };
 
   const editCard = (id) => {
-    console.log(123);
     setSelectedCard(cards.find((el) => el.id === id));
     // return <Navigate to="create" />;
     navigate('/edit');
   };
 
-  return <CardContext.Provider value={{ cards, selectedCard, addCard, deleteCard, editCard }}>{children}</CardContext.Provider>;
+  const saveCard = (card) => {
+    deleteCard(card.id);
+    setCards((prevState) => [...prevState, card]);
+  };
+
+  return <CardContext.Provider value={{ cards, selectedCard, addCard, deleteCard, editCard, saveCard }}>{children}</CardContext.Provider>;
 };
 
 export default CardProvider;
