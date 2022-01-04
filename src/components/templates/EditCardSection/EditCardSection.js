@@ -26,7 +26,7 @@ const reducer = (state, action) => {
 const EditCardSection = ({ cardStyle }) => {
   const cardRef = useRef(null);
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { addCard, saveCard } = useContext(CardContext);
+  const { addCard, overwriteCard } = useContext(CardContext);
 
   const handleEditCard = (e) => {
     dispatch({ type: e.target.name, payload: e.target.value });
@@ -65,7 +65,7 @@ const EditCardSection = ({ cardStyle }) => {
         <StyledButton onClick={downloadJpg}>Download jpg</StyledButton>
       </ButtonsWrapper>
       <ButtonsWrapper>
-        {cardStyle ? <StyledButton onClick={() => saveCard(state)}>Overwrite card</StyledButton> : null}
+        {cardStyle ? <StyledButton onClick={() => overwriteCard(state)}>Overwrite card</StyledButton> : null}
         <StyledButton onClick={() => addCard(state)}>Add card</StyledButton>
       </ButtonsWrapper>
       <RangeInput label="Font size" value={fontSize} id="fontSize" name="fontSize" unit="px" onChange={handleEditCard} />
