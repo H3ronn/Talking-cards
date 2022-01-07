@@ -19,9 +19,7 @@ const CardList = () => {
 
   return (
     <Wrapper>
-      <button>tescik</button>
       <Title>Your Cards!</Title>
-      <input type="file" />
       <Gallery>
         {[...cards].reverse().map((card) => (
           <StyledCard tabIndex={0} withHover cardStyle={card} id={card.id} key={card.id} />
