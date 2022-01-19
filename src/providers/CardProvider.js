@@ -1,6 +1,8 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
+import { getFirestore, collection, onSnapshot, addDoc } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 // const initialCardContext = [
 //   {
@@ -50,24 +52,26 @@ import { v4 as uuid } from 'uuid';
 //   },
 // ];
 
-const initialCardContext = JSON.parse(localStorage.getItem('cards')) || [];
+// const initialCardContext = JSON.parse(localStorage.getItem('cards')) || [];
 
 export const CardContext = createContext({ cards: [], selectedCard: {}, addCard: () => {}, deleteCard: () => {} });
+const db = getFirestore();
+const colRef = collection(db, 'cards');
+const storage = getStorage();
 
 const CardProvider = ({ children }) => {
-  const [cards, setCards] = useState(initialCardContext);
+  const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
 
   const navigate = useNavigate();
 
   const addCard = (card) => {
-    setCards((prevState) => [
-      ...prevState,
-      {
-        ...card,
-        id: uuid(),
-      },
-    ]);
+    const storageRef = ref(storage, card.caption);
+    uploadBytes(storageRef, card.image).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((imageUrl) => {
+        addDoc(colRef, { ...card, image: imageUrl }).then((d) => {});
+      });
+    });
   };
 
   const deleteCard = (id) => {
@@ -76,7 +80,6 @@ const CardProvider = ({ children }) => {
 
   const editCard = (id) => {
     setSelectedCard(cards.find((el) => el.id === id));
-    // return <Navigate to="create" />;
     navigate('/edit');
   };
 
@@ -86,8 +89,16 @@ const CardProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    localStorage.setItem('cards', JSON.stringify(cards));
-  }, [cards]);
+    const subscribe = onSnapshot(colRef, (snapshot) => {
+      const cards = snapshot.docs.map((card) => ({ id: card.id, ...card.data() }));
+      setCards(cards);
+    });
+    return () => subscribe();
+  }, []);
+
+  // useEffect(() => {
+  //   localStorage.setItem('cards', JSON.stringify(cards));
+  // }, [cards]);
 
   return <CardContext.Provider value={{ cards, selectedCard, addCard, deleteCard, editCard, overwriteCard }}>{children}</CardContext.Provider>;
 };

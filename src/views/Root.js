@@ -1,4 +1,5 @@
 import React from 'react';
+import 'firestore';
 import { GlobalStyles } from 'assets/styles/GlobalStyle';
 import CreateCard from './CreateCard';
 import { ThemeProvider } from 'styled-components';

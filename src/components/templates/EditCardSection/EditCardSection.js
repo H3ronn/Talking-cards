@@ -1,4 +1,4 @@
-import React, { useRef, useReducer, useContext, useEffect } from 'react';
+import React, { useRef, useReducer, useContext, useEffect, useState } from 'react';
 import { Wrapper, StyledButton, ButtonsWrapper, StyledInputField } from './EditCardSection.styles';
 import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
@@ -26,6 +26,7 @@ const reducer = (state, action) => {
 const EditCardSection = ({ cardStyle }) => {
   const cardRef = useRef(null);
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [localImgUrl, setLocalImgUrl] = useState('');
   const { addCard, overwriteCard } = useContext(CardContext);
 
   const handleEditCard = (e) => {
@@ -34,7 +35,8 @@ const EditCardSection = ({ cardStyle }) => {
 
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
-      dispatch({ type: e.target.name, payload: URL.createObjectURL(e.target.files[0]) });
+      dispatch({ type: e.target.name, payload: e.target.files[0] });
+      setLocalImgUrl(URL.createObjectURL(e.target.files[0]));
     }
   };
 
@@ -53,7 +55,7 @@ const EditCardSection = ({ cardStyle }) => {
   const { bgColor, captionColor, fontSize, spaceValue, caption } = state;
   return (
     <Wrapper>
-      <Card cardStyle={state} ref={cardRef} />
+      <Card cardStyle={{ ...state, image: localImgUrl }} ref={cardRef} />
       <StyledInputField name="caption" id="caption" label="Caption" value={caption} onChange={handleEditCard} />
       <ButtonsWrapper>
         <InputButton name="image" id="file" label="Choose image" accept="image/*" onChange={handleImageChange} />
