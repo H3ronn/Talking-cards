@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
-import { getFirestore, collection, onSnapshot, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, onSnapshot, addDoc, orderBy, serverTimestamp, query } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 // const initialCardContext = [
@@ -56,7 +56,8 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 export const CardContext = createContext({ cards: [], selectedCard: {}, addCard: () => {}, deleteCard: () => {} });
 const db = getFirestore();
-const colRef = collection(db, 'cards');
+const colRef = collection(db, 'cards'); //if not exit it create new collection
+// const q = query(colRef, orderBy('createdAt', 'desc'));
 const storage = getStorage();
 
 const CardProvider = ({ children }) => {
@@ -66,10 +67,10 @@ const CardProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const addCard = (card) => {
-    const storageRef = ref(storage, card.caption);
+    const storageRef = ref(storage, `${card.caption}-${uuid()}`);
     uploadBytes(storageRef, card.image).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((imageUrl) => {
-        addDoc(colRef, { ...card, image: imageUrl }).then((d) => {});
+        addDoc(colRef, { ...card, image: imageUrl, createdAt: serverTimestamp() }).then((d) => {});
       });
     });
   };
