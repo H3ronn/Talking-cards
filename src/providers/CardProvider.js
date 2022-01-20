@@ -57,7 +57,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 export const CardContext = createContext({ cards: [], selectedCard: {}, addCard: () => {}, deleteCard: () => {} });
 const db = getFirestore();
 const colRef = collection(db, 'cards'); //if not exit it create new collection
-// const q = query(colRef, orderBy('createdAt', 'desc'));
+const q = query(colRef, orderBy('createdAt', 'desc'));
 const storage = getStorage();
 
 const CardProvider = ({ children }) => {
@@ -90,7 +90,7 @@ const CardProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const subscribe = onSnapshot(colRef, (snapshot) => {
+    const subscribe = onSnapshot(q, (snapshot) => {
       const cards = snapshot.docs.map((card) => ({ id: card.id, ...card.data() }));
       setCards(cards);
     });
