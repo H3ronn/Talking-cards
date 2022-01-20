@@ -1,11 +1,12 @@
 import React, { useRef, useReducer, useContext, useEffect, useState } from 'react';
-import { Wrapper, StyledButton, ButtonsWrapper, StyledInputField } from './EditCardSection.styles';
+import { Wrapper, ButtonsWrapper, StyledInputField } from './EditCardSection.styles';
 import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 import RangeInput from 'components/molecules/RangeInput/RangeInput';
 import Card from 'components/organisms/Card/Card';
 import { CardContext } from 'providers/CardProvider';
+import { Button } from 'components/atoms/Button/Button';
 
 const initialState = {
   caption: 'Caption',
@@ -85,11 +86,11 @@ const EditCardSection = ({ cardStyle }) => {
           label="Choose background color"
           onChange={handleEditCard}
         />
-        <StyledButton onClick={downloadJpg}>Download jpg</StyledButton>
+        <Button onClick={downloadJpg}>Download jpg</Button>
       </ButtonsWrapper>
       <ButtonsWrapper>
-        {cardStyle ? <StyledButton onClick={() => overwriteCard(card)}>Overwrite card</StyledButton> : null}
-        <StyledButton onClick={handleAddCard}>Add card</StyledButton>
+        {cardStyle ? <Button onClick={() => overwriteCard(card)}>Overwrite card</Button> : null}
+        <Button onClick={handleAddCard}>Add card</Button>
       </ButtonsWrapper>
       <RangeInput
         label="Font size"

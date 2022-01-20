@@ -11,7 +11,15 @@ const InputField = ({ onChange, type, id, name, label, placeholder = '', value =
       {type === 'file' ? (
         <InputFile id={id} name={name} />
       ) : (
-        <Input autoComplete="off" type={type} id={id} name={name} placeholder={placeholder} value={value} onChange={onChange} />
+        <Input
+          autoComplete="off"
+          type={type}
+          id={id}
+          name={name}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+        />
       )}
     </Wrapper>
   );

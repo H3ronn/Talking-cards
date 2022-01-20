@@ -9,6 +9,8 @@ import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import CardList from './CardList';
 import CardProvider from 'providers/CardProvider';
 import EditCard from './EditCard';
+import Login from './Login';
+import Register from './Register';
 
 const Root = () => {
   return (
@@ -24,7 +26,8 @@ const Root = () => {
             <Route path="/edit" element={<EditCard />} />
             <Route path="/faq" element={<h1>faq</h1>} />
             <Route path="/help" element={<h1>help</h1>} />
-            <Route path="/login" element={<h1>login/register</h1>} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </CardProvider>
       </ThemeProvider>
