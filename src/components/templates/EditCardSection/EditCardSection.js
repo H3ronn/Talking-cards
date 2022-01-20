@@ -10,10 +10,10 @@ import { CardContext } from 'providers/CardProvider';
 const initialState = {
   caption: 'Caption',
   captionColor: '#ffffff',
-  fontSize: 50,
+  fontSize: '50',
   image: null,
   bgColor: '#0000ff',
-  spaceValue: 0,
+  spaceValue: '0',
 };
 
 const reducer = (state, action) => {
@@ -25,7 +25,7 @@ const reducer = (state, action) => {
 
 const EditCardSection = ({ cardStyle }) => {
   const cardRef = useRef(null);
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [card, dispatch] = useReducer(reducer, initialState);
   const [localImgUrl, setLocalImgUrl] = useState('');
   const { addCard, overwriteCard } = useContext(CardContext);
 
@@ -34,8 +34,8 @@ const EditCardSection = ({ cardStyle }) => {
   };
 
   const handleAddCard = () => {
-    if (state.image !== null) {
-      addCard(state);
+    if (card.image !== null) {
+      addCard(card);
     } else {
       alert('You must add your image');
     }
@@ -48,10 +48,9 @@ const EditCardSection = ({ cardStyle }) => {
     }
   };
 
-  const downloadJpg = () => {
-    domtoimage.toBlob(cardRef.current).then((blob) => {
-      saveAs(blob, state.caption);
-    });
+  const downloadJpg = async () => {
+    const blob = await domtoimage.toBlob(cardRef.current);
+    saveAs(blob, card.caption);
   };
 
   useEffect(() => {
@@ -60,10 +59,10 @@ const EditCardSection = ({ cardStyle }) => {
     }
   }, [cardStyle]);
 
-  const { bgColor, captionColor, fontSize, spaceValue, caption } = state;
+  const { bgColor, captionColor, fontSize, spaceValue, caption, image } = card;
   return (
     <Wrapper>
-      <Card cardStyle={{ ...state, image: localImgUrl ? localImgUrl : state.image }} ref={cardRef} />
+      <Card cardStyle={{ ...card, image: localImgUrl ? localImgUrl : image }} ref={cardRef} />
       <StyledInputField name="caption" id="caption" label="Caption" value={caption} onChange={handleEditCard} />
       <ButtonsWrapper>
         <InputButton name="image" id="file" label="Choose image" accept="image/*" onChange={handleImageChange} />
@@ -89,7 +88,7 @@ const EditCardSection = ({ cardStyle }) => {
         <StyledButton onClick={downloadJpg}>Download jpg</StyledButton>
       </ButtonsWrapper>
       <ButtonsWrapper>
-        {cardStyle ? <StyledButton onClick={() => overwriteCard(state)}>Overwrite card</StyledButton> : null}
+        {cardStyle ? <StyledButton onClick={() => overwriteCard(card)}>Overwrite card</StyledButton> : null}
         <StyledButton onClick={handleAddCard}>Add card</StyledButton>
       </ButtonsWrapper>
       <RangeInput

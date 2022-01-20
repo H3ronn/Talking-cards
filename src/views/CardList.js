@@ -6,11 +6,6 @@ import { CardContext } from 'providers/CardProvider';
 const CardList = () => {
   const { cards } = useContext(CardContext);
 
-  // const deleteCard = () => {
-  //   const docRef = doc(db, 'cards', test);
-  //   deleteDoc(docRef).then((data) => {});
-  // };
-
   return (
     <Wrapper>
       <Title>Your Cards!</Title>
