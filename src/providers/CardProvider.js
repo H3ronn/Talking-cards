@@ -1,7 +1,18 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
-import { getFirestore, collection, onSnapshot, addDoc, orderBy, serverTimestamp, query, doc, deleteDoc, updateDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  onSnapshot,
+  addDoc,
+  orderBy,
+  serverTimestamp,
+  query,
+  doc,
+  deleteDoc,
+  updateDoc,
+} from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 // const initialCardContext = [
@@ -54,7 +65,12 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 // const initialCardContext = JSON.parse(localStorage.getItem('cards')) || [];
 
-export const CardContext = createContext({ cards: [], selectedCard: {}, addCard: () => {}, deleteCard: () => {} });
+export const CardContext = createContext({
+  cards: [],
+  selectedCard: {},
+  addCard: () => {},
+  deleteCard: () => {},
+});
 const db = getFirestore();
 const colRef = collection(db, 'cards'); //if not exit it create new collection
 const q = query(colRef, orderBy('createdAt'));
@@ -74,10 +90,17 @@ const CardProvider = ({ children }) => {
       const storageRef = ref(storage, `${card.caption}-${uuid()}`);
       const snapshot = await uploadBytes(storageRef, card.image);
       const imageUrl = await getDownloadURL(snapshot.ref);
-      const newDoc = await addDoc(colRef, { ...card, image: imageUrl, createdAt: serverTimestamp() });
+      const newDoc = await addDoc(colRef, {
+        ...card,
+        image: imageUrl,
+        createdAt: serverTimestamp(),
+      });
       newId = newDoc.id;
     } else {
-      const newDoc = await addDoc(colRef, { ...card, createdAt: serverTimestamp() });
+      const newDoc = await addDoc(colRef, {
+        ...card,
+        createdAt: serverTimestamp(),
+      });
       newId = newDoc.id;
     }
     setSelectedCard({ ...card, id: newId });
@@ -111,7 +134,10 @@ const CardProvider = ({ children }) => {
 
   useEffect(() => {
     const subscribe = onSnapshot(q, (snapshot) => {
-      const cards = snapshot.docs.map((card) => ({ id: card.id, ...card.data() }));
+      const cards = snapshot.docs.map((card) => ({
+        id: card.id,
+        ...card.data(),
+      }));
       setCards(cards);
     });
     return () => subscribe();
@@ -121,7 +147,20 @@ const CardProvider = ({ children }) => {
   //   localStorage.setItem('cards', JSON.stringify(cards));
   // }, [cards]);
 
-  return <CardContext.Provider value={{ cards, selectedCard, addCard, deleteCard, editCard, overwriteCard }}>{children}</CardContext.Provider>;
+  return (
+    <CardContext.Provider
+      value={{
+        cards,
+        selectedCard,
+        addCard,
+        deleteCard,
+        editCard,
+        overwriteCard,
+      }}
+    >
+      {children}
+    </CardContext.Provider>
+  );
 };
 
 export default CardProvider;

@@ -67,19 +67,49 @@ const EditCardSection = ({ cardStyle }) => {
       <StyledInputField name="caption" id="caption" label="Caption" value={caption} onChange={handleEditCard} />
       <ButtonsWrapper>
         <InputButton name="image" id="file" label="Choose image" accept="image/*" onChange={handleImageChange} />
-        <InputButton type="color" id="captionColor" name="captionColor" label="Choose caption color" value={captionColor} onChange={handleEditCard} />
+        <InputButton
+          type="color"
+          id="captionColor"
+          name="captionColor"
+          label="Choose caption color"
+          value={captionColor}
+          onChange={handleEditCard}
+        />
         {/* przetestować debounce dla setBackgroundColor bo jak się szybko rusza to laguje */}
       </ButtonsWrapper>
       <ButtonsWrapper>
-        <InputButton type="color" id="bgColor" name="bgColor" value={bgColor} label="Choose background color" onChange={handleEditCard} />
+        <InputButton
+          type="color"
+          id="bgColor"
+          name="bgColor"
+          value={bgColor}
+          label="Choose background color"
+          onChange={handleEditCard}
+        />
         <StyledButton onClick={downloadJpg}>Download jpg</StyledButton>
       </ButtonsWrapper>
       <ButtonsWrapper>
         {cardStyle ? <StyledButton onClick={() => overwriteCard(state)}>Overwrite card</StyledButton> : null}
         <StyledButton onClick={handleAddCard}>Add card</StyledButton>
       </ButtonsWrapper>
-      <RangeInput label="Font size" value={fontSize} id="fontSize" name="fontSize" unit="px" onChange={handleEditCard} />
-      <RangeInput label="Space" value={spaceValue} id="spaceValue" name="spaceValue" unit="px" onChange={handleEditCard} min="-100" max="100" />
+      <RangeInput
+        label="Font size"
+        value={fontSize}
+        id="fontSize"
+        name="fontSize"
+        unit="px"
+        onChange={handleEditCard}
+      />
+      <RangeInput
+        label="Space"
+        value={spaceValue}
+        id="spaceValue"
+        name="spaceValue"
+        unit="px"
+        onChange={handleEditCard}
+        min="-100"
+        max="100"
+      />
     </Wrapper>
   );
 };

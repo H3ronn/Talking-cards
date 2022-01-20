@@ -44,16 +44,16 @@ export const Image = styled.img`
   max-width: 400px;
 `;
 
-// const initialStyle = {
-//   caption: 'Caption',
-//   captionColor: '#ffffff',
-//   fontSize: 50,
-//   image: null,
-//   bgColor: '#0000ff',
-//   spaceValue: 0,
-// };
+const initialStyle = {
+  caption: 'Caption',
+  captionColor: '#ffffff',
+  fontSize: 50,
+  image: null,
+  bgColor: '#0000ff',
+  spaceValue: 0,
+};
 
-const Card = React.forwardRef(({ cardStyle, withHover, id, ...props }, ref) => {
+const Card = React.forwardRef(({ cardStyle = initialStyle, withHover, id, ...props }, ref) => {
   const { deleteCard, editCard } = useContext(CardContext);
 
   const { bgColor, image, captionColor, fontSize, spaceValue, caption } = cardStyle;
@@ -70,6 +70,17 @@ const Card = React.forwardRef(({ cardStyle, withHover, id, ...props }, ref) => {
   );
 });
 
-Card.propTypes = {};
+Card.propTypes = {
+  cardStyle: PropTypes.shape({
+    caption: PropTypes.string.isRequired,
+    captionColor: PropTypes.string.isRequired,
+    bgColor: PropTypes.string.isRequired,
+    image: PropTypes.string,
+    fontSize: PropTypes.number.isRequired,
+    spaceValue: PropTypes.number.isRequired,
+  }).isRequired,
+  id: PropTypes.string,
+  withHover: PropTypes.bool,
+};
 
 export default Card;
