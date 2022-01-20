@@ -33,6 +33,14 @@ const EditCardSection = ({ cardStyle }) => {
     dispatch({ type: e.target.name, payload: e.target.value });
   };
 
+  const handleAddCard = () => {
+    if (state.image !== null) {
+      addCard(state);
+    } else {
+      alert('You must add your image');
+    }
+  };
+
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
       dispatch({ type: e.target.name, payload: e.target.files[0] });
@@ -55,7 +63,7 @@ const EditCardSection = ({ cardStyle }) => {
   const { bgColor, captionColor, fontSize, spaceValue, caption } = state;
   return (
     <Wrapper>
-      <Card cardStyle={{ ...state, image: localImgUrl }} ref={cardRef} />
+      <Card cardStyle={{ ...state, image: localImgUrl ? localImgUrl : state.image }} ref={cardRef} />
       <StyledInputField name="caption" id="caption" label="Caption" value={caption} onChange={handleEditCard} />
       <ButtonsWrapper>
         <InputButton name="image" id="file" label="Choose image" accept="image/*" onChange={handleImageChange} />
@@ -68,7 +76,7 @@ const EditCardSection = ({ cardStyle }) => {
       </ButtonsWrapper>
       <ButtonsWrapper>
         {cardStyle ? <StyledButton onClick={() => overwriteCard(state)}>Overwrite card</StyledButton> : null}
-        <StyledButton onClick={() => addCard(state)}>Add card</StyledButton>
+        <StyledButton onClick={handleAddCard}>Add card</StyledButton>
       </ButtonsWrapper>
       <RangeInput label="Font size" value={fontSize} id="fontSize" name="fontSize" unit="px" onChange={handleEditCard} />
       <RangeInput label="Space" value={spaceValue} id="spaceValue" name="spaceValue" unit="px" onChange={handleEditCard} min="-100" max="100" />

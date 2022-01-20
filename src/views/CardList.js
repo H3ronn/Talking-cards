@@ -15,7 +15,7 @@ const CardList = () => {
     <Wrapper>
       <Title>Your Cards!</Title>
       <Gallery>
-        {[...cards].reverse().map((card) => (
+        {cards.map((card) => (
           <StyledCard tabIndex={0} withHover cardStyle={card} id={card.id} key={card.id} />
         ))}
       </Gallery>
