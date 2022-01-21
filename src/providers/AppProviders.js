@@ -13,7 +13,6 @@ const AppProviders = ({ children }) => {
       <ThemeProvider theme={theme}>
         <CardProvider>
           <GlobalStyles />
-          <Navigation />
           {children}
         </CardProvider>
       </ThemeProvider>
