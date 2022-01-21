@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AuthenticatedApp from './AuthenticatedApp';
 import UnauthenticatedApp from './UnauthenticatedApp';
+import { onAuthStateChanged, getAuth } from 'firebase/auth';
 
 const Root = () => {
-  const [auth, setAuth] = useState(true);
+  const [isLogged, setLogged] = useState(false);
+  const auth = getAuth();
 
-  return auth === true ? <AuthenticatedApp /> : <UnauthenticatedApp />;
+  useEffect(() => {
+    const unsubAuth = onAuthStateChanged(auth, (user) => {
+      setLogged(user);
+    });
+  }, []);
+
+  return isLogged ? <AuthenticatedApp /> : <UnauthenticatedApp />;
 };
 
 export default Root;

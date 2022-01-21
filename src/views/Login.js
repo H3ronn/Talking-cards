@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import InputField from 'components/molecules/InputField/InputField';
 import styled from 'styled-components';
 import Title from 'components/atoms/Title/Title';
-import InputButton from 'components/atoms/InputButton/InputButton';
 import { Button } from 'components/atoms/Button/Button';
 import { Link } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 export const Wrapper = styled.div`
   /* text-align: center; */
@@ -16,7 +16,18 @@ export const Wrapper = styled.div`
 export const LoginForm = styled.form`
   max-width: 30vw;
   min-width: 300px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  div {
+    width: 100%;
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  color: ${({ theme }) => theme.colors.grey};
+  font-size: 1.1rem;
+  margin-top: 8px;
 `;
 
 export const StyledButton = styled(Button)`
@@ -24,11 +35,24 @@ export const StyledButton = styled(Button)`
 `;
 
 const Login = () => {
-  const [login, setLogin] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLoginChange = (e) => {
-    setLogin(e.target.value);
+  const auth = getAuth();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const cred = await signInWithEmailAndPassword(auth, email, password);
+      console.log(cred);
+    } catch (error) {
+      console.log(error.code);
+    }
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -37,9 +61,18 @@ const Login = () => {
   return (
     <Wrapper>
       <Title>Login to Talking Card</Title>
-      <LoginForm>
-        <InputField type="text" label="Login" name="login" id="login" onChange={handleLoginChange} value={login} />
+      <LoginForm onSubmit={handleLogin}>
         <InputField
+          placeholder="h3ronnn@gmail.com"
+          type="text"
+          label="E-mail"
+          name="email"
+          id="email"
+          onChange={handleEmailChange}
+          value={email}
+        />
+        <InputField
+          placeholder="test12"
           type="password"
           label="Password"
           name="password"
@@ -47,9 +80,9 @@ const Login = () => {
           onChange={handlePasswordChange}
           value={password}
         />
+        <StyledButton>Login</StyledButton>
       </LoginForm>
-      <StyledButton>Login</StyledButton>
-      <Link to="/register">Don't have account?</Link>
+      <StyledLink to="/register">Don't have account?</StyledLink>
     </Wrapper>
   );
 };

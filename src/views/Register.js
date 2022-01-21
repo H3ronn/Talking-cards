@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import InputField from 'components/molecules/InputField/InputField';
 import styled from 'styled-components';
 import Title from 'components/atoms/Title/Title';
-import InputButton from 'components/atoms/InputButton/InputButton';
 import { Button } from 'components/atoms/Button/Button';
 import { Link } from 'react-router-dom';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 export const Wrapper = styled.div`
   /* text-align: center; */
@@ -16,7 +16,18 @@ export const Wrapper = styled.div`
 export const RegisterForm = styled.form`
   max-width: 30vw;
   min-width: 300px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  div {
+    width: 100%;
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  color: ${({ theme }) => theme.colors.grey};
+  font-size: 1.1rem;
+  margin-top: 8px;
 `;
 
 export const StyledButton = styled(Button)`
@@ -26,6 +37,18 @@ export const StyledButton = styled(Button)`
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const auth = getAuth();
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    try {
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(cred);
+    } catch (e) {
+      console.log(e.code);
+    }
+  };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -37,8 +60,8 @@ const Register = () => {
   return (
     <Wrapper>
       <Title>Register to Talking Card</Title>
-      <RegisterForm>
-        <InputField type="text" label="Login" name="login" id="login" onChange={handleEmailChange} value={email} />
+      <RegisterForm onSubmit={handleSignUp}>
+        <InputField type="text" label="E-mail" name="email" id="email" onChange={handleEmailChange} value={email} />
         <InputField
           type="password"
           label="Password"
@@ -47,9 +70,9 @@ const Register = () => {
           onChange={handlePasswordChange}
           value={password}
         />
+        <StyledButton>Register</StyledButton>
       </RegisterForm>
-      <StyledButton>Register</StyledButton>
-      <Link to="/login">You already have account?</Link>
+      <StyledLink to="/login">You already have account?</StyledLink>
     </Wrapper>
   );
 };
