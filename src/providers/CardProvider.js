@@ -105,13 +105,6 @@ const CardProvider = ({ children }) => {
       newId = newDoc.id;
     }
     setSelectedCard({ ...card, id: newId });
-
-    // uploadBytes(storageRef, card.image).then((snapshot) => {
-    //   getDownloadURL(snapshot.ref).then((imageUrl) => {
-    //     console.log(imageUrl);
-    //     addDoc(colRef, { ...card, image: imageUrl, createdAt: serverTimestamp() }).then((d) => {});
-    //   });
-    // });
   };
 
   const deleteCard = (id) => {

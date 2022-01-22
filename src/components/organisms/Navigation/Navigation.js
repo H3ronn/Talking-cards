@@ -4,7 +4,7 @@ import MenuButton from 'components/atoms/MenuButton/MenuButton';
 import MobileNavigation from '../MobileNavigation/MobileNavigation';
 import Title from 'components/atoms/Title/Title';
 import { NavLink } from 'react-router-dom';
-import { signOut, getAuth } from 'firebase/auth';
+import useAuth from 'hooks/useAuth';
 
 const LinksWrapper = styled.div``;
 
@@ -62,8 +62,7 @@ export const LogoutButton = styled.button`
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const auth = getAuth();
+  const { logout } = useAuth();
 
   const handleOpenMenu = () => {
     setIsOpen((prev) => !prev);
@@ -80,15 +79,7 @@ const Navigation = () => {
         <Link to="/help">Help</Link>
       </LinksWrapper>
       {/* <Link to="/login">Login/Register</Link> */}
-      <LogoutButton
-        onClick={() => {
-          signOut(auth).then(() => {
-            console.log('user signed out');
-          });
-        }}
-      >
-        Log out
-      </LogoutButton>
+      <LogoutButton onClick={logout}>Log out</LogoutButton>
       <MobileNavigation isOpen={isOpen} />
     </NavigationWrapper>
   );

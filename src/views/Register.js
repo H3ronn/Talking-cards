@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Title from 'components/atoms/Title/Title';
 import { Button } from 'components/atoms/Button/Button';
 import { Link } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import useAuth from 'hooks/useAuth';
 
 export const Wrapper = styled.div`
   /* text-align: center; */
@@ -37,17 +37,11 @@ export const StyledButton = styled(Button)`
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { signUp } = useAuth();
 
-  const auth = getAuth();
-
-  const handleSignUp = async (e) => {
+  const handleSignUp = (e) => {
     e.preventDefault();
-    try {
-      const cred = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(cred);
-    } catch (e) {
-      console.log(e.code);
-    }
+    signUp(email, password);
   };
 
   const handleEmailChange = (e) => {
