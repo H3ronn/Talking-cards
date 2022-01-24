@@ -14,6 +14,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import useAuth from 'hooks/useAuth';
 
 // const initialCardContext = [
 //   {
@@ -80,6 +81,7 @@ const storage = getStorage();
 const CardProvider = ({ children }) => {
   const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
+  const { userId } = useAuth();
 
   const navigate = useNavigate();
 

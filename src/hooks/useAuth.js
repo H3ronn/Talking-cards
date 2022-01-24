@@ -25,7 +25,7 @@ const useAuth = () => {
       await createUserWithEmailAndPassword(auth, email, password);
       // console.log(cred);
     } catch (e) {
-      // console.log(e.code);
+      console.log(e.code);
     }
   };
 
