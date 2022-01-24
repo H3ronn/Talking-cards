@@ -1,4 +1,4 @@
-import React, { useRef, useReducer, useContext, useEffect, useState } from 'react';
+import React, { useRef, useReducer, useContext, useEffect } from 'react';
 import { Wrapper, ButtonsWrapper, StyledInputField } from './EditCardSection.styles';
 import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
@@ -19,17 +19,25 @@ const initialState = {
   localImgUrl: null,
 };
 
+const actionTypes = {
+  newState: 'NEW STATE',
+  changeStyle: 'CHANGE STYLE',
+  changeImage: 'CHANGE IMAGE',
+  throwError: 'THROW ERROR',
+  resetError: 'RESET ERROR',
+};
+
 const reducer = (state, { type, payload }) => {
   switch (type) {
-    case 'NEW STATE':
+    case actionTypes.newState:
       return { ...state, ...payload };
-    case 'CHANGE STYLE':
+    case actionTypes.changeStyle:
       return { ...state, [payload.field]: payload.value };
-    case 'CHANGE IMAGE':
+    case actionTypes.changeImage:
       return { ...state, localImgUrl: payload.localImgUrl, image: payload.image };
-    case 'THROW ERROR':
+    case actionTypes.throwError:
       return { ...state, error: payload.error };
-    case 'RESET ERROR':
+    case actionTypes.resetError:
       return { ...state, error: null };
     default:
       return state;
@@ -42,21 +50,21 @@ const EditCardSection = ({ cardStyle }) => {
   const { addCard, overwriteCard } = useContext(CardContext);
 
   const handleEditCard = (e) => {
-    dispatch({ type: 'CHANGE STYLE', payload: { field: e.target.name, value: e.target.value } });
+    dispatch({ type: actionTypes.changeStyle, payload: { field: e.target.name, value: e.target.value } });
   };
 
   const handleAddCard = () => {
     if (card.image !== null) {
       addCard(card);
     } else {
-      dispatch({ type: 'THROW ERROR', payload: { error: 'You must add image!' } });
+      dispatch({ type: actionTypes.throwError, payload: { error: 'You must add image!' } });
     }
   };
 
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
       dispatch({
-        type: 'CHANGE IMAGE',
+        type: actionTypes.changeImage,
         payload: { image: e.target.files[0], localImgUrl: URL.createObjectURL(e.target.files[0]) },
       });
     }
@@ -70,14 +78,14 @@ const EditCardSection = ({ cardStyle }) => {
   useEffect(() => {
     if (card.error) {
       setTimeout(() => {
-        dispatch({ type: 'RESET ERROR' });
+        dispatch({ type: actionTypes.resetError });
       }, 6000);
     }
   }, [card.error]);
 
   useEffect(() => {
     if (cardStyle) {
-      dispatch({ type: 'NEW STATE', payload: cardStyle });
+      dispatch({ type: actionTypes.newState, payload: cardStyle });
     }
   }, [cardStyle]);
 
