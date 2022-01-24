@@ -7,6 +7,7 @@ import RangeInput from 'components/molecules/RangeInput/RangeInput';
 import Card from 'components/organisms/Card/Card';
 import { CardContext } from 'providers/CardProvider';
 import { Button } from 'components/atoms/Button/Button';
+import ErrorAlert from 'components/organisms/ErrorAlert/ErrorAlert';
 
 const initialState = {
   caption: 'Caption',
@@ -26,6 +27,10 @@ const reducer = (state, { type, payload }) => {
       return { ...state, [payload.field]: payload.value };
     case 'CHANGE IMAGE':
       return { ...state, localImgUrl: payload.localImgUrl, image: payload.image };
+    case 'THROW ERROR':
+      return { ...state, error: payload.error };
+    case 'RESET ERROR':
+      return { ...state, error: null };
     default:
       return state;
   }
@@ -44,7 +49,7 @@ const EditCardSection = ({ cardStyle }) => {
     if (card.image !== null) {
       addCard(card);
     } else {
-      alert('You must add your image');
+      dispatch({ type: 'THROW ERROR', payload: { error: 'You must add image!' } });
     }
   };
 
@@ -63,6 +68,14 @@ const EditCardSection = ({ cardStyle }) => {
   };
 
   useEffect(() => {
+    if (card.error) {
+      setTimeout(() => {
+        dispatch({ type: 'RESET ERROR' });
+      }, 6000);
+    }
+  }, [card.error]);
+
+  useEffect(() => {
     if (cardStyle) {
       dispatch({ type: 'NEW STATE', payload: cardStyle });
     }
@@ -71,6 +84,7 @@ const EditCardSection = ({ cardStyle }) => {
   const { bgColor, captionColor, fontSize, spaceValue, caption, image, localImgUrl } = card;
   return (
     <Wrapper>
+      {card.error ? <ErrorAlert>{card.error}</ErrorAlert> : null}
       <Card cardStyle={{ ...card, image: localImgUrl ? localImgUrl : image }} ref={cardRef} />
       <StyledInputField name="caption" id="caption" label="Caption" value={caption} onChange={handleEditCard} />
       <ButtonsWrapper>
