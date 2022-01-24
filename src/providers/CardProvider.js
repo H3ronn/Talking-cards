@@ -74,8 +74,6 @@ export const CardContext = createContext({
 });
 
 const db = getFirestore();
-const colRef = collection(db, 'cards'); //if not exit it create new collection
-const q = query(colRef, orderBy('createdAt'));
 const storage = getStorage();
 
 const CardProvider = ({ children }) => {
@@ -84,6 +82,9 @@ const CardProvider = ({ children }) => {
   const { userId } = useAuth();
 
   const navigate = useNavigate();
+
+  const colRef = collection(db, `cards-${userId}`); //if not exit it create new collection
+  const q = query(colRef, orderBy('createdAt'));
 
   const addCard = async (card) => {
     delete card.id;
@@ -130,7 +131,7 @@ const CardProvider = ({ children }) => {
 
   useEffect(() => {
     const subscribe = onSnapshot(q, (snapshot) => {
-      console.log('weszło');
+      console.log('onSnapshot');
       const cards = snapshot.docs.map((card) => {
         return {
           id: card.id,
@@ -140,7 +141,7 @@ const CardProvider = ({ children }) => {
       setCards(cards);
     });
     return () => subscribe();
-  }, []);
+  }, [userId]);
 
   // useEffect(() => {
   //   localStorage.setItem('cards', JSON.stringify(cards));
