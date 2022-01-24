@@ -15,23 +15,29 @@ const initialState = {
   image: null,
   bgColor: '#0000ff',
   spaceValue: '0',
+  localImgUrl: null,
 };
 
-const reducer = (state, action) => {
-  if (action.type === 'newState') {
-    return { ...state, ...action.payload };
+const reducer = (state, { type, payload }) => {
+  switch (type) {
+    case 'NEW STATE':
+      return { ...state, ...payload };
+    case 'CHANGE STYLE':
+      return { ...state, [payload.field]: payload.value };
+    case 'CHANGE IMAGE':
+      return { ...state, localImgUrl: payload.localImgUrl, image: payload.image };
+    default:
+      return state;
   }
-  return { ...state, [action.type]: action.payload };
 };
 
 const EditCardSection = ({ cardStyle }) => {
   const cardRef = useRef(null);
   const [card, dispatch] = useReducer(reducer, initialState);
-  const [localImgUrl, setLocalImgUrl] = useState('');
   const { addCard, overwriteCard } = useContext(CardContext);
 
   const handleEditCard = (e) => {
-    dispatch({ type: e.target.name, payload: e.target.value });
+    dispatch({ type: 'CHANGE STYLE', payload: { field: e.target.name, value: e.target.value } });
   };
 
   const handleAddCard = () => {
@@ -44,8 +50,10 @@ const EditCardSection = ({ cardStyle }) => {
 
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
-      dispatch({ type: e.target.name, payload: e.target.files[0] });
-      setLocalImgUrl(URL.createObjectURL(e.target.files[0]));
+      dispatch({
+        type: 'CHANGE IMAGE',
+        payload: { image: e.target.files[0], localImgUrl: URL.createObjectURL(e.target.files[0]) },
+      });
     }
   };
 
@@ -56,11 +64,11 @@ const EditCardSection = ({ cardStyle }) => {
 
   useEffect(() => {
     if (cardStyle) {
-      dispatch({ type: 'newState', payload: cardStyle });
+      dispatch({ type: 'NEW STATE', payload: cardStyle });
     }
   }, [cardStyle]);
 
-  const { bgColor, captionColor, fontSize, spaceValue, caption, image } = card;
+  const { bgColor, captionColor, fontSize, spaceValue, caption, image, localImgUrl } = card;
   return (
     <Wrapper>
       <Card cardStyle={{ ...card, image: localImgUrl ? localImgUrl : image }} ref={cardRef} />
