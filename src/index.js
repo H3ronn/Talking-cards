@@ -1,4 +1,5 @@
 import React from 'react';
+import 'firestore';
 import AppProviders from 'providers/AppProviders';
 import ReactDOM from 'react-dom';
 import App from './views/Root';

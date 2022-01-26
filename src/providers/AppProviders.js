@@ -1,5 +1,4 @@
 import React from 'react';
-import 'firestore';
 import { GlobalStyles } from 'assets/styles/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';

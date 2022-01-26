@@ -1,8 +1,6 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { v4 as uuid } from 'uuid';
 import {
-  getFirestore,
   collection,
   onSnapshot,
   addDoc,
@@ -13,8 +11,9 @@ import {
   deleteDoc,
   updateDoc,
 } from 'firebase/firestore';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import useAuth from 'hooks/useAuth';
+import { db } from 'firestore';
+import { addImageToStorage } from 'helpers/addImageToStorage';
 
 // const initialCardContext = [
 //   {
@@ -73,46 +72,35 @@ export const CardContext = createContext({
   deleteCard: () => {},
 });
 
-const db = getFirestore();
-const storage = getStorage();
-
 const CardProvider = ({ children }) => {
   const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
   const { userId } = useAuth();
+  const collName = `cards-${userId}`;
 
   const navigate = useNavigate();
 
-  const colRef = collection(db, `cards-${userId}`); //if not exit it create new collection
-  const q = query(colRef, orderBy('createdAt'));
+  const colRef = collection(db, collName); //if not exit it create new collection
 
-  const addCard = async (card) => {
-    delete card.id;
-
-    let newId;
-    if (typeof card.image === 'object') {
-      const storageRef = ref(storage, `${card.caption}-${uuid()}`);
-      const snapshot = await uploadBytes(storageRef, card.image);
-      const imageUrl = await getDownloadURL(snapshot.ref);
-      const newDoc = await addDoc(colRef, {
-        ...card,
-        image: imageUrl,
-        createdAt: serverTimestamp(),
-      });
-      newId = newDoc.id;
-    } else {
-      const newDoc = await addDoc(colRef, {
-        ...card,
-        createdAt: serverTimestamp(),
-      });
-      newId = newDoc.id;
+  const addCard = async ({ localImgUrl, id, ...card }) => {
+    // const card = { ...cardToSave };
+    // delete card.id;
+    // delete card.localImgUrl;
+    if (card.image instanceof File) {
+      const imageUrl = await addImageToStorage(card.caption, card.image);
+      card.image = imageUrl;
     }
+    const newDoc = await addDoc(colRef, {
+      ...card,
+      createdAt: serverTimestamp(),
+    });
+    const newId = newDoc.id;
     setSelectedCard({ ...card, id: newId });
   };
 
   const deleteCard = (id) => {
-    const docRef = doc(db, 'cards', id);
-    deleteDoc(docRef).then((data) => {});
+    const docRef = doc(db, collName, id);
+    deleteDoc(docRef).then(() => {});
     // idk how to correct delete images from storage
     // when is using by more than 2 cards
   };
@@ -125,11 +113,14 @@ const CardProvider = ({ children }) => {
   const overwriteCard = (card) => {
     // deleteCard(card.id);
     // setCards((prevState) => [...prevState, card]);
-    const docRef = doc(db, 'cards', card.id);
+    delete card.localImgUrl;
+    const docRef = doc(db, collName, card.id);
     updateDoc(docRef, card);
   };
 
   useEffect(() => {
+    const q = query(colRef, orderBy('createdAt'));
+
     const subscribe = onSnapshot(q, (snapshot) => {
       console.log('onSnapshot');
       const cards = snapshot.docs.map((card) => {
