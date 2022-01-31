@@ -32,11 +32,16 @@ const NavigationWrapper = styled.nav`
 const StyledTitle = styled(Title)`
   margin: 0;
 `;
-
-const Link = styled(NavLink).attrs({ style: ({ isActive }) => (isActive ? { textDecoration: 'underline' } : null) })`
+// style: ({ isActive }) => (isActive ? { color: theme.colors.blue } : { color: 'black' }),
+const Link = styled(NavLink).attrs(({ theme }) => ({
+  style: ({ isActive }) => ({
+    color: isActive ? theme.colors.blue : 'black',
+  }),
+}))`
   color: ${({ theme }) => theme.colors.grey};
   text-decoration: none;
   font-size: 16px;
+  font-weight: 500;
   padding: 5px 15px 0 15px;
   white-space: nowrap;
 
@@ -75,6 +80,7 @@ const Navigation = () => {
         <StyledTitle>Talking cards</StyledTitle>
         <Link to="/list">Card list</Link>
         <Link to="/create">Create card</Link>
+        <Link to="/decks">Decks</Link>
         <Link to="/faq">FAQ</Link>
         <Link to="/help">Help</Link>
       </LinksWrapper>

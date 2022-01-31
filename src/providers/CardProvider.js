@@ -94,8 +94,7 @@ const CardProvider = ({ children }) => {
       ...card,
       createdAt: serverTimestamp(),
     });
-    const newId = newDoc.id;
-    setSelectedCard({ ...card, id: newId });
+    setSelectedCard({ ...card, id: newDoc.id });
   };
 
   const deleteCard = (id) => {
