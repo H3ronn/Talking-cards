@@ -33,7 +33,11 @@ const Wrapper = styled.nav`
   }
 `;
 
-const StyledNavLink = styled(NavLink).attrs({ style: ({ isActive }) => (isActive ? { textDecoration: 'underline' } : null) })`
+const StyledNavLink = styled(NavLink).attrs(({ theme }) => ({
+  style: ({ isActive }) => ({
+    color: isActive ? theme.colors.blue : 'black',
+  }),
+}))`
   text-decoration: none;
 `;
 
@@ -47,6 +51,9 @@ const MobileNavigation = ({ isOpen = false }) => {
         </li>
         <li>
           <StyledNavLink to="/create">Create card</StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink to="/decks">Decks</StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/faq">FAQ</StyledNavLink>
