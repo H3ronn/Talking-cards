@@ -14,8 +14,18 @@ const useAuth = () => {
 
   useEffect(() => {
     const unsubAuth = onAuthStateChanged(auth, (user) => {
-      // console.log(user?.uid);
-      setUserId(user?.uid);
+      setUserId(null);
+      if (user) {
+        setUserId(user.uid);
+      }
+
+      // Belowe code snippets throw warnings in tests
+      // if (user.uid) {
+      //   setUserId(user.uid);
+      // } else {
+      //   setUserId(null);
+      // }
+      // setUserId(user?.uid);
     });
     return () => unsubAuth();
   }, []);
@@ -39,8 +49,12 @@ const useAuth = () => {
   };
 
   const logout = async () => {
-    await signOut(auth);
-    console.log('User logout');
+    try {
+      await signOut(auth);
+      console.log('User logout');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return { userId, signUp, signIn, logout };

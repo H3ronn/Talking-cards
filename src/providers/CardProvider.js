@@ -86,15 +86,19 @@ const CardProvider = ({ children }) => {
     // const card = { ...cardToSave };
     // delete card.id;
     // delete card.localImgUrl;
-    if (card.image instanceof File) {
-      const imageUrl = await addImageToStorage(card.caption, card.image);
-      card.image = imageUrl;
+    try {
+      if (card.image instanceof File) {
+        const imageUrl = await addImageToStorage(card.caption, card.image);
+        card.image = imageUrl;
+      }
+      const newDoc = await addDoc(colRef, {
+        ...card,
+        createdAt: serverTimestamp(),
+      });
+      setSelectedCard({ ...card, id: newDoc.id });
+    } catch (error) {
+      console.log(error);
     }
-    const newDoc = await addDoc(colRef, {
-      ...card,
-      createdAt: serverTimestamp(),
-    });
-    setSelectedCard({ ...card, id: newDoc.id });
   };
 
   const deleteCard = (id) => {
@@ -121,7 +125,6 @@ const CardProvider = ({ children }) => {
     const q = query(colRef, orderBy('createdAt'));
 
     const subscribe = onSnapshot(q, (snapshot) => {
-      console.log('onSnapshot');
       const cards = snapshot.docs.map((card) => {
         return {
           id: card.id,
