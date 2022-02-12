@@ -6,7 +6,7 @@ import { CardContext } from 'providers/CardProvider';
 const initialStyle = {
   caption: 'Caption',
   captionColor: '#ffffff',
-  fontSize: 50,
+  fontSize: 30,
   image: null,
   bgColor: '#0000ff',
   spaceValue: 0,

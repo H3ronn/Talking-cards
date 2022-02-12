@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 
 export const Gallery = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(450px, auto));
+  grid-template-columns: repeat(auto-fill, minmax(300px, auto));
   width: 100%;
   justify-content: center;
   grid-gap: 10px;

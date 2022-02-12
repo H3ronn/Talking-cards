@@ -12,7 +12,7 @@ import ErrorAlert from 'components/organisms/ErrorAlert/ErrorAlert';
 const initialState = {
   caption: 'Caption',
   captionColor: '#ffffff',
-  fontSize: '50',
+  fontSize: '30',
   image: null,
   bgColor: '#0000ff',
   spaceValue: '0',
@@ -71,8 +71,15 @@ const EditCardSection = ({ cardStyle }) => {
   };
 
   const downloadJpg = async () => {
+    const currentStyle = getComputedStyle(cardRef.current);
+    console.log(getComputedStyle(cardRef.current).width);
+    cardRef.current.style.width = '450px';
+    cardRef.current.style.height = '500px';
+    console.log(getComputedStyle(cardRef.current).width);
     const blob = await domtoimage.toBlob(cardRef.current);
     saveAs(blob, card.caption);
+    cardRef.current.style = currentStyle;
+    console.log(getComputedStyle(cardRef.current).width);
   };
 
   useEffect(() => {

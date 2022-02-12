@@ -4,9 +4,10 @@ import CardHover from 'components/molecules/CardHover/CardHover';
 export const StyledCardHover = styled(CardHover)``; //Without this ${CardHover} hover dont work idk why
 
 export const CardWrapper = styled.div`
-  width: 450px;
-  height: 500px;
-  margin-top: 5px;
+  overflow: hidden;
+  width: 300px;
+  height: 270px;
+  margin: 5px auto;
   background-color: ${({ theme, backgroundColor }) => (backgroundColor ? backgroundColor : theme.colors.blue)};
   /* display: grid;
   grid-template-rows: 9fr 1fr; */
@@ -22,10 +23,16 @@ export const CardWrapper = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
-  width: 400px;
+  max-width: 90%;
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const Image = styled.img`
+  /* max-width: 400px; */
+  width: 100%;
+  max-height: 90%;
 `;
 
 export const Caption = styled.p`
@@ -34,9 +41,5 @@ export const Caption = styled.p`
   color: ${({ color }) => color};
   transform: ${({ spaceValue }) => `translateY(${spaceValue}px)`};
   margin: 0;
-  margin-top: 80px;
-`;
-
-export const Image = styled.img`
-  max-width: 400px;
+  /* margin-top: 80px; */
 `;

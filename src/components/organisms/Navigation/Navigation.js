@@ -85,7 +85,7 @@ const Navigation = () => {
         <Link to="/help">Help</Link>
       </LinksWrapper>
       {/* <Link to="/login">Login/Register</Link> */}
-      <LogoutButton onClick={logout}>Log out</LogoutButton>
+      <LogoutButton onClick={logout}>Log&nbsp;out</LogoutButton>
       <MobileNavigation isOpen={isOpen} />
     </NavigationWrapper>
   );
