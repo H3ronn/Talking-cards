@@ -71,15 +71,8 @@ const EditCardSection = ({ cardStyle }) => {
   };
 
   const downloadJpg = async () => {
-    const currentStyle = getComputedStyle(cardRef.current);
-    console.log(getComputedStyle(cardRef.current).width);
-    cardRef.current.style.width = '450px';
-    cardRef.current.style.height = '500px';
-    console.log(getComputedStyle(cardRef.current).width);
     const blob = await domtoimage.toBlob(cardRef.current);
     saveAs(blob, card.caption);
-    cardRef.current.style = currentStyle;
-    console.log(getComputedStyle(cardRef.current).width);
   };
 
   useEffect(() => {

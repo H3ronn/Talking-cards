@@ -5,6 +5,10 @@ const Input = styled.input`
   font-size: 16px;
   padding: 10px;
   border-radius: 25px;
+  width: 350px;
+  @media (max-width: 500px) {
+    width: 80vw;
+  }
 `;
 
 export default Input;

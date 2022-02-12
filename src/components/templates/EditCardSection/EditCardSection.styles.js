@@ -9,10 +9,14 @@ export const Wrapper = styled.div`
 
 export const ButtonsWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  button,
+  label {
+    margin: 5px 0;
+  }
 `;
 
 export const StyledInputField = styled(InputField)`
-  width: 450px;
+  margin-bottom: 10px;
 `;
