@@ -4,6 +4,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import CardList from './CardList';
 import EditCard from './EditCard';
 import Navigation from 'components/organisms/Navigation/Navigation';
+import Faq from './Faq';
 
 const AuthenticatedApp = () => {
   return (
@@ -15,7 +16,7 @@ const AuthenticatedApp = () => {
         <Route path="/create" element={<CreateCard />} />
         <Route path="/edit" element={<EditCard />} />
         <Route path="/decks" element={<h1>Decks</h1>} />
-        <Route path="/faq" element={<h1>faq</h1>} />
+        <Route path="/faq" element={<Faq />} />
         <Route path="/help" element={<h1>help</h1>} />
       </Routes>
     </>
