@@ -105,7 +105,6 @@ const EditCardSection = ({ cardStyle }) => {
           value={captionColor}
           onChange={handleEditCard}
         />
-        {/* przetestować debounce dla setBackgroundColor bo jak się szybko rusza to laguje */}
       </ButtonsWrapper>
       <ButtonsWrapper>
         <InputButton
