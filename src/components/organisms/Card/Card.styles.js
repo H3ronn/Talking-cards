@@ -12,7 +12,7 @@ export const CardWrapper = styled.div.attrs((props) => ({
   overflow: hidden;
   width: 300px;
   height: 270px;
-  margin: 5px auto;
+  margin: 5px 0;
   /* display: grid;
   grid-template-rows: 9fr 1fr; */
   display: flex;
