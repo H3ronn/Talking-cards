@@ -29,7 +29,9 @@ const Wrapper = styled.button`
 
   ${Line} {
     transition: ${({ isOpen }) =>
-      isOpen ? `transform 0.3s 0.3s ease-in-out, opacity 0.3s  ease-in-out` : `transform 0.3s ease-in-out, opacity 0.3s 0.3s ease-in-out`};
+      isOpen
+        ? `transform 0.3s 0.3s ease-in-out, opacity 0.3s  ease-in-out`
+        : `transform 0.3s ease-in-out, opacity 0.3s 0.3s ease-in-out`};
     ${({ isOpen }) =>
       isOpen
         ? css`
