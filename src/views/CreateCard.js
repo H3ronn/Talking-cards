@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 const CreateCard = () => {
   return (
     <Wrapper>
-      <Title>Add new card</Title>
+      <Title>Create card</Title>
       <EditCardSection />
     </Wrapper>
   );

@@ -11,7 +11,9 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  button,
+  button {
+    margin: 5px 5px;
+  }
   label {
     margin: 5px 0;
   }

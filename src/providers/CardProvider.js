@@ -12,8 +12,9 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import useAuth from 'hooks/useAuth';
-import { db } from 'firestore';
+import { db, storage } from 'firestore';
 import { addImageToStorage } from 'helpers/addImageToStorage';
+import { ref, deleteObject } from 'firebase/storage';
 
 // const initialCardContext = [
 //   {
@@ -101,11 +102,27 @@ const CardProvider = ({ children }) => {
     }
   };
 
-  const deleteCard = (id) => {
+  const deleteCard = (id, image) => {
     const docRef = doc(db, collName, id);
-    deleteDoc(docRef).then(() => {});
-    // idk how to correct delete images from storage
-    // when is using by more than 2 cards
+    deleteDoc(docRef)
+      .then(() => {
+        console.log('delete doc succes');
+      })
+      .catch((error) => {
+        console.log('delete doc faild');
+      });
+
+    const isImageUsed = cards.find((el) => el.id !== id && el.image === image);
+    if (!isImageUsed) {
+      const imageRef = ref(storage, image);
+      deleteObject(imageRef)
+        .then(() => {
+          console.log('// File deleted successfully');
+        })
+        .catch((error) => {
+          console.log('// Uh-oh, an error occurred!');
+        });
+    }
   };
 
   const editCard = (id) => {

@@ -24,7 +24,7 @@ const Card = React.forwardRef(({ cardStyle = initialStyle, withHover, id, ...pro
       <Caption color={captionColor} fontSize={fontSize} spaceValue={spaceValue}>
         {caption}
       </Caption>
-      {withHover ? <StyledCardHover deleteFn={() => deleteCard(id)} editFn={() => editCard(id)} /> : null}
+      {withHover ? <StyledCardHover deleteFn={() => deleteCard(id, image)} editFn={() => editCard(id)} /> : null}
     </CardWrapper>
   );
 });
