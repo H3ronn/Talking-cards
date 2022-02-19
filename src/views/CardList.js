@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
-import { Wrapper, Gallery, StyledCard } from './CardList.styles';
+import { Wrapper, Gallery } from './CardList.styles';
 import Title from 'components/atoms/Title/Title';
 import { CardContext } from 'providers/CardProvider';
+import Loading from 'components/atoms/Loading/Loading';
+import Card from 'components/organisms/Card/Card';
 
 const CardList = () => {
   const { cards, loading } = useContext(CardContext);
 
-  const renderCards = cards.map((card) => (
-    <StyledCard tabIndex={0} withHover cardStyle={card} id={card.id} key={card.id} />
-  ));
+  const renderCards = cards.map((card) => <Card tabIndex={0} withHover cardStyle={card} id={card.id} key={card.id} />);
 
   const optionalRender = () => {
-    if (loading) return <p>loading</p>;
+    if (loading) return <Loading />;
 
     if (cards.length > 0) return renderCards;
 
