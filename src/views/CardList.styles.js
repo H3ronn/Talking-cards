@@ -18,22 +18,3 @@ export const Gallery = styled.div`
   & > div {
   }
 `;
-
-export const StyledCard = styled(Card)`
-  position: relative;
-  overflow: hidden;
-
-  pre {
-    content: 'Click to edit';
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    font-size: 50px;
-    background-color: rgba(255, 255, 255, 0.8);
-    width: 100%;
-    height: 100%;
-    transform: translateY(-100%);
-    transition: transform 0.2s ease-in-out;
-  }
-`;
