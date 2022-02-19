@@ -15,13 +15,9 @@ const Faq = () => {
     <Wrapper>
       <Accordion
         question="What can I do in this application?"
-        answer="In this application you can create cards to help communication with mute people."
+        answer="In this application you can create cards to help communication with mute people. You can download and print them."
       />
-      <Accordion
-        question="Where can I send informations about bugs/features?"
-        answer="Informacje szczegółowe na dany temat. Informacje szczegółowe na dany temat. Informacje szczegółowe na dany
-        temat. Informacje szczegółowe na dany temat."
-      />
+      <Accordion question="Where can I send informations about bugs/features?" answer="To my e-mail h3ronn@gmail.com" />
     </Wrapper>
   );
 };

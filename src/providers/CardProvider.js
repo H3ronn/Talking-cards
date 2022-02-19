@@ -68,6 +68,7 @@ import { ref, deleteObject } from 'firebase/storage';
 
 export const CardContext = createContext({
   cards: [],
+  loading: true,
   selectedCard: {},
   addCard: () => {},
   deleteCard: () => {},
@@ -75,6 +76,7 @@ export const CardContext = createContext({
 
 const CardProvider = ({ children }) => {
   const [cards, setCards] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedCard, setSelectedCard] = useState(null);
   const { userId } = useAuth();
   const collName = `cards-${userId}`;
@@ -148,6 +150,7 @@ const CardProvider = ({ children }) => {
           ...card.data(),
         };
       });
+      setLoading(false);
       setCards(cards);
     });
     return () => subscribe();
@@ -162,6 +165,7 @@ const CardProvider = ({ children }) => {
     <CardContext.Provider
       value={{
         cards,
+        loading,
         selectedCard,
         addCard,
         deleteCard,
