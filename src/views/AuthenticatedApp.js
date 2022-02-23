@@ -17,7 +17,6 @@ const AuthenticatedApp = () => {
         <Route path="/edit" element={<EditCard />} />
         <Route path="/decks" element={<h1>Decks</h1>} />
         <Route path="/faq" element={<Faq />} />
-        <Route path="/help" element={<h1>help</h1>} />
       </Routes>
     </>
   );

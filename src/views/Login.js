@@ -35,8 +35,8 @@ export const StyledButton = styled(Button)`
 `;
 
 const Login = () => {
-  const [email, setEmail] = useState('h3ronnn@gmail.com');
-  const [password, setPassword] = useState('test12');
+  const [email, setEmail] = useState('test@test.pl');
+  const [password, setPassword] = useState('testtest');
   const { signIn } = useAuth();
 
   const handleLogin = (e) => {

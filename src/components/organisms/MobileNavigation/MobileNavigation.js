@@ -67,9 +67,7 @@ const MobileNavigation = ({ isOpen = false, hideMenu }) => {
         <li>
           <StyledNavLink to="/faq">FAQ</StyledNavLink>
         </li>
-        <li>
-          <StyledNavLink to="/help">Help</StyledNavLink>
-        </li>
+        <li></li>
       </ul>
     </Wrapper>
   );

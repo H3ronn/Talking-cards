@@ -92,7 +92,6 @@ const Navigation = () => {
         <Link to="/create">Create card</Link>
         <Link to="/decks">Decks</Link>
         <Link to="/faq">FAQ</Link>
-        <Link to="/help">Help</Link>
       </LinksWrapper>
       <LogoutButton onClick={logout}>Log&nbsp;out</LogoutButton>
       <MobileNavigation isOpen={isOpen} hideMenu={hideMobileMenu} />
