@@ -32,12 +32,14 @@ const NavigationWrapper = styled.nav`
 const StyledTitle = styled(Title)`
   margin: 0;
 `;
-// style: ({ isActive }) => (isActive ? { color: theme.colors.blue } : { color: 'black' }),
-const Link = styled(NavLink).attrs(({ theme }) => ({
+
+// moved to other function because its bugging my colors in vsc
+const linkAttrs = ({ theme }) => ({
   style: ({ isActive }) => ({
     color: isActive ? theme.colors.blue : 'black',
   }),
-}))`
+});
+const Link = styled(NavLink).attrs(linkAttrs)`
   color: ${({ theme }) => theme.colors.grey};
   text-decoration: none;
   font-size: 16px;
@@ -73,6 +75,10 @@ const Navigation = () => {
     setIsOpen((prev) => !prev);
   };
 
+  const hideMobileMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
     <NavigationWrapper>
       <MenuButton onClick={handleOpenMenu} isOpen={isOpen} />
@@ -84,9 +90,8 @@ const Navigation = () => {
         <Link to="/faq">FAQ</Link>
         <Link to="/help">Help</Link>
       </LinksWrapper>
-      {/* <Link to="/login">Login/Register</Link> */}
       <LogoutButton onClick={logout}>Log&nbsp;out</LogoutButton>
-      <MobileNavigation isOpen={isOpen} />
+      <MobileNavigation isOpen={isOpen} hideMenu={hideMobileMenu} />
     </NavigationWrapper>
   );
 };
