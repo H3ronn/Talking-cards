@@ -19,6 +19,7 @@ const NavigationWrapper = styled.nav`
 
   @media (max-width: 750px) {
     grid-template-columns: 1fr;
+    justify-items: center;
   }
   ${LinksWrapper} {
     @media (max-width: 750px) {
@@ -65,6 +66,9 @@ export const LogoutButton = styled.button`
   background: none;
   font-size: 1rem;
   cursor: pointer;
+  @media (max-width: 750px) {
+    max-width: 100px;
+  }
 `;
 
 const Navigation = () => {
