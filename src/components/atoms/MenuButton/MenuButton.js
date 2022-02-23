@@ -21,6 +21,9 @@ const Wrapper = styled.button`
   width: 30px;
   height: 30px;
   position: fixed;
+  top: 16px;
+  left: 20px;
+  /* transform: translate(-50%, -50%); */
   z-index: ${({ theme }) => theme.zIndex.mobileNavigationButton};
 
   @media (min-width: 750px) {
