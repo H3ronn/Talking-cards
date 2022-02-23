@@ -17,3 +17,7 @@ export const Gallery = styled.div`
   & > div {
   }
 `;
+
+export const Info = styled.p`
+  font-size: 1.5em;
+`;

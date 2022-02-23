@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Wrapper, Gallery } from './CardList.styles';
+import { Wrapper, Gallery, Info } from './CardList.styles';
 import Title from 'components/atoms/Title/Title';
 import { CardContext } from 'providers/CardProvider';
 import Loading from 'components/atoms/Loading/Loading';
@@ -13,9 +13,9 @@ const CardList = () => {
   const optionalRender = () => {
     if (loading) return <Loading center />;
 
-    if (cards.length > 0) return <Gallery>renderCards</Gallery>;
+    if (cards.length > 0) return <Gallery>{renderCards}</Gallery>;
 
-    return <p>No cards</p>;
+    return <Info>No cards</Info>;
   };
 
   return (
