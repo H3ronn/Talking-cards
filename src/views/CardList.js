@@ -11,9 +11,9 @@ const CardList = () => {
   const renderCards = cards.map((card) => <Card tabIndex={0} withHover cardStyle={card} id={card.id} key={card.id} />);
 
   const optionalRender = () => {
-    if (loading) return <Loading />;
+    if (loading) return <Loading center />;
 
-    if (cards.length > 0) return renderCards;
+    if (cards.length > 0) return <Gallery>renderCards</Gallery>;
 
     return <p>No cards</p>;
   };
@@ -21,7 +21,7 @@ const CardList = () => {
   return (
     <Wrapper>
       <Title>Your Cards!</Title>
-      <Gallery>{optionalRender()}</Gallery>
+      {optionalRender()}
     </Wrapper>
   );
 };

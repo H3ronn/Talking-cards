@@ -1,4 +1,3 @@
-import Card from 'components/organisms/Card/Card';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
