@@ -33,17 +33,26 @@ const Wrapper = styled.nav`
   }
 `;
 
-const StyledNavLink = styled(NavLink).attrs(({ theme }) => ({
+// moved to other function because its bugging my colors in vsc
+const navLinkAttrs = ({ theme }) => ({
   style: ({ isActive }) => ({
     color: isActive ? theme.colors.blue : 'black',
   }),
-}))`
+});
+const StyledNavLink = styled(NavLink).attrs(navLinkAttrs)`
   text-decoration: none;
 `;
 
-const MobileNavigation = ({ isOpen = false }) => {
+const MobileNavigation = ({ isOpen = false, hideMenu }) => {
+  const handleCloseMenu = (e) => {
+    const isLink = e.target.href;
+    if (isLink) {
+      hideMenu();
+    }
+  };
+
   return (
-    <Wrapper isOpen={isOpen}>
+    <Wrapper isOpen={isOpen} onClick={handleCloseMenu}>
       <Title>Talking cards</Title>
       <ul>
         <li>
