@@ -1,5 +1,15 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import CardHover from 'components/molecules/CardHover/CardHover';
+
+const apear = keyframes`
+0% {
+  opacity: 0;
+}
+
+100% {
+  opacity: 1;
+}
+`;
 
 export const StyledCardHover = styled(CardHover)``; //Without this ${CardHover} hover dont work idk why
 
@@ -9,6 +19,7 @@ export const CardWrapper = styled.div.attrs((props) => ({
     background: props.backgroundColor,
   },
 }))`
+  animation: ${apear} 0.6s ease-in-out;
   overflow: hidden;
   width: 300px;
   height: 270px;
