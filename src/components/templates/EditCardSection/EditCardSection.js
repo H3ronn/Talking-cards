@@ -1,5 +1,5 @@
 import React, { useRef, useReducer, useContext, useEffect } from 'react';
-import { Wrapper, ButtonsWrapper, StyledInputField } from './EditCardSection.styles';
+import { Wrapper, ButtonsWrapper, StyledInputField, StyledCard } from './EditCardSection.styles';
 import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
@@ -93,7 +93,7 @@ const EditCardSection = ({ cardStyle }) => {
   return (
     <Wrapper>
       {card.error ? <ErrorAlert>{card.error}</ErrorAlert> : null}
-      <Card cardStyle={{ ...card, image: localImgUrl ? localImgUrl : image }} ref={cardRef} />
+      <StyledCard cardStyle={{ ...card, image: localImgUrl ? localImgUrl : image }} ref={cardRef} />
       <StyledInputField name="caption" id="caption" label="Caption" value={caption} onChange={handleEditCard} />
       <ButtonsWrapper>
         <InputButton name="image" id="file" label="Choose image" accept="image/*" onChange={handleImageChange} />
@@ -124,6 +124,66 @@ const EditCardSection = ({ cardStyle }) => {
         name="fontSize"
         unit="px"
         onChange={handleEditCard}
+      />
+      <RangeInput
+        label="Space"
+        value={spaceValue}
+        id="spaceValue"
+        name="spaceValue"
+        unit="px"
+        onChange={handleEditCard}
+        min="-100"
+        max="100"
+      />
+      <RangeInput
+        label="Space"
+        value={spaceValue}
+        id="spaceValue"
+        name="spaceValue"
+        unit="px"
+        onChange={handleEditCard}
+        min="-100"
+        max="100"
+      />
+      <RangeInput
+        label="Space"
+        value={spaceValue}
+        id="spaceValue"
+        name="spaceValue"
+        unit="px"
+        onChange={handleEditCard}
+        min="-100"
+        max="100"
+      />
+      <RangeInput
+        label="Space"
+        value={spaceValue}
+        id="spaceValue"
+        name="spaceValue"
+        unit="px"
+        onChange={handleEditCard}
+        min="-100"
+        max="100"
+      />
+      <RangeInput
+        label="Space"
+        value={spaceValue}
+        id="spaceValue"
+        name="spaceValue"
+        unit="px"
+        onChange={handleEditCard}
+        min="-100"
+        max="100"
+      />
+      <RangeInput
+        label="Space"
+        value={spaceValue}
+        id="spaceValue"
+        name="spaceValue"
+        unit="px"
+        onChange={handleEditCard}
+        min="-100"
+        max="100"
       />
       <RangeInput
         label="Space"
