@@ -105,8 +105,6 @@ const EditCardSection = ({ cardStyle }) => {
           value={captionColor}
           onChange={handleEditCard}
         />
-      </ButtonsWrapper>
-      <ButtonsWrapper>
         <InputButton
           type="color"
           id="bgColor"
@@ -116,8 +114,6 @@ const EditCardSection = ({ cardStyle }) => {
           onChange={handleEditCard}
         />
         <Button onClick={downloadJpg}>Download jpg</Button>
-      </ButtonsWrapper>
-      <ButtonsWrapper>
         {cardStyle ? <Button onClick={() => overwriteCard(card)}>Overwrite card</Button> : null}
         <Button onClick={handleAddCard}>Add card</Button>
       </ButtonsWrapper>
