@@ -11,6 +11,7 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  max-width: 800px;
   button {
     margin: 5px 5px;
   }
