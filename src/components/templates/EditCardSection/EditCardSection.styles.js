@@ -1,5 +1,11 @@
 import InputField from 'components/molecules/InputField/InputField';
+import Card from 'components/organisms/Card/Card';
 import styled from 'styled-components';
+
+export const StyledCard = styled(Card)`
+  position: sticky;
+  top: 10px;
+`;
 
 export const Wrapper = styled.div`
   display: flex;
