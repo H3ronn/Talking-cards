@@ -19,6 +19,9 @@ export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  input {
+    width: 100%;
+  }
   div {
     width: 100%;
   }
