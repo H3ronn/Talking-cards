@@ -80,7 +80,7 @@ const EditCardSection = ({ cardStyle }) => {
     }, 500);
   };
 
-  const handleScroll = (e) => {
+  const handleScroll = () => {
     console.log(cardRef.current.getBoundingClientRect().top);
     const topSpace = cardRef.current.getBoundingClientRect().top === 10;
     topSpace ? setPreviewView(true) : setPreviewView(false);
