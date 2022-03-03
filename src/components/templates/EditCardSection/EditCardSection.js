@@ -1,10 +1,9 @@
-import React, { useRef, useReducer, useContext, useEffect } from 'react';
+import React, { useRef, useReducer, useContext, useEffect, useState } from 'react';
 import { Wrapper, ButtonsWrapper, StyledInputField, StyledCard } from './EditCardSection.styles';
 import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 import RangeInput from 'components/molecules/RangeInput/RangeInput';
-import Card from 'components/organisms/Card/Card';
 import { CardContext } from 'providers/CardProvider';
 import { Button } from 'components/atoms/Button/Button';
 import ErrorAlert from 'components/organisms/ErrorAlert/ErrorAlert';
@@ -48,6 +47,7 @@ const EditCardSection = ({ cardStyle }) => {
   const cardRef = useRef(null);
   const [card, dispatch] = useReducer(reducer, initialState);
   const { addCard, overwriteCard } = useContext(CardContext);
+  const [previewView, setPreviewView] = useState(false);
 
   const handleEditCard = (e) => {
     dispatch({ type: actionTypes.changeStyle, payload: { field: e.target.name, value: e.target.value } });
@@ -71,9 +71,26 @@ const EditCardSection = ({ cardStyle }) => {
   };
 
   const downloadJpg = async () => {
-    const blob = await domtoimage.toBlob(cardRef.current);
-    saveAs(blob, card.caption);
+    setPreviewView(false);
+
+    setTimeout(async () => {
+      const blob = await domtoimage.toBlob(cardRef.current);
+      saveAs(blob, card.caption);
+      setPreviewView(true);
+    }, 500);
   };
+
+  const handleScroll = (e) => {
+    console.log(cardRef.current.getBoundingClientRect().top);
+    const topSpace = cardRef.current.getBoundingClientRect().top === 10;
+    topSpace ? setPreviewView(true) : setPreviewView(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     if (card.error) {
@@ -93,7 +110,11 @@ const EditCardSection = ({ cardStyle }) => {
   return (
     <Wrapper>
       {card.error ? <ErrorAlert>{card.error}</ErrorAlert> : null}
-      <StyledCard cardStyle={{ ...card, image: localImgUrl ? localImgUrl : image }} ref={cardRef} />
+      <StyledCard
+        preview={previewView}
+        cardStyle={{ ...card, image: localImgUrl ? localImgUrl : image }}
+        ref={cardRef}
+      />
       <StyledInputField name="caption" id="caption" label="Caption" value={caption} onChange={handleEditCard} />
       <ButtonsWrapper>
         <InputButton name="image" id="file" label="Choose image" accept="image/*" onChange={handleImageChange} />
@@ -124,66 +145,6 @@ const EditCardSection = ({ cardStyle }) => {
         name="fontSize"
         unit="px"
         onChange={handleEditCard}
-      />
-      <RangeInput
-        label="Space"
-        value={spaceValue}
-        id="spaceValue"
-        name="spaceValue"
-        unit="px"
-        onChange={handleEditCard}
-        min="-100"
-        max="100"
-      />
-      <RangeInput
-        label="Space"
-        value={spaceValue}
-        id="spaceValue"
-        name="spaceValue"
-        unit="px"
-        onChange={handleEditCard}
-        min="-100"
-        max="100"
-      />
-      <RangeInput
-        label="Space"
-        value={spaceValue}
-        id="spaceValue"
-        name="spaceValue"
-        unit="px"
-        onChange={handleEditCard}
-        min="-100"
-        max="100"
-      />
-      <RangeInput
-        label="Space"
-        value={spaceValue}
-        id="spaceValue"
-        name="spaceValue"
-        unit="px"
-        onChange={handleEditCard}
-        min="-100"
-        max="100"
-      />
-      <RangeInput
-        label="Space"
-        value={spaceValue}
-        id="spaceValue"
-        name="spaceValue"
-        unit="px"
-        onChange={handleEditCard}
-        min="-100"
-        max="100"
-      />
-      <RangeInput
-        label="Space"
-        value={spaceValue}
-        id="spaceValue"
-        name="spaceValue"
-        unit="px"
-        onChange={handleEditCard}
-        min="-100"
-        max="100"
       />
       <RangeInput
         label="Space"
