@@ -76,7 +76,7 @@ const EditCardSection = ({ cardStyle }) => {
     setTimeout(async () => {
       const blob = await domtoimage.toBlob(cardRef.current);
       saveAs(blob, card.caption);
-      setPreviewView(true);
+      handleScroll();
     }, 500);
   };
 
