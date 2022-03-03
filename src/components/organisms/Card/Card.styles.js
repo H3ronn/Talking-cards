@@ -19,6 +19,7 @@ export const CardWrapper = styled.div.attrs((props) => ({
     background: props.backgroundColor,
   },
 }))`
+  z-index: ${({ theme }) => theme.zIndex.card};
   animation: ${apear} 0.6s ease-in-out;
   overflow: hidden;
   width: 300px;

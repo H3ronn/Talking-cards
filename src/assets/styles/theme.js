@@ -9,8 +9,9 @@ export const theme = {
     lightRed: '#FF8383',
   },
   zIndex: {
-    mobileNavigation: 5,
-    mobileNavigationButton: 10,
-    errorAlert: 15,
+    card: 5,
+    mobileNavigation: 10,
+    mobileNavigationButton: 15,
+    errorAlert: 20,
   },
 };
