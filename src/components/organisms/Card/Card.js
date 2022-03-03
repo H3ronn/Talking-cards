@@ -12,12 +12,12 @@ const initialStyle = {
   spaceValue: 0,
 };
 
-const Card = React.forwardRef(({ cardStyle = initialStyle, withHover, id, ...props }, ref) => {
+const Card = React.forwardRef(({ cardStyle = initialStyle, withHover, id, preview, ...props }, ref) => {
   const { deleteCard, editCard } = useContext(CardContext);
 
   const { bgColor, image, captionColor, fontSize, spaceValue, caption } = cardStyle;
   return (
-    <CardWrapper ref={ref} backgroundColor={bgColor} {...props}>
+    <CardWrapper preview={preview} ref={ref} backgroundColor={bgColor} {...props}>
       <ImageWrapper>
         <Image src={image ? image : require('./defaultImage.jpg').default} alt="" />
       </ImageWrapper>

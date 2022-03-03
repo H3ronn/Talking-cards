@@ -31,6 +31,11 @@ export const CardWrapper = styled.div.attrs((props) => ({
   align-items: center;
   justify-content: center;
   position: relative;
+  transition: 0.3s ease-in;
+
+  transform-origin: top;
+  /* transform: scale(0.5); */
+  ${({ preview }) => (preview ? 'transform: scale(0.5);' : null)}
 
   &:hover ${StyledCardHover}, &:focus ${StyledCardHover} {
     transform: translateY(0);
