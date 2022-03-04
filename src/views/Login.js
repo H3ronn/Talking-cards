@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Title from 'components/atoms/Title/Title';
 import { Button } from 'components/atoms/Button/Button';
 import { Link } from 'react-router-dom';
-import useAuth from 'hooks/useAuth';
+import { useAuth } from 'hooks/useAuth';
 
 export const Wrapper = styled.div`
   /* text-align: center; */

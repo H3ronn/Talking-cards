@@ -3,20 +3,20 @@ import { GlobalStyles } from 'assets/styles/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import { BrowserRouter } from 'react-router-dom';
-import CardProvider from 'providers/CardProvider';
 import { ErrorProvider } from 'hooks/useError';
+import { AuthProvider } from 'hooks/useAuth';
 
 const AppProviders = ({ children }) => {
   return (
     <BrowserRouter>
-      <ErrorProvider>
-        <ThemeProvider theme={theme}>
-          <CardProvider>
+      <AuthProvider>
+        <ErrorProvider>
+          <ThemeProvider theme={theme}>
             <GlobalStyles />
             {children}
-          </CardProvider>
-        </ThemeProvider>
-      </ErrorProvider>
+          </ThemeProvider>
+        </ErrorProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 };

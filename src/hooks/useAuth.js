@@ -1,15 +1,10 @@
-import { useState, useEffect } from 'react';
-import {
-  onAuthStateChanged,
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-} from 'firebase/auth';
+import { useState, useEffect, createContext, useContext } from 'react';
+import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { auth } from 'firestore';
 
-const auth = getAuth();
+export const AuthContext = createContext({ userId: null, signUp: () => {}, signIn: () => {}, logout: () => {} });
 
-const useAuth = () => {
+export const AuthProvider = ({ children }) => {
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
@@ -57,7 +52,11 @@ const useAuth = () => {
     }
   };
 
-  return { userId, signUp, signIn, logout };
+  return <AuthContext.Provider value={{ userId, signUp, signIn, logout }}>{children}</AuthContext.Provider>;
 };
 
-export default useAuth;
+export const useAuth = () => {
+  const authContext = useContext(AuthContext);
+
+  return authContext;
+};

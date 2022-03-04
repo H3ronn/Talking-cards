@@ -11,7 +11,7 @@ import {
   deleteDoc,
   updateDoc,
 } from 'firebase/firestore';
-import useAuth from 'hooks/useAuth';
+import { useAuth } from 'hooks/useAuth';
 import { db, storage } from 'firestore';
 import { addImageToStorage } from 'helpers/addImageToStorage';
 import { ref, deleteObject } from 'firebase/storage';
