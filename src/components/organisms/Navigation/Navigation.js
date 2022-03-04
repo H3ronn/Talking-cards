@@ -4,7 +4,7 @@ import MenuButton from 'components/atoms/MenuButton/MenuButton';
 import MobileNavigation from '../MobileNavigation/MobileNavigation';
 import Title from 'components/atoms/Title/Title';
 import { NavLink } from 'react-router-dom';
-import useAuth from 'hooks/useAuth';
+import { useAuth } from 'hooks/useAuth';
 
 const LinksWrapper = styled.div``;
 
