@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   collection,
@@ -78,12 +78,13 @@ const CardProvider = ({ children }) => {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCard, setSelectedCard] = useState(null);
+
   const { userId } = useAuth();
   const collName = `cards-${userId}`;
 
   const navigate = useNavigate();
 
-  const colRef = collection(db, collName); //if not exit it create new collection
+  const colRef = useMemo(() => collection(db, collName), [collName]); //if not exit it create new collection
 
   const addCard = async ({ localImgUrl, id, ...card }) => {
     // const card = { ...cardToSave };
@@ -144,18 +145,18 @@ const CardProvider = ({ children }) => {
     const q = query(colRef, orderBy('createdAt'));
 
     const subscribe = onSnapshot(q, (snapshot) => {
-      const cards = snapshot.docs.map((card) => {
+      const savedCards = snapshot.docs.map((card) => {
         return {
           id: card.id,
           ...card.data(),
         };
       });
       setLoading(false);
-      setCards(cards);
+      setCards(savedCards);
     });
+
     return () => subscribe();
-    // eslint-disable-next-line
-  }, [userId]);
+  }, [userId, colRef]);
 
   // useEffect(() => {
   //   localStorage.setItem('cards', JSON.stringify(cards));
