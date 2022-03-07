@@ -1,11 +1,14 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from 'firestore';
+import { useError } from './useError';
+import { formatErrorMessage } from 'helpers/formatErrorMessage';
 
 export const AuthContext = createContext({ userId: null, signUp: () => {}, signIn: () => {}, logout: () => {} });
 
 export const AuthProvider = ({ children }) => {
   const [userId, setUserId] = useState(null);
+  const { dispatchError } = useError();
 
   useEffect(() => {
     const unsubAuth = onAuthStateChanged(auth, (user) => {
@@ -40,6 +43,8 @@ export const AuthProvider = ({ children }) => {
       // console.log(cred);
     } catch (error) {
       console.log(error.code);
+      const formattedError = formatErrorMessage(error.code);
+      dispatchError(formattedError);
     }
   };
 
