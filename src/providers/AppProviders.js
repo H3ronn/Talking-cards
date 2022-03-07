@@ -9,14 +9,14 @@ import { AuthProvider } from 'hooks/useAuth';
 const AppProviders = ({ children }) => {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <ErrorProvider>
+      <ErrorProvider>
+        <AuthProvider>
           <ThemeProvider theme={theme}>
             <GlobalStyles />
             {children}
           </ThemeProvider>
-        </ErrorProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </ErrorProvider>
     </BrowserRouter>
   );
 };
