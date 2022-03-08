@@ -12,8 +12,8 @@ const initialStyle = {
   spaceValue: 0,
 };
 
-const Card = React.forwardRef(({ cardStyle = initialStyle, withHover, id, preview, ...props }, ref) => {
-  const { deleteCard, editCard } = useContext(CardContext);
+const Card = React.forwardRef(({ cardStyle = initialStyle, withHover, id, preview, deleteCard, ...props }, ref) => {
+  const { editCard } = useContext(CardContext);
 
   const { bgColor, image, captionColor, fontSize, spaceValue, caption } = cardStyle;
   return (
