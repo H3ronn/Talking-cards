@@ -93,6 +93,7 @@ const CardProvider = ({ children }) => {
     // delete card.id;
     // delete card.localImgUrl;
     try {
+      // throw new Error();
       if (card.image instanceof File) {
         const imageUrl = await addImageToStorage(card.caption, card.image);
         card.image = imageUrl;
@@ -102,8 +103,10 @@ const CardProvider = ({ children }) => {
         createdAt: serverTimestamp(),
       });
       setSelectedCard({ ...card, id: newDoc.id });
+      return true;
     } catch (error) {
       dispatchError('Failed to add a card. Try again or report the problem to us.');
+      return false;
     }
   };
 
