@@ -12,18 +12,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubAuth = onAuthStateChanged(auth, (user) => {
-      setUserId(null);
-      if (user) {
-        setUserId(user.uid);
-      }
-
-      // Belowe code snippets throw warnings in tests
-      // if (user.uid) {
-      //   setUserId(user.uid);
-      // } else {
-      //   setUserId(null);
-      // }
-      // setUserId(user?.uid);
+      setUserId(user?.uid);
     });
     return () => unsubAuth();
   }, []);

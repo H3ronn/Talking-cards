@@ -17,56 +17,6 @@ import { addImageToStorage } from 'helpers/addImageToStorage';
 import { ref, deleteObject } from 'firebase/storage';
 import { useError } from 'hooks/useError';
 
-// const initialCardContext = [
-//   {
-//     id: 1,
-//     caption: 'Spacer',
-//     captionColor: '#ffffff',
-//     fontSize: 50,
-//     image: null,
-//     bgColor: '#0000ff',
-//     spaceValue: 0,
-//   },
-//   {
-//     id: 2,
-//     caption: 'Jeść',
-//     captionColor: '#ffffff',
-//     fontSize: 30,
-//     image: null,
-//     bgColor: '#ff00ff',
-//     spaceValue: 10,
-//   },
-//   {
-//     id: 3,
-//     caption: 'Caption',
-//     captionColor: '#ffffff',
-//     fontSize: 50,
-//     image: null,
-//     bgColor: '#0000ff',
-//     spaceValue: 0,
-//   },
-//   {
-//     id: 4,
-//     caption: 'Jeść',
-//     captionColor: '#ffffff',
-//     fontSize: 30,
-//     image: null,
-//     bgColor: '#ff00ff',
-//     spaceValue: 10,
-//   },
-//   {
-//     id: 5,
-//     caption: 'Toaleta',
-//     captionColor: '#ffff11',
-//     fontSize: 40,
-//     image: null,
-//     bgColor: '#00f0ff',
-//     spaceValue: 20,
-//   },
-// ];
-
-// const initialCardContext = JSON.parse(localStorage.getItem('cards')) || [];
-
 export const CardContext = createContext({
   cards: [],
   loading: true,
@@ -90,9 +40,6 @@ const CardProvider = ({ children }) => {
   const colRef = useMemo(() => collection(db, collName), [collName]); //if not exit it create new collection
 
   const addCard = async ({ localImgUrl, id, ...card }) => {
-    // const card = { ...cardToSave };
-    // delete card.id;
-    // delete card.localImgUrl;
     try {
       if (card.image instanceof File) {
         const imageUrl = await addImageToStorage(card.caption, card.image);
@@ -141,7 +88,6 @@ const CardProvider = ({ children }) => {
     navigate('/edit');
   };
 
-  //nie dziala przy zmianie obrazka
   const overwriteCard = async ({ id, localImgUrl, ...card }) => {
     if (localImgUrl) {
       const imageUrl = await addImageToStorage(card.caption, card.image);
@@ -167,10 +113,6 @@ const CardProvider = ({ children }) => {
 
     return () => subscribe();
   }, [userId, colRef]);
-
-  // useEffect(() => {
-  //   localStorage.setItem('cards', JSON.stringify(cards));
-  // }, [cards]);
 
   return (
     <CardContext.Provider
