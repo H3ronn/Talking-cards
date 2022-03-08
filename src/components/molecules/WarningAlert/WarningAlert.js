@@ -12,7 +12,7 @@ to {
 `;
 
 const Wrapper = styled.div`
-  z-index: ${({ theme }) => theme.zIndex.errorAlert};
+  z-index: ${({ theme }) => theme.zIndex.WarningAlert};
   position: fixed;
   top: 0;
   left: 50%;
@@ -37,11 +37,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const ErrorAlert = ({ children }) => (
+const WarningAlert = ({ children }) => (
   <Wrapper>
     <img src={warningIcon} alt="" />
     {children}
   </Wrapper>
 );
 
-export default ErrorAlert;
+export default WarningAlert;
