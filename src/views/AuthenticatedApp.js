@@ -16,7 +16,6 @@ const AuthenticatedApp = () => {
         <Route path="/list" element={<CardList />} />
         <Route path="/create" element={<CreateCard />} />
         <Route path="/edit" element={<EditCard />} />
-        <Route path="/decks" element={<h1>Decks</h1>} />
         <Route path="/faq" element={<Faq />} />
       </Routes>
     </CardProvider>

@@ -90,7 +90,6 @@ const Navigation = () => {
         <StyledTitle>Talking cards</StyledTitle>
         <Link to="/list">Card list</Link>
         <Link to="/create">Create card</Link>
-        <Link to="/decks">Decks</Link>
         <Link to="/faq">FAQ</Link>
       </LinksWrapper>
       <LogoutButton onClick={logout}>Log&nbsp;out</LogoutButton>
