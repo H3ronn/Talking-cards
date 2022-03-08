@@ -4,7 +4,7 @@ import { StyledCardHover, CardWrapper, ImageWrapper, Caption, Image } from './Ca
 import { CardContext } from 'providers/CardProvider';
 
 const initialStyle = {
-  caption: 'Caption',
+  caption: `I'm happy`,
   captionColor: '#ffffff',
   fontSize: 30,
   image: null,
@@ -19,7 +19,7 @@ const Card = React.forwardRef(({ cardStyle = initialStyle, withHover, id, previe
   return (
     <CardWrapper preview={preview} ref={ref} backgroundColor={bgColor} {...props}>
       <ImageWrapper>
-        <Image src={image ? image : require('./defaultImage.jpg').default} alt="" />
+        <Image src={image ? image : require('./defaultImage.svg').default} alt="" />
       </ImageWrapper>
       <Caption color={captionColor} fontSize={fontSize} spaceValue={spaceValue}>
         {caption}

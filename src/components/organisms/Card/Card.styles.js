@@ -52,6 +52,7 @@ export const ImageWrapper = styled.div`
 
 export const Image = styled.img`
   /* max-width: 400px; */
+  min-width: 200px;
   width: 100%;
   max-height: 90%;
 `;

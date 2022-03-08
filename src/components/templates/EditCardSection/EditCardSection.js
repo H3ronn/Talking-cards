@@ -9,7 +9,7 @@ import { Button } from 'components/atoms/Button/Button';
 import ErrorAlert from 'components/organisms/ErrorAlert/ErrorAlert';
 
 const initialState = {
-  caption: 'Caption',
+  caption: `I'm happy`,
   captionColor: '#ffffff',
   fontSize: '30',
   image: null,
