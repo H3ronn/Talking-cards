@@ -57,7 +57,7 @@ const EditCardSection = ({ cardStyle }) => {
     if (card.image !== null) {
       addCard(card);
     } else {
-      dispatch({ type: actionTypes.throwError, payload: { error: 'You must add image!' } });
+      dispatch({ type: actionTypes.throwError, payload: { error: 'You must add your image!' } });
     }
   };
 
