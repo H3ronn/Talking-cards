@@ -58,7 +58,15 @@ const Register = () => {
     <Wrapper>
       <Title>Register to Talking Card</Title>
       <RegisterForm onSubmit={handleSignUp}>
-        <InputField type="text" label="E-mail" name="email" id="email" onChange={handleEmailChange} value={email} />
+        <InputField
+          type="text"
+          label="E-mail"
+          name="email"
+          id="email"
+          onChange={handleEmailChange}
+          value={email}
+          required
+        />
         <InputField
           type="password"
           label="Password"
@@ -66,6 +74,7 @@ const Register = () => {
           id="password"
           onChange={handlePasswordChange}
           value={password}
+          required
         />
         <StyledButton>Register</StyledButton>
       </RegisterForm>

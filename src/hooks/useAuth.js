@@ -8,7 +8,7 @@ export const AuthContext = createContext({ userId: null, signUp: () => {}, signI
 
 export const AuthProvider = ({ children }) => {
   const [userId, setUserId] = useState(null);
-  const { dispatchError } = useError();
+  const { dispatchError, instantErrorHide } = useError();
 
   useEffect(() => {
     const unsubAuth = onAuthStateChanged(auth, (user) => {
@@ -31,19 +31,19 @@ export const AuthProvider = ({ children }) => {
   const signUp = async (email, password) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      // console.log(cred);
+      instantErrorHide();
     } catch (e) {
-      console.log(e.code);
+      const formattedError = formatErrorMessage(e.code);
+      dispatchError(formattedError);
     }
   };
 
   const signIn = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      // console.log(cred);
-    } catch (error) {
-      console.log(error.code);
-      const formattedError = formatErrorMessage(error.code);
+      instantErrorHide();
+    } catch (e) {
+      const formattedError = formatErrorMessage(e.code);
       dispatchError(formattedError);
     }
   };
@@ -51,9 +51,9 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await signOut(auth);
-      console.log('User logout');
+      instantErrorHide();
     } catch (error) {
-      console.log(error);
+      dispatchError('Logout failed. Try again or report the problem to us.');
     }
   };
 

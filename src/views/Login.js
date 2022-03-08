@@ -58,7 +58,15 @@ const Login = () => {
     <Wrapper>
       <Title>Login to Talking Card</Title>
       <LoginForm onSubmit={handleLogin}>
-        <InputField type="email" label="E-mail" name="email" id="email" onChange={handleEmailChange} value={email} />
+        <InputField
+          type="email"
+          label="E-mail"
+          name="email"
+          id="email"
+          onChange={handleEmailChange}
+          value={email}
+          required
+        />
         <InputField
           type="password"
           label="Password"
@@ -66,6 +74,7 @@ const Login = () => {
           id="password"
           onChange={handlePasswordChange}
           value={password}
+          required
         />
         <StyledButton>Login</StyledButton>
       </LoginForm>

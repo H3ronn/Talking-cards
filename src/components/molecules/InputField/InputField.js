@@ -4,7 +4,18 @@ import Label from 'components/atoms/Label/Label';
 import { Wrapper } from './InputField.styles';
 import InputFile from 'components/atoms/InputButton/InputButton';
 
-const InputField = ({ onChange, type, id, name, label, placeholder = '', value = '', children, ...props }) => {
+const InputField = ({
+  onChange,
+  type,
+  id,
+  name,
+  label,
+  placeholder = '',
+  value = '',
+  required,
+  children,
+  ...props
+}) => {
   return (
     <Wrapper {...props}>
       <Label htmlFor={id}>{label}</Label>
@@ -19,6 +30,7 @@ const InputField = ({ onChange, type, id, name, label, placeholder = '', value =
           placeholder={placeholder}
           value={value}
           onChange={onChange}
+          required={required}
         />
       )}
     </Wrapper>
