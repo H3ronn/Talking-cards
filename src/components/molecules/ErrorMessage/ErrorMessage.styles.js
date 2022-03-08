@@ -28,6 +28,7 @@ const slideOut = keyframes`
 `;
 
 export const Wrapper = styled.div`
+  background-color: white;
   border: ${({ theme }) => theme.colors.red} solid 5px;
   border-radius: 10px;
   padding: 18px 26px;
@@ -39,6 +40,7 @@ export const Wrapper = styled.div`
   bottom: 0;
   left: 50%;
   animation: ${slideIn} 0.4s ease-in-out forwards, ${slideOut} 0.4s 5s ease-in-out forwards;
+  z-index: ${({ theme }) => theme.zIndex.errorAlert};
 
   &:before {
     content: '';

@@ -1,21 +1,40 @@
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState, createContext, useContext, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const ErrorContext = createContext({});
 
 export const ErrorProvider = ({ children }) => {
   const [error, setError] = useState('');
+  const [timerId, setTimerId] = useState(0);
+
+  const { pathname } = useLocation();
 
   const dispatchError = (message) => {
-    console.log('dispatch');
+    console.log('dispatchError');
+    instantErrorHide();
     if (!error) {
-      setTimeout(() => {
-        setError('');
-      }, 5500);
+      setTimerId(delayedResetError());
     }
     setError(message);
   };
 
-  return <ErrorContext.Provider value={{ error, dispatchError }}>{children}</ErrorContext.Provider>;
+  const delayedResetError = () => {
+    return setTimeout(() => {
+      setError('');
+    }, 5500);
+  };
+
+  const instantErrorHide = () => {
+    clearTimeout(timerId);
+    setError('');
+  };
+
+  useEffect(() => {
+    instantErrorHide();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
+
+  return <ErrorContext.Provider value={{ error, dispatchError, instantErrorHide }}>{children}</ErrorContext.Provider>;
 };
 
 export const useError = () => {

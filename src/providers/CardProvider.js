@@ -15,6 +15,7 @@ import { useAuth } from 'hooks/useAuth';
 import { db, storage } from 'firestore';
 import { addImageToStorage } from 'helpers/addImageToStorage';
 import { ref, deleteObject } from 'firebase/storage';
+import { useError } from 'hooks/useError';
 
 // const initialCardContext = [
 //   {
@@ -80,6 +81,7 @@ const CardProvider = ({ children }) => {
   const [selectedCard, setSelectedCard] = useState(null);
 
   const { userId } = useAuth();
+  const { dispatchError } = useError();
   const collName = `cards-${userId}`;
 
   const navigate = useNavigate();
@@ -101,7 +103,7 @@ const CardProvider = ({ children }) => {
       });
       setSelectedCard({ ...card, id: newDoc.id });
     } catch (error) {
-      console.log(error);
+      dispatchError('Failed to add a card. Try again or report the problem to us.');
     }
   };
 
@@ -113,6 +115,8 @@ const CardProvider = ({ children }) => {
       })
       .catch((error) => {
         console.log('delete doc faild');
+        console.log(error.code);
+        dispatchError('Failed to delete a card. Try again or report the problem to us.');
       });
 
     const isImageUsed = cards.find((el) => el.id !== id && el.image === image);
@@ -123,7 +127,7 @@ const CardProvider = ({ children }) => {
           console.log('// File deleted successfully');
         })
         .catch((error) => {
-          console.log('// Uh-oh, an error occurred!');
+          dispatchError('Failed to delete a card image. Try again or report the problem to us.');
         });
     }
   };
