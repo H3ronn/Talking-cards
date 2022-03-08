@@ -14,6 +14,7 @@ export const theme = {
     card: 5,
     mobileNavigation: 10,
     mobileNavigationButton: 15,
+    successAlert: 18,
     warningAlert: 20,
   },
 };

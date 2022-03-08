@@ -7,6 +7,7 @@ import RangeInput from 'components/molecules/RangeInput/RangeInput';
 import { CardContext } from 'providers/CardProvider';
 import { Button } from 'components/atoms/Button/Button';
 import WarningAlert from 'components/molecules/WarningAlert/WarningAlert';
+import SuccessAlert from 'components/molecules/SuccessAlert/SuccessAlert';
 
 const initialState = {
   caption: `I'm happy`,
@@ -48,17 +49,31 @@ const EditCardSection = ({ cardStyle }) => {
   const [card, dispatch] = useReducer(reducer, initialState);
   const { addCard, overwriteCard } = useContext(CardContext);
   const [previewView, setPreviewView] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const handleEditCard = (e) => {
     dispatch({ type: actionTypes.changeStyle, payload: { field: e.target.name, value: e.target.value } });
   };
 
-  const handleAddCard = () => {
-    if (card.image !== null) {
-      addCard(card);
-    } else {
+  const handleAddCard = async () => {
+    if (card.image === null) {
       dispatch({ type: actionTypes.throwError, payload: { error: 'You must add your image!' } });
+      return;
     }
+
+    const result = await addCard(card);
+    if (result) {
+      showSuccessAlert();
+    }
+  };
+
+  const showSuccessAlert = () => {
+    if (!successMessage) {
+      setTimeout(() => {
+        setSuccessMessage(null);
+      }, 2000);
+    }
+    setSuccessMessage('Successfully added card');
   };
 
   const handleImageChange = (e) => {
@@ -108,6 +123,7 @@ const EditCardSection = ({ cardStyle }) => {
   const { bgColor, captionColor, fontSize, spaceValue, caption, image, localImgUrl } = card;
   return (
     <Wrapper>
+      {successMessage ? <SuccessAlert message={successMessage} /> : null}
       {card.error ? <WarningAlert>{card.error}</WarningAlert> : null}
       <StyledCard
         preview={previewView}
