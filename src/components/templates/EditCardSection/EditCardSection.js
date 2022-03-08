@@ -6,7 +6,7 @@ import { saveAs } from 'file-saver';
 import RangeInput from 'components/molecules/RangeInput/RangeInput';
 import { CardContext } from 'providers/CardProvider';
 import { Button } from 'components/atoms/Button/Button';
-import ErrorAlert from 'components/organisms/ErrorAlert/ErrorAlert';
+import WarningAlert from 'components/molecules/WarningAlert/WarningAlert';
 
 const initialState = {
   caption: `I'm happy`,
@@ -108,7 +108,7 @@ const EditCardSection = ({ cardStyle }) => {
   const { bgColor, captionColor, fontSize, spaceValue, caption, image, localImgUrl } = card;
   return (
     <Wrapper>
-      {card.error ? <ErrorAlert>{card.error}</ErrorAlert> : null}
+      {card.error ? <WarningAlert>{card.error}</WarningAlert> : null}
       <StyledCard
         preview={previewView}
         cardStyle={{ ...card, image: localImgUrl ? localImgUrl : image }}
