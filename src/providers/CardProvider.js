@@ -73,6 +73,7 @@ export const CardContext = createContext({
   selectedCard: {},
   addCard: () => {},
   deleteCard: () => {},
+  editCard: () => {},
 });
 
 const CardProvider = ({ children }) => {
@@ -93,7 +94,6 @@ const CardProvider = ({ children }) => {
     // delete card.id;
     // delete card.localImgUrl;
     try {
-      // throw new Error();
       if (card.image instanceof File) {
         const imageUrl = await addImageToStorage(card.caption, card.image);
         card.image = imageUrl;
@@ -110,28 +110,29 @@ const CardProvider = ({ children }) => {
     }
   };
 
-  const deleteCard = (id, image) => {
+  const deleteDocFromDb = (id) => {
     const docRef = doc(db, collName, id);
-    deleteDoc(docRef)
-      .then(() => {
-        console.log('delete doc succes');
-      })
-      .catch((error) => {
-        console.log('delete doc faild');
-        console.log(error.code);
-        dispatchError('Failed to delete a card. Try again or report the problem to us.');
-      });
+    deleteDoc(docRef);
+  };
 
-    const isImageUsed = cards.find((el) => el.id !== id && el.image === image);
-    if (!isImageUsed) {
-      const imageRef = ref(storage, image);
-      deleteObject(imageRef)
-        .then(() => {
-          console.log('// File deleted successfully');
-        })
-        .catch((error) => {
-          dispatchError('Failed to delete a card image. Try again or report the problem to us.');
-        });
+  const deleteImageFromStorage = (image) => {
+    const imageRef = ref(storage, image);
+    deleteObject(imageRef);
+  };
+
+  const deleteCard = (id, image) => {
+    try {
+      deleteDocFromDb(id);
+
+      const isImageUsed = cards.find((el) => el.id !== id && el.image === image);
+      if (!isImageUsed) {
+        deleteImageFromStorage(image);
+      }
+
+      return true;
+    } catch (e) {
+      dispatchError('Failed to delete a card. Try again or report the problem to us.');
+      return false;
     }
   };
 
@@ -140,6 +141,7 @@ const CardProvider = ({ children }) => {
     navigate('/edit');
   };
 
+  //nie dziala przy zmianie obrazka
   const overwriteCard = (card) => {
     // deleteCard(card.id);
     // setCards((prevState) => [...prevState, card]);

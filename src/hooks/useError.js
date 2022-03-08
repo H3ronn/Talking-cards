@@ -10,7 +10,6 @@ export const ErrorProvider = ({ children }) => {
   const { pathname } = useLocation();
 
   const dispatchError = (message) => {
-    console.log('dispatchError');
     instantErrorHide();
     if (!error) {
       setTimerId(delayedResetError());
