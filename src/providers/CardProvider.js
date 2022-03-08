@@ -142,11 +142,12 @@ const CardProvider = ({ children }) => {
   };
 
   //nie dziala przy zmianie obrazka
-  const overwriteCard = (card) => {
-    // deleteCard(card.id);
-    // setCards((prevState) => [...prevState, card]);
-    delete card.localImgUrl;
-    const docRef = doc(db, collName, card.id);
+  const overwriteCard = async ({ id, localImgUrl, ...card }) => {
+    if (localImgUrl) {
+      const imageUrl = await addImageToStorage(card.caption, card.image);
+      card.image = imageUrl;
+    }
+    const docRef = doc(db, collName, id);
     updateDoc(docRef, card);
   };
 
