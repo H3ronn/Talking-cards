@@ -61,9 +61,7 @@ const MobileNavigation = ({ isOpen = false, hideMenu }) => {
         <li>
           <StyledNavLink to="/create">Create card</StyledNavLink>
         </li>
-        <li>
-          <StyledNavLink to="/decks">Decks</StyledNavLink>
-        </li>
+        <li></li>
         <li>
           <StyledNavLink to="/faq">FAQ</StyledNavLink>
         </li>
