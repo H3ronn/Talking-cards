@@ -7,6 +7,8 @@ export const theme = {
     red: '#F05252',
     warning: '#F9F2E5',
     lightRed: '#FF8383',
+    green: '#27ae61',
+    lightGreen: '#d1e7dd',
   },
   zIndex: {
     card: 5,
