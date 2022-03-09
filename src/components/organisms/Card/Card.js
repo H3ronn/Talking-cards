@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { StyledCardHover, CardWrapper, ImageWrapper, Caption, Image } from './Card.styles';
-import { CardContext } from 'providers/CardProvider';
+import { useCards } from 'hooks/useCards';
 
 const initialStyle = {
   caption: `I'm happy`,
@@ -13,7 +13,7 @@ const initialStyle = {
 };
 
 const Card = React.forwardRef(({ cardStyle = initialStyle, withHover, id, preview, deleteCard, ...props }, ref) => {
-  const { editCard } = useContext(CardContext);
+  const { editCard } = useCards();
 
   const { bgColor, image, captionColor, fontSize, spaceValue, caption } = cardStyle;
   return (

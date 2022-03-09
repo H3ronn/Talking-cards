@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { CardContext } from 'providers/CardProvider';
 import { useNavigate } from 'react-router-dom';
 import EditCardSection from 'components/templates/EditCardSection/EditCardSection';
 import Title from 'components/atoms/Title/Title';
+import { useCards } from 'hooks/useCards';
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 `;
 
 const EditCard = () => {
-  const { selectedCard } = useContext(CardContext);
+  const { selectedCard } = useCards();
   const navigate = useNavigate();
 
   useEffect(() => {

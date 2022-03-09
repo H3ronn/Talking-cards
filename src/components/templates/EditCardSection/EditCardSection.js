@@ -1,13 +1,13 @@
-import React, { useRef, useReducer, useContext, useEffect, useState } from 'react';
+import React, { useRef, useReducer, useEffect, useState } from 'react';
 import { Wrapper, ButtonsWrapper, StyledInputField, StyledCard } from './EditCardSection.styles';
 import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 import RangeInput from 'components/molecules/RangeInput/RangeInput';
-import { CardContext } from 'providers/CardProvider';
 import { Button } from 'components/atoms/Button/Button';
 import WarningAlert from 'components/molecules/WarningAlert/WarningAlert';
 import SuccessAlert from 'components/molecules/SuccessAlert/SuccessAlert';
+import { useCards } from 'hooks/useCards';
 
 const initialState = {
   caption: `I'm happy`,
@@ -47,7 +47,7 @@ const reducer = (state, { type, payload }) => {
 const EditCardSection = ({ cardStyle }) => {
   const cardRef = useRef(null);
   const [card, dispatch] = useReducer(reducer, initialState);
-  const { addCard, overwriteCard } = useContext(CardContext);
+  const { addCard, overwriteCard } = useCards();
   const [previewView, setPreviewView] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
 
