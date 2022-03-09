@@ -1,29 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Wrapper, Gallery, Info } from './CardList.styles';
 import Title from 'components/atoms/Title/Title';
 import Loading from 'components/atoms/Loading/Loading';
 import Card from 'components/organisms/Card/Card';
-import SuccessAlert from 'components/molecules/SuccessAlert/SuccessAlert';
 import { useCards } from 'hooks/useCards';
+import { useAlert } from 'hooks/useAlert';
 
 const CardList = () => {
   const { cards, loading, deleteCard } = useCards();
-  const [successMessage, setSuccessMessage] = useState(null);
+  const { dispatchAlert } = useAlert();
 
   const handleDeleteCard = async (id, image) => {
     const result = await deleteCard(id, image);
     if (result) {
-      showSuccessAlert();
+      dispatchAlert('Card successfully deleted');
     }
-  };
-
-  const showSuccessAlert = () => {
-    if (!successMessage) {
-      setTimeout(() => {
-        setSuccessMessage(null);
-      }, 2000);
-    }
-    setSuccessMessage('Card successfully deleted');
   };
 
   const renderCards = cards.map((card) => (
@@ -41,7 +32,6 @@ const CardList = () => {
   return (
     <Wrapper>
       <Title>Your Cards!</Title>
-      {successMessage ? <SuccessAlert message={successMessage} /> : null}
       {optionalRender()}
     </Wrapper>
   );
