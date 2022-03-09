@@ -1,13 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Wrapper, Gallery, Info } from './CardList.styles';
 import Title from 'components/atoms/Title/Title';
-import { CardContext } from 'providers/CardProvider';
 import Loading from 'components/atoms/Loading/Loading';
 import Card from 'components/organisms/Card/Card';
 import SuccessAlert from 'components/molecules/SuccessAlert/SuccessAlert';
+import { useCards } from 'hooks/useCards';
 
 const CardList = () => {
-  const { cards, loading, deleteCard } = useContext(CardContext);
+  const { cards, loading, deleteCard } = useCards();
   const [successMessage, setSuccessMessage] = useState(null);
 
   const handleDeleteCard = async (id, image) => {
