@@ -8,6 +8,8 @@ import { Button } from 'components/atoms/Button/Button';
 import WarningAlert from 'components/molecules/WarningAlert/WarningAlert';
 import { useCards } from 'hooks/useCards';
 import { useAlert } from 'hooks/useAlert';
+import debounce from 'lodash.debounce';
+import throttle from 'lodash.throttle';
 
 const initialState = {
   caption: `I'm happy`,
@@ -87,10 +89,10 @@ const EditCardSection = ({ cardStyle }) => {
     }, 500);
   };
 
-  const handleScroll = () => {
+  const handleScroll = throttle(() => {
     const topSpace = cardRef.current.getBoundingClientRect().top;
     setPreviewView(topSpace === 10);
-  };
+  }, 300);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
