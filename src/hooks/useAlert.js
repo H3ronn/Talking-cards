@@ -1,36 +1,34 @@
 import { useState, createContext, useContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+//types: success warning error info
 export const AlertContext = createContext({});
 
 export const AlertProvider = ({ children }) => {
-  const [alert, setAlert] = useState('');
+  const [alert, setAlert] = useState({});
   const [timerId, setTimerId] = useState(0);
 
   const { pathname } = useLocation();
 
-  const dispatchAlert = (message) => {
-    instantAlertHide();
-    if (!alert) {
-      setTimerId(delayedResetError());
-    }
-    setAlert(message);
+  const dispatchAlert = (message, type) => {
+    hideAlert();
+    setAlert({ message, type });
+    clearTimeout(timerId);
+    setTimerId(delayedHideAlert());
   };
 
-  const delayedResetError = () => {
+  const delayedHideAlert = () => {
     return setTimeout(() => {
-      setAlert('');
+      hideAlert();
     }, 2500);
   };
 
-  const instantAlertHide = () => {
-    setAlert('');
-    clearTimeout(timerId);
+  const hideAlert = () => {
+    setAlert(null);
   };
 
   useEffect(() => {
-    instantAlertHide();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    hideAlert();
   }, [pathname]);
 
   return <AlertContext.Provider value={{ alert, dispatchAlert }}>{children}</AlertContext.Provider>;

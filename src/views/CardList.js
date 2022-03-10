@@ -13,7 +13,7 @@ const CardList = () => {
   const handleDeleteCard = async (id, image) => {
     const result = await deleteCard(id, image);
     if (result) {
-      dispatchAlert('Card successfully deleted');
+      dispatchAlert('Card successfully deleted', 'success');
     }
   };
 
