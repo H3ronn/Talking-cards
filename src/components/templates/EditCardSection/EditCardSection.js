@@ -1,4 +1,4 @@
-import React, { useRef, useReducer, useEffect, useState } from 'react';
+import React, { useRef, useReducer, useEffect, useState, useMemo } from 'react';
 import { Wrapper, ButtonsWrapper, StyledInputField, StyledCard } from './EditCardSection.styles';
 import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
@@ -8,7 +8,6 @@ import { Button } from 'components/atoms/Button/Button';
 import WarningAlert from 'components/molecules/WarningAlert/WarningAlert';
 import { useCards } from 'hooks/useCards';
 import { useAlert } from 'hooks/useAlert';
-import debounce from 'lodash.debounce';
 import throttle from 'lodash.throttle';
 
 const initialState = {
@@ -89,16 +88,18 @@ const EditCardSection = ({ cardStyle }) => {
     }, 500);
   };
 
-  const handleScroll = throttle(() => {
+  const handleScroll = () => {
     const topSpace = cardRef.current.getBoundingClientRect().top;
     setPreviewView(topSpace === 10);
-  }, 300);
+  };
+
+  const throttledHandleScroll = useMemo(() => throttle(handleScroll, 300), []);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', throttledHandleScroll);
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    return () => window.removeEventListener('scroll', throttledHandleScroll);
+  }, [throttledHandleScroll]);
 
   useEffect(() => {
     if (card.error) {

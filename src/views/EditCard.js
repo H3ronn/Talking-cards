@@ -24,7 +24,6 @@ const EditCard = () => {
   return (
     <Wrapper>
       <Title>Edit your card</Title>
-      {console.log(selectedCard)}
       <EditCardSection cardStyle={selectedCard} />
     </Wrapper>
   );
