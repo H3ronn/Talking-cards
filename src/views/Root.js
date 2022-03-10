@@ -1,11 +1,11 @@
-import ErrorMessage from 'components/molecules/ErrorMessage/ErrorMessage';
-import SuccessAlert from 'components/molecules/SuccessAlert/SuccessAlert';
+import React from 'react';
 import { useAuth } from 'hooks/useAuth';
 import { useError } from 'hooks/useError';
-import React, { useEffect } from 'react';
+import { useAlert } from 'hooks/useAlert';
+import ErrorMessage from 'components/molecules/ErrorMessage/ErrorMessage';
 import AuthenticatedApp from './AuthenticatedApp';
 import UnauthenticatedApp from './UnauthenticatedApp';
-import { useAlert } from 'hooks/useAlert';
+import Alert from 'components/molecules/Alert/Alert';
 
 const Root = () => {
   const { userId } = useAuth();
@@ -14,7 +14,7 @@ const Root = () => {
 
   return (
     <>
-      {alert ? <SuccessAlert message={alert} /> : null}
+      {alert ? <Alert message={alert.message} type={alert.type} /> : null}
       {error ? <ErrorMessage message={error} /> : null}
       {userId ? <AuthenticatedApp /> : <UnauthenticatedApp />}
     </>

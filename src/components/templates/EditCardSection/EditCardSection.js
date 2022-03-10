@@ -57,8 +57,6 @@ const EditCardSection = ({ cardStyle }) => {
   };
 
   const handleAddCard = async () => {
-    console.log('handleAddCard');
-    dispatchAlert('Successfully added card');
     if (card.image === null) {
       dispatch({ type: actionTypes.throwError, payload: { error: 'You must add your image!' } });
       return;
@@ -66,6 +64,7 @@ const EditCardSection = ({ cardStyle }) => {
 
     const result = await addCard(card);
     if (result) {
+      dispatchAlert('Successfully added card', 'success');
     }
   };
 
