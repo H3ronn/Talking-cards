@@ -18,6 +18,7 @@ const Card = React.forwardRef(({ cardStyle = initialStyle, withHover, id, previe
   const { bgColor, image, captionColor, fontSize, spaceValue, caption } = cardStyle;
   return (
     <CardWrapper preview={preview} ref={ref} backgroundColor={bgColor} {...props}>
+      {console.log(cardStyle)}
       <ImageWrapper>
         <Image src={image ? image : require('./defaultImage.svg').default} alt="" />
       </ImageWrapper>
@@ -40,6 +41,7 @@ Card.propTypes = {
   }).isRequired,
   id: PropTypes.string,
   withHover: PropTypes.bool,
+  deleteCard: PropTypes.func,
 };
 
 export default Card;

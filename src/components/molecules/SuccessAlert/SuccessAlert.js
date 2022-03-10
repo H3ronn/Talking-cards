@@ -22,7 +22,6 @@ const slideOut = keyframes`
 
 const Wrapper = styled.div`
   animation: ${slideIn} 0.4s ease-in-out forwards, ${slideOut} 0.4s 5s ease-in-out forwards;
-  height: 50px;
   display: flex;
   position: fixed;
   top: 50px;
@@ -35,12 +34,16 @@ const Wrapper = styled.div`
   padding: 10px 20px;
   border-radius: 20px;
   p {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-weight: bold;
     margin: 0 20px;
+    @media (max-width: 1000px) {
+      font-size: 1rem;
+    }
   }
   img {
-    height: 100%;
+    height: 50px;
+    width: 50px;
   }
 `;
 
