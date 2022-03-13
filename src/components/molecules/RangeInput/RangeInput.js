@@ -1,25 +1,6 @@
 import Label from 'components/atoms/Label/Label';
 import React from 'react';
-import styled from 'styled-components';
-
-const Wrapper = styled.div`
-  margin: 10px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  width: 500px;
-  @media (max-width: 750px) {
-    width: 80vw;
-  }
-  span {
-    font-size: 20px;
-  }
-`;
-
-const Input = styled.input.attrs({ type: 'range' })`
-  width: 100%;
-`;
+import { Wrapper, Input } from './RangeInput.styles';
 
 const RangeInput = ({ value, label, id, unit = '', onChange, min = 0, max = 100 }) => {
   return (
