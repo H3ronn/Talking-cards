@@ -3,7 +3,7 @@ import React from 'react';
 import MenuButton from './MenuButton';
 
 export default {
-  title: 'Atoms/Button',
+  title: 'Atoms/MenuButton',
   component: MenuButton,
   argTypes: {
     backgroundColor: { control: 'color' },
