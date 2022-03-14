@@ -19,6 +19,7 @@ const initialState = {
   spaceValue: '0',
   localImgUrl: null,
   imageSize: '100',
+  imagePosition: '0',
 };
 
 const actionTypes = {
@@ -126,7 +127,7 @@ const EditCardSection = ({ cardStyle }) => {
     }
   }, [cardStyle]);
 
-  const { bgColor, captionColor, fontSize, spaceValue, caption, image, localImgUrl, imageSize } = card;
+  const { bgColor, captionColor, fontSize, spaceValue, caption, image, localImgUrl, imageSize, imagePosition } = card;
   return (
     <Wrapper>
       {card.error ? <WarningAlert>{card.error}</WarningAlert> : null}
@@ -188,6 +189,17 @@ const EditCardSection = ({ cardStyle }) => {
         handleControls={handleControls}
         min="1"
         max="500"
+      />
+      <RangeInput
+        label="Image position"
+        value={imagePosition}
+        id="imagePosition"
+        name="imagePosition"
+        unit="%"
+        onChange={handleEditCard}
+        handleControls={handleControls}
+        min="-300"
+        max="300"
       />
     </Wrapper>
   );

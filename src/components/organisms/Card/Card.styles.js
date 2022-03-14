@@ -50,9 +50,9 @@ export const ImageWrapper = styled.div`
   justify-content: center;
 `;
 
-export const Image = styled.img.attrs(({ imageSize }) => ({
+export const Image = styled.img.attrs(({ imageSize, imagePosition }) => ({
   style: {
-    transform: `scale(${imageSize / 100})`,
+    transform: `translateY(${imagePosition}%) scale(${imageSize / 100})`,
   },
 }))`
   /* max-width: 400px; */
