@@ -2,6 +2,7 @@ import React from 'react';
 import Label from 'components/atoms/Label/Label';
 import { Wrapper, Input, ControlButton } from './RangeInput.styles';
 
+
 const RangeInput = ({ value, label, id, name, unit = '', onChange, min = 0, max = 100, step = 1, handleControls }) => {
   return (
     <Wrapper>
