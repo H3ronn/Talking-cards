@@ -20,9 +20,11 @@ export const ButtonsWrapper = styled.div`
   max-width: 800px;
   button {
     margin: 5px 5px;
+    box-shadow: ${({ theme }) => theme.colors.blue} 0px 2px 8px 0px;
   }
   label {
     margin: 5px 0;
+    box-shadow: ${({ theme }) => theme.colors.blue} 0px 2px 8px 0px;
   }
 `;
 

@@ -10,13 +10,12 @@ const RangeInput = ({ value, label, id, name, unit = '', onChange, min = 0, max 
     <Wrapper>
       <Label htmlFor={id}>{label}</Label>
       <Input type="range" id={id} name={name} min={min} max={max} value={value} onChange={onChange} />
-      <div>
-        <ControlButton onClick={() => handleControls('DECREMENT', name)}>-</ControlButton>
-        <ControlButton onClick={() => handleControls('INCREMENT', name)}>+</ControlButton>
-      </div>
+      <div></div>
       <span>
+        <ControlButton onClick={() => handleControls('DECREMENT', name)}>-</ControlButton>
         {value}
         {unit}
+        <ControlButton onClick={() => handleControls('INCREMENT', name)}>+</ControlButton>
       </span>
     </Wrapper>
   );

@@ -32,5 +32,6 @@ export const ControlButton = styled.button`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  margin: 0 5px;
+  margin: 0 10px;
+  box-shadow: ${({ theme }) => theme.colors.blue} 0px 2px 8px 0px;
 `;
