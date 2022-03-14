@@ -18,6 +18,7 @@ const initialState = {
   bgColor: '#0000ff',
   spaceValue: '0',
   localImgUrl: null,
+  imageSize: '100',
 };
 
 const actionTypes = {
@@ -31,7 +32,6 @@ const actionTypes = {
 };
 
 const reducer = (state, { type, payload }) => {
-  console.log(type, payload, state);
   switch (type) {
     case actionTypes.newState:
       return { ...state, ...payload };
@@ -126,7 +126,7 @@ const EditCardSection = ({ cardStyle }) => {
     }
   }, [cardStyle]);
 
-  const { bgColor, captionColor, fontSize, spaceValue, caption, image, localImgUrl } = card;
+  const { bgColor, captionColor, fontSize, spaceValue, caption, image, localImgUrl, imageSize } = card;
   return (
     <Wrapper>
       {card.error ? <WarningAlert>{card.error}</WarningAlert> : null}
@@ -177,6 +177,17 @@ const EditCardSection = ({ cardStyle }) => {
         handleControls={handleControls}
         min="-100"
         max="100"
+      />
+      <RangeInput
+        label="Image size"
+        value={imageSize}
+        id="imageSize"
+        name="imageSize"
+        unit="%"
+        onChange={handleEditCard}
+        handleControls={handleControls}
+        min="1"
+        max="500"
       />
     </Wrapper>
   );
