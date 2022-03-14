@@ -15,11 +15,16 @@ const initialStyle = {
 const Card = React.forwardRef(({ cardStyle = initialStyle, withHover, id, preview, deleteCard, ...props }, ref) => {
   const { editCard } = useCards();
 
-  const { bgColor, image, captionColor, fontSize, spaceValue, caption } = cardStyle;
+  const { bgColor, image, captionColor, fontSize, spaceValue, caption, imageSize, imagePosition } = cardStyle;
   return (
     <CardWrapper preview={preview} ref={ref} backgroundColor={bgColor} {...props}>
       <ImageWrapper>
-        <Image src={image ? image : require('./defaultImage.svg').default} alt="" />
+        <Image
+          src={image ? image : require('./defaultImage.svg').default}
+          alt=""
+          imageSize={imageSize}
+          imagePosition={imagePosition}
+        />
       </ImageWrapper>
       <Caption color={captionColor} fontSize={fontSize} spaceValue={spaceValue}>
         {caption}
