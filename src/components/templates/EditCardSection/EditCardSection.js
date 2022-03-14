@@ -26,14 +26,21 @@ const actionTypes = {
   changeImage: 'CHANGE IMAGE',
   throwError: 'THROW ERROR',
   resetError: 'RESET ERROR',
+  increment: 'INCREMENT',
+  decrement: 'DECREMENT',
 };
 
 const reducer = (state, { type, payload }) => {
+  console.log(type, payload, state);
   switch (type) {
     case actionTypes.newState:
       return { ...state, ...payload };
     case actionTypes.changeStyle:
       return { ...state, [payload.field]: payload.value };
+    case actionTypes.increment:
+      return { ...state, [payload.field]: parseInt(state[payload.field]) + 1 };
+    case actionTypes.decrement:
+      return { ...state, [payload.field]: parseInt(state[payload.field]) - 1 };
     case actionTypes.changeImage:
       return { ...state, localImgUrl: payload.localImgUrl, image: payload.image };
     case actionTypes.throwError:
@@ -55,6 +62,10 @@ const EditCardSection = ({ cardStyle }) => {
 
   const handleEditCard = (e) => {
     dispatch({ type: actionTypes.changeStyle, payload: { field: e.target.name, value: e.target.value } });
+  };
+
+  const handleControls = (type, field) => {
+    dispatch({ type, payload: { field } });
   };
 
   const handleAddCard = async () => {
@@ -154,6 +165,7 @@ const EditCardSection = ({ cardStyle }) => {
         name="fontSize"
         unit="px"
         onChange={handleEditCard}
+        handleControls={handleControls}
       />
       <RangeInput
         label="Space"
@@ -162,6 +174,7 @@ const EditCardSection = ({ cardStyle }) => {
         name="spaceValue"
         unit="px"
         onChange={handleEditCard}
+        handleControls={handleControls}
         min="-100"
         max="100"
       />
