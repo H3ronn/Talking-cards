@@ -8,11 +8,7 @@ export const Wrapper = styled.div`
   justify-content: space-around;
   width: 500px;
   @media (max-width: 750px) {
-<<<<<<< HEAD
-    width: 80vw;
-=======
     width: 60vw;
->>>>>>> dev
   }
   span {
     font-size: 20px;
