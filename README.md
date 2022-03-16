@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+[![React][react-logo]][react-url] [![Styled Components][styled-components-logo]][styled-components-url] [![Firebase][firebase-logo]][firebase-url] [![Netlify][netlify-logo]][netlify-url]
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
-## Available Scripts
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<div align="center">
+  <a href="https://talking-cards.netlify.app/"><img src="https://raw.githubusercontent.com/H3ronn/H3ronn/70bcf95ed7e73ba351938ea7980a4cc8b0460b0f/assets/talking-cards/tk-logo-400v3.svg" alt="talking cards logo"/></a>
+  <br />
+  <br />
+  <p align="center">In this application you can create cards to help communication with mute people. You can download and print them.
+    <br />
+    <a href="https://talking-cards.netlify.app/">Open the app</a> · <a href="https://github.com/H3ronn/Talking-cards/issues">Report Bug</a> · <a href="https://github.com/H3ronn/Talking-cards/issues">Request Feature</a>
+  </p>
+</div>
+ <a href="https://talking-cards.netlify.app/"><img src="https://raw.githubusercontent.com/H3ronn/H3ronn/main/assets/talking-cards/talking-cards-rwd.png" alt="talking cards presentation" /></a>
 
-In the project directory, you can run:
+### Built With
 
-### `npm start`
+- [React.js](https://reactjs.org/)
+- [styled-components](https://styled-components.com/)
+- [Firebase](https://firebase.google.com/)
+- [Storybook](https://storybook.js.org/)
+- [dom-to-image](https://github.com/tsayen/dom-to-image)
+- [FileSaver.js](https://github.com/eligrey/FileSaver.js)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting Started
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+To get a local copy up and running follow these simple steps.
 
-### `npm test`
+### Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repo
+   ```sh
+   git clone https://github.com/H3ronn/Talking-cards.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Run the dev server
+   ```sh
+   npm start
+   ```
+   
+## License
 
-### `npm run build`
+Distributed under the MIT License. See `LICENSE` file for more information.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Contact
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Bartosz Czaplicki - [/H3ronn](https://github.com/H3ronn) - h3ronnn@gmail.com
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Project Link: [https://github.com/H3ronn/Talking-cards](https://github.com/H3ronn/Talking-cards)
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[react-logo]: https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB
+[react-url]: https://reactjs.org
+[styled-components-logo]: https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white
+[styled-components-url]: https://styled-components.com/
+[firebase-logo]: https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase
+[firebase-url]: https://firebase.google.com/
+[netlify-logo]: https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7
+[netlify-url]: https://www.netlify.com/
