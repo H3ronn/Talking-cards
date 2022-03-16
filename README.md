@@ -7,7 +7,7 @@
   <a href="https://talking-cards.netlify.app/"><img src="https://raw.githubusercontent.com/H3ronn/H3ronn/70bcf95ed7e73ba351938ea7980a4cc8b0460b0f/assets/talking-cards/tk-logo-400v3.svg" alt="talking cards logo"/></a>
   <br />
   <br />
-  <p align="center">In this application you can create cards to help communication with mute people. You can download and print them.
+  <p align="center">In this application you can create cards to help communication with mute people. You can save, download and print them.
     <br />
     <a href="https://talking-cards.netlify.app/">Open the app</a> · <a href="https://github.com/H3ronn/Talking-cards/issues">Report Bug</a> · <a href="https://github.com/H3ronn/Talking-cards/issues">Request Feature</a>
   </p>
