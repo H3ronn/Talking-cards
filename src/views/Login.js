@@ -38,8 +38,8 @@ export const StyledButton = styled(Button)`
 `;
 
 const Login = () => {
-  const [email, setEmail] = useState('test@test.pl');
-  const [password, setPassword] = useState('testtest');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { signIn } = useAuth();
 
   const handleLogin = (e) => {
@@ -57,6 +57,12 @@ const Login = () => {
   return (
     <Wrapper>
       <Title>Login to Talking Card</Title>
+      <span>
+        You can use: <br />
+        email: test@test.pl
+        <br />
+        password: testtest
+      </span>
       <LoginForm onSubmit={handleLogin}>
         <InputField
           type="email"
