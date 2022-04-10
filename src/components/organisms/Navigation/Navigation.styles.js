@@ -30,19 +30,16 @@ export const StyledTitle = styled(Title)`
   margin: 0;
 `;
 
-// moved to other function because its bugging my colors in vsc
-const linkAttrs = ({ theme }) => ({
-  style: ({ isActive }) => ({
-    color: isActive ? theme.colors.blue : 'black',
-  }),
-});
-export const Link = styled(NavLink).attrs(linkAttrs)`
+export const Link = styled(NavLink)`
   color: ${({ theme }) => theme.colors.grey};
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
   padding: 5px 15px 0 15px;
   white-space: nowrap;
+  &.active {
+    color: ${({ theme }) => theme.colors.blue};
+  }
 
   &:first-of-type {
     padding-left: 30px;

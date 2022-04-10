@@ -32,12 +32,10 @@ export const Wrapper = styled.nav`
   }
 `;
 
-// moved to other function because its bugging my colors in vsc
-const navLinkAttrs = ({ theme }) => ({
-  style: ({ isActive }) => ({
-    color: isActive ? theme.colors.blue : 'black',
-  }),
-});
-export const StyledNavLink = styled(NavLink).attrs(navLinkAttrs)`
+export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
+
+  &.active {
+    color: ${({ theme }) => theme.colors.blue};
+  }
 `;
