@@ -7,7 +7,7 @@ export const StyledCard = styled(Card)`
   top: 10px;
 `;
 
-export const Wrapper = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;

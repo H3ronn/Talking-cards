@@ -1,5 +1,5 @@
 import React, { useRef, useReducer, useEffect, useState, useMemo } from 'react';
-import { Wrapper, ButtonsWrapper, StyledInputField, StyledCard } from './EditCardSection.styles';
+import { Form, ButtonsWrapper, StyledInputField, StyledCard } from './EditCardSection.styles';
 import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
@@ -69,7 +69,8 @@ const EditCardSection = ({ cardStyle }) => {
     dispatch({ type, payload: { field } });
   };
 
-  const handleAddCard = async () => {
+  const handleAddCard = async (e) => {
+    e.preventDefault();
     if (card.image === null) {
       dispatch({ type: actionTypes.throwError, payload: { error: 'You must add your image!' } });
       return;
@@ -129,7 +130,7 @@ const EditCardSection = ({ cardStyle }) => {
 
   const { bgColor, captionColor, fontSize, spaceValue, caption, image, localImgUrl, imageSize, imagePosition } = card;
   return (
-    <Wrapper>
+    <Form onSubmit={handleAddCard}>
       {card.error ? <WarningAlert>{card.error}</WarningAlert> : null}
       <StyledCard
         preview={previewView}
@@ -155,9 +156,11 @@ const EditCardSection = ({ cardStyle }) => {
           label="Choose background color"
           onChange={handleEditCard}
         />
-        <Button onClick={downloadJpg}>Download jpg</Button>
+        <Button type="button" onClick={downloadJpg}>
+          Download jpg
+        </Button>
         {cardStyle ? <Button onClick={() => overwriteCard(card)}>Overwrite card</Button> : null}
-        <Button onClick={handleAddCard}>Add card</Button>
+        <Button>Add card</Button>
       </ButtonsWrapper>
       <RangeInput
         label="Font size"
@@ -201,7 +204,7 @@ const EditCardSection = ({ cardStyle }) => {
         min="-300"
         max="300"
       />
-    </Wrapper>
+    </Form>
   );
 };
 
