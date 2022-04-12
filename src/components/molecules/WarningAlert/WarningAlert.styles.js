@@ -10,7 +10,7 @@ to {
 `;
 
 export const Wrapper = styled.div`
-  z-index: ${({ theme }) => theme.zIndex.WarningAlert};
+  z-index: ${({ theme }) => theme.zIndex.warningAlert};
   position: fixed;
   top: 0;
   left: 50%;
@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
 
   border-radius: 25px;
   border: solid 5px #ee9500;
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
   padding: 20px;
   animation: ${slideAnimation} 0.3s ease-in-out forwards, ${slideAnimation} 0.3s 5s ease-in-out forwards reverse;
 
