@@ -130,81 +130,83 @@ const EditCardSection = ({ cardStyle }) => {
 
   const { bgColor, captionColor, fontSize, spaceValue, caption, image, localImgUrl, imageSize, imagePosition } = card;
   return (
-    <Form onSubmit={handleAddCard}>
+    <main>
       {card.error ? <WarningAlert>{card.error}</WarningAlert> : null}
       <StyledCard
         preview={previewView}
         cardStyle={{ ...card, image: localImgUrl ? localImgUrl : image }}
         ref={cardRef}
       />
-      <StyledInputField name="caption" id="caption" label="Caption" value={caption} onChange={handleEditCard} />
-      <ButtonsWrapper>
-        <InputButton name="image" id="file" label="Choose image" accept="image/*" onChange={handleImageChange} />
-        <InputButton
-          type="color"
-          id="captionColor"
-          name="captionColor"
-          label="Choose caption color"
-          value={captionColor}
+      <Form onSubmit={handleAddCard}>
+        <StyledInputField name="caption" id="caption" label="Caption" value={caption} onChange={handleEditCard} />
+        <ButtonsWrapper>
+          <InputButton name="image" id="file" label="Choose image" accept="image/*" onChange={handleImageChange} />
+          <InputButton
+            type="color"
+            id="captionColor"
+            name="captionColor"
+            label="Choose caption color"
+            value={captionColor}
+            onChange={handleEditCard}
+          />
+          <InputButton
+            type="color"
+            id="bgColor"
+            name="bgColor"
+            value={bgColor}
+            label="Choose background color"
+            onChange={handleEditCard}
+          />
+          <Button type="button" onClick={downloadJpg}>
+            Download jpg
+          </Button>
+          {cardStyle ? <Button onClick={() => overwriteCard(card)}>Overwrite card</Button> : null}
+          <Button>Add card</Button>
+        </ButtonsWrapper>
+        <RangeInput
+          label="Font size"
+          value={fontSize}
+          id="fontSize"
+          name="fontSize"
+          unit="px"
           onChange={handleEditCard}
+          handleControls={handleControls}
         />
-        <InputButton
-          type="color"
-          id="bgColor"
-          name="bgColor"
-          value={bgColor}
-          label="Choose background color"
+        <RangeInput
+          label="Space"
+          value={spaceValue}
+          id="spaceValue"
+          name="spaceValue"
+          unit="px"
           onChange={handleEditCard}
+          handleControls={handleControls}
+          min="-100"
+          max="100"
         />
-        <Button type="button" onClick={downloadJpg}>
-          Download jpg
-        </Button>
-        {cardStyle ? <Button onClick={() => overwriteCard(card)}>Overwrite card</Button> : null}
-        <Button>Add card</Button>
-      </ButtonsWrapper>
-      <RangeInput
-        label="Font size"
-        value={fontSize}
-        id="fontSize"
-        name="fontSize"
-        unit="px"
-        onChange={handleEditCard}
-        handleControls={handleControls}
-      />
-      <RangeInput
-        label="Space"
-        value={spaceValue}
-        id="spaceValue"
-        name="spaceValue"
-        unit="px"
-        onChange={handleEditCard}
-        handleControls={handleControls}
-        min="-100"
-        max="100"
-      />
-      <RangeInput
-        label="Image size"
-        value={imageSize}
-        id="imageSize"
-        name="imageSize"
-        unit="%"
-        onChange={handleEditCard}
-        handleControls={handleControls}
-        min="1"
-        max="500"
-      />
-      <RangeInput
-        label="Image position"
-        value={imagePosition}
-        id="imagePosition"
-        name="imagePosition"
-        unit="%"
-        onChange={handleEditCard}
-        handleControls={handleControls}
-        min="-300"
-        max="300"
-      />
-    </Form>
+        <RangeInput
+          label="Image size"
+          value={imageSize}
+          id="imageSize"
+          name="imageSize"
+          unit="%"
+          onChange={handleEditCard}
+          handleControls={handleControls}
+          min="1"
+          max="500"
+        />
+        <RangeInput
+          label="Image position"
+          value={imagePosition}
+          id="imagePosition"
+          name="imagePosition"
+          unit="%"
+          onChange={handleEditCard}
+          handleControls={handleControls}
+          min="-300"
+          max="300"
+        />
+      </Form>
+    </main>
   );
 };
 
