@@ -2,6 +2,12 @@ import InputField from 'components/molecules/InputField/InputField';
 import Card from 'components/organisms/Card/Card';
 import styled from 'styled-components';
 
+export const Wrapper = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const StyledCard = styled(Card)`
   position: sticky;
   top: 10px;

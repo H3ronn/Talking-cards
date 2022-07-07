@@ -1,5 +1,5 @@
 import React, { useRef, useReducer, useEffect, useState, useMemo } from 'react';
-import { Form, ButtonsWrapper, StyledInputField, StyledCard } from './EditCardSection.styles';
+import { Wrapper, Form, ButtonsWrapper, StyledInputField, StyledCard } from './EditCardSection.styles';
 import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
@@ -130,7 +130,7 @@ const EditCardSection = ({ cardStyle }) => {
 
   const { bgColor, captionColor, fontSize, spaceValue, caption, image, localImgUrl, imageSize, imagePosition } = card;
   return (
-    <main>
+    <Wrapper>
       {card.error ? <WarningAlert>{card.error}</WarningAlert> : null}
       <StyledCard
         preview={previewView}
@@ -206,7 +206,7 @@ const EditCardSection = ({ cardStyle }) => {
           max="300"
         />
       </Form>
-    </main>
+    </Wrapper>
   );
 };
 
