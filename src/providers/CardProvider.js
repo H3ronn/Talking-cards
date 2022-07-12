@@ -10,6 +10,7 @@ import {
   doc,
   deleteDoc,
   updateDoc,
+  getDocs,
 } from 'firebase/firestore';
 import { useAuth } from 'hooks/useAuth';
 import { db, storage } from 'firestore';
@@ -38,6 +39,22 @@ const CardProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const colRef = useMemo(() => collection(db, collName), [collName]); //if not exit it create new collection
+
+  // const getAllCards = async () => {
+  //   const querySnapshot = await getDocs(colRef);
+  //   querySnapshot.forEach((doc) => {
+  //     // doc.data() is never undefined for query doc snapshots
+  //     console.log(doc.id, ' => ', doc.data());
+  //   });
+  // };
+  // const getAllCards2 = async () => {
+  //   getDocs(colRef).then((data) => {
+  //     data.forEach((doc) => {
+  //       // doc.data() is never undefined for query doc snapshots
+  //       console.log(doc.id, ' => ', doc.data());
+  //     });
+  //   });
+  // };
 
   const addCard = async ({ localImgUrl, id, ...card }) => {
     try {
