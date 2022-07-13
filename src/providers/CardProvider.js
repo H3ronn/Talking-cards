@@ -10,13 +10,13 @@ import {
   doc,
   deleteDoc,
   updateDoc,
-  getDocs,
 } from 'firebase/firestore';
-import { useAuth } from 'hooks/useAuth';
 import { db, storage } from 'firestore';
 import { addImageToStorage } from 'helpers/addImageToStorage';
 import { ref, deleteObject } from 'firebase/storage';
 import { useError } from 'hooks/useError';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'Redux/user/userSlice';
 
 export const CardContext = createContext({
   cards: [],
@@ -32,7 +32,7 @@ const CardProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [selectedCard, setSelectedCard] = useState(null);
 
-  const { userId } = useAuth();
+  const userId = useSelector(selectUser).uid;
   const { dispatchError } = useError();
   const collName = `cards-${userId}`;
 

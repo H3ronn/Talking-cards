@@ -4,7 +4,6 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import { BrowserRouter } from 'react-router-dom';
 import { ErrorProvider } from 'hooks/useError';
-import { AuthProvider } from 'hooks/useAuth';
 import { AlertProvider } from 'hooks/useAlert';
 
 const AppProviders = ({ children }) => {
@@ -12,12 +11,10 @@ const AppProviders = ({ children }) => {
     <BrowserRouter>
       <ErrorProvider>
         <AlertProvider>
-          <AuthProvider>
-            <ThemeProvider theme={theme}>
-              <GlobalStyles />
-              {children}
-            </ThemeProvider>
-          </AuthProvider>
+          <ThemeProvider theme={theme}>
+            <GlobalStyles />
+            {children}
+          </ThemeProvider>
         </AlertProvider>
       </ErrorProvider>
     </BrowserRouter>

@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import Title from 'components/atoms/Title/Title';
 import { Button } from 'components/atoms/Button/Button';
 import { Link } from 'react-router-dom';
-import { useAuth } from 'hooks/useAuth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from 'firestore';
+import { formatErrorMessage } from 'helpers/formatErrorMessage';
+import { useError } from 'hooks/useError';
 
 export const Wrapper = styled.div`
   /* text-align: center; */
@@ -40,7 +43,18 @@ export const StyledButton = styled(Button)`
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { signIn } = useAuth();
+  const { dispatchError, instantErrorHide } = useError();
+
+  const signIn = async (email, password) => {
+    console.log('signIn');
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      instantErrorHide();
+    } catch (e) {
+      const formattedError = formatErrorMessage(e.code);
+      dispatchError(formattedError);
+    }
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();

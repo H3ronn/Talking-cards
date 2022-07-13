@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import Title from 'components/atoms/Title/Title';
 import { Button } from 'components/atoms/Button/Button';
 import { Link } from 'react-router-dom';
-import { useAuth } from 'hooks/useAuth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { formatErrorMessage } from 'helpers/formatErrorMessage';
+import { auth } from 'firestore';
+import { useError } from 'hooks/useError';
 
 export const Wrapper = styled.div`
   /* text-align: center; */
@@ -40,7 +43,18 @@ export const StyledButton = styled(Button)`
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { signUp } = useAuth();
+  const { dispatchError, instantErrorHide } = useError();
+
+  const signUp = async (email, password) => {
+    console.log('signUp');
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      instantErrorHide();
+    } catch (e) {
+      const formattedError = formatErrorMessage(e.code);
+      dispatchError(formattedError);
+    }
+  };
 
   const handleSignUp = (e) => {
     e.preventDefault();
