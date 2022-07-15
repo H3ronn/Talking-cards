@@ -20,10 +20,13 @@ const cardsSlice = createSlice({
     deleteCard: (state, action) => {
       return state.cards((card) => card.id === action.payload);
     },
+    setSelectedCard: (state, action) => {
+      state.selectedCard = action.payload;
+    },
   },
 });
 
-export const { setCards, addCard, deleteCard } = cardsSlice.actions;
+export const { setCards, addCard, deleteCard, setSelectedCard } = cardsSlice.actions;
 
 export const selectCards = (state) => state.cards;
 

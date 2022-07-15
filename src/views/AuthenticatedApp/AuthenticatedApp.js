@@ -5,11 +5,10 @@ import CardList from '../CardList/CardList';
 import EditCard from '../EditCard/EditCard';
 import Navigation from 'components/organisms/Navigation/Navigation';
 import Faq from '../Faq/Faq';
-import CardProvider from 'providers/CardProvider';
 
 const AuthenticatedApp = () => {
   return (
-    <CardProvider>
+    <>
       <Navigation />
       <Routes>
         <Route path="*" element={<Navigate to="list" />} />
@@ -18,7 +17,7 @@ const AuthenticatedApp = () => {
         <Route path="/edit" element={<EditCard />} />
         <Route path="/faq" element={<Faq />} />
       </Routes>
-    </CardProvider>
+    </>
   );
 };
 
