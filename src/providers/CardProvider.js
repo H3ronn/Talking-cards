@@ -1,26 +1,15 @@
-import React, { useState, createContext, useEffect, useMemo } from 'react';
+import React, { useState, createContext, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  collection,
-  onSnapshot,
-  addDoc,
-  orderBy,
-  serverTimestamp,
-  query,
-  doc,
-  deleteDoc,
-  updateDoc,
-} from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { db, storage } from 'firestore';
 import { addImageToStorage } from 'helpers/addImageToStorage';
 import { ref, deleteObject } from 'firebase/storage';
 import { useError } from 'hooks/useError';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'Redux/user/userSlice';
+import { selectCards } from 'Redux/cards/cardsSlice';
 
 export const CardContext = createContext({
-  cards: [],
-  loading: true,
   selectedCard: {},
   addCard: () => {},
   deleteCard: () => {},
@@ -28,12 +17,11 @@ export const CardContext = createContext({
 });
 
 const CardProvider = ({ children }) => {
-  const [cards, setCards] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [selectedCard, setSelectedCard] = useState(null);
-
+  const { cards } = useSelector(selectCards);
   const userId = useSelector(selectUser).uid;
+  const [selectedCard, setSelectedCard] = useState(null);
   const { dispatchError } = useError();
+
   const collName = `cards-${userId}`;
 
   const navigate = useNavigate();
@@ -111,31 +99,30 @@ const CardProvider = ({ children }) => {
       card.image = imageUrl;
     }
     const docRef = doc(db, collName, id);
-    updateDoc(docRef, card);
+    await updateDoc(docRef, card);
   };
 
-  useEffect(() => {
-    const q = query(colRef, orderBy('createdAt'));
+  // useEffect(() => {
+  //   const q = query(colRef, orderBy('createdAt'));
 
-    const subscribe = onSnapshot(q, (snapshot) => {
-      const savedCards = snapshot.docs.map((card) => {
-        return {
-          id: card.id,
-          ...card.data(),
-        };
-      });
-      setLoading(false);
-      setCards(savedCards);
-    });
+  //   const subscribe = onSnapshot(q, (snapshot) => {
+  //     const savedCards = snapshot.docs.map((card) => {
+  //       return {
+  //         id: card.id,
+  //         ...card.data(),
+  //       };
+  //     });
+  //     setLoading(false);
+  //     setCards(savedCards);
+  //   });
 
-    return () => subscribe();
-  }, [userId, colRef]);
+  //   return () => subscribe();
+  // }, [userId, colRef]);
 
   return (
     <CardContext.Provider
       value={{
         cards,
-        loading,
         selectedCard,
         addCard,
         deleteCard,

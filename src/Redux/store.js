@@ -1,4 +1,5 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
+import cardsSlice from './cards/cardsSlice';
 import userSlice from './user/userSlice';
 // import { collection, getDocs } from 'firebase/firestore';
 // import { db } from 'firestore';
@@ -19,21 +20,9 @@ import userSlice from './user/userSlice';
 //   return querySnapshot;
 // });
 
-const cardsSlice = createSlice({
-  name: 'cards',
-  initialState: [],
-  reducers: {
-    getCards(state, action) {},
-    addCard(state, action) {
-      console.log(action);
-    },
-    deleteCard(state, action) {},
-    editCard(state, action) {},
-  },
-});
-
-export const { getCards, addCard, deleteCard, editCard } = cardsSlice.actions;
-
 export const store = configureStore({
-  reducer: { cards: cardsSlice.reducer, user: userSlice },
+  reducer: {
+    cards: cardsSlice,
+    user: userSlice,
+  },
 });
