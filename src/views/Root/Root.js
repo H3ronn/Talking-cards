@@ -3,10 +3,10 @@ import { useError } from 'hooks/useError';
 import { useAlert } from 'hooks/useAlert';
 import Alert from 'components/molecules/Alert/Alert';
 import ErrorMessage from 'components/molecules/ErrorMessage/ErrorMessage';
-import AuthenticatedApp from './AuthenticatedApp';
-import UnauthenticatedApp from './UnauthenticatedApp';
+import AuthenticatedApp from '../AuthenticatedApp/AuthenticatedApp';
+import UnauthenticatedApp from '../UnauthenticatedApp/UnauthenticatedApp';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, logout, selectUser } from 'Redux/user/userSlice';
+import { login, logout, selectUser } from 'redux/user/userSlice';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from 'firestore';
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import CreateCard from './CreateCard';
+import CreateCard from '../CreateCard/CreateCard';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import CardList from './CardList';
-import EditCard from './EditCard';
+import CardList from '../CardList/CardList';
+import EditCard from '../EditCard/EditCard';
 import Navigation from 'components/organisms/Navigation/Navigation';
-import Faq from './Faq';
+import Faq from '../Faq/Faq';
 import CardProvider from 'providers/CardProvider';
 
 const AuthenticatedApp = () => {

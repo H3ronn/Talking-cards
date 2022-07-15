@@ -6,8 +6,8 @@ import { addImageToStorage } from 'helpers/addImageToStorage';
 import { ref, deleteObject } from 'firebase/storage';
 import { useError } from 'hooks/useError';
 import { useSelector } from 'react-redux';
-import { selectUser } from 'Redux/user/userSlice';
-import { selectCards } from 'Redux/cards/cardsSlice';
+import { selectUser } from 'redux/user/userSlice';
+import { selectCards } from 'redux/cards/cardsSlice';
 
 export const CardContext = createContext({
   selectedCard: {},
