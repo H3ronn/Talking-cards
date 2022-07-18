@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import cardsSlice from './cards/cardsSlice';
+import errorsSlice from './errors/errorsSlice';
 import userSlice from './user/userSlice';
 // import { collection, getDocs } from 'firebase/firestore';
 // import { db } from 'firestore';
@@ -24,5 +25,6 @@ export const store = configureStore({
   reducer: {
     cards: cardsSlice,
     user: userSlice,
+    errors: errorsSlice,
   },
 });

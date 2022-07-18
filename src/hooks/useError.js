@@ -1,43 +1,29 @@
-import React, { useState, createContext, useContext, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectError, setError, setErrorId } from 'redux/errors/errorsSlice';
 
-const ErrorContext = createContext({});
-
-export const ErrorProvider = ({ children }) => {
-  const [error, setError] = useState('');
-  const [timerId, setTimerId] = useState(0);
-
-  const { pathname } = useLocation();
+export const useError = () => {
+  const { timerId } = useSelector(selectError);
+  const dispatch = useDispatch();
 
   const dispatchError = (message) => {
     instantErrorHide();
-    if (!error) {
-      setTimerId(delayedResetError());
-    }
-    setError(message);
-  };
-
-  const delayedResetError = () => {
-    return setTimeout(() => {
-      setError('');
-    }, 5500);
+    // if (!error) {
+    const timerId = delayedResetErrorId();
+    dispatch(setErrorId(timerId));
+    // }
+    dispatch(setError(message));
   };
 
   const instantErrorHide = () => {
     clearTimeout(timerId);
-    setError('');
+    dispatch(setError(''));
   };
 
-  useEffect(() => {
-    instantErrorHide();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+  const delayedResetErrorId = () => {
+    return setTimeout(() => {
+      dispatch(setError(''));
+    }, 5500);
+  };
 
-  return <ErrorContext.Provider value={{ error, dispatchError, instantErrorHide }}>{children}</ErrorContext.Provider>;
-};
-
-export const useError = () => {
-  const errorContext = useContext(ErrorContext);
-
-  return errorContext;
+  return { dispatchError, instantErrorHide };
 };

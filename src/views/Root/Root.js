@@ -9,13 +9,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login, logout, selectUser } from 'redux/user/userSlice';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from 'firestore';
+import { useLocation } from 'react-router-dom';
+import { selectError } from 'redux/errors/errorsSlice';
 
 const Root = () => {
-  const { error } = useError();
+  const { instantErrorHide } = useError();
   const { alert } = useAlert();
+  const { pathname } = useLocation();
 
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  const { error } = useSelector(selectError);
+  console.log(error);
+
+  useEffect(() => {
+    console.log('hide');
+    instantErrorHide();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
 
   useEffect(() => {
     const unsubAuth = onAuthStateChanged(auth, (userDetails) => {
