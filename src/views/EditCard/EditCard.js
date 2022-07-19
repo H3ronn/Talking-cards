@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import EditCardSection from 'components/templates/EditCardSection/EditCardSection';
 import Title from 'components/atoms/Title/Title';
-import { useCards } from 'hooks/useCards';
+import { useSelector } from 'react-redux';
+import { selectCards } from 'redux/cards/cardsSlice';
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ const Wrapper = styled.div`
 `;
 
 const EditCard = () => {
-  const { selectedCard } = useCards();
+  const { selectedCard } = useSelector(selectCards);
   const navigate = useNavigate();
 
   useEffect(() => {
