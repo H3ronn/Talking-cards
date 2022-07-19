@@ -46,7 +46,6 @@ const Register = () => {
   const { dispatchError, instantErrorHide } = useError();
 
   const signUp = async (email, password) => {
-    console.log('signUp');
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       instantErrorHide();

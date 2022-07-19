@@ -160,8 +160,12 @@ const EditCardSection = ({ cardStyle }) => {
           <Button type="button" onClick={downloadJpg}>
             Download jpg
           </Button>
-          {cardStyle ? <Button onClick={() => overwriteCard(card)}>Overwrite card</Button> : null}
-          <Button>Add card</Button>
+          {cardStyle ? (
+            <Button type="button" onClick={() => overwriteCard(card)}>
+              Overwrite card
+            </Button>
+          ) : null}
+          <Button type="submit">Add card</Button>
         </ButtonsWrapper>
         <RangeInput
           label="Font size"

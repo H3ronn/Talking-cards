@@ -46,7 +46,6 @@ const Login = () => {
   const { dispatchError, instantErrorHide } = useError();
 
   const signIn = async (email, password) => {
-    console.log('signIn');
     try {
       await signInWithEmailAndPassword(auth, email, password);
       instantErrorHide();
