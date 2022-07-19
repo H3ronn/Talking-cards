@@ -19,7 +19,7 @@ export const useCards = () => {
 
   const navigate = useNavigate();
 
-  const colRef = () => collection(db, collName); //if it doesn't exist it creates a new collection
+  const colRef = collection(db, collName); //if it doesn't exist it creates a new collection
 
   const addCard = async ({ localImgUrl, id, ...card }) => {
     try {
@@ -31,7 +31,7 @@ export const useCards = () => {
         ...card,
         createdAt: serverTimestamp(),
       });
-      dispatch(setSelectedCard)({ ...card, id: newDoc.id });
+      dispatch(setSelectedCard({ ...card, id: newDoc.id }));
       return true;
     } catch (error) {
       dispatchError('Failed to add a card. Try again or report the problem to us.');
@@ -66,7 +66,7 @@ export const useCards = () => {
   };
 
   const editCard = (id) => {
-    dispatch(setSelectedCard)(cards.find((el) => el.id === id));
+    dispatch(setSelectedCard(cards.find((el) => el.id === id)));
     navigate('/edit');
   };
 
