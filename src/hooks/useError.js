@@ -7,16 +7,15 @@ export const useError = () => {
 
   const dispatchError = (message) => {
     instantErrorHide();
-    // if (!error) {
-    const timerId = delayedResetErrorId();
-    dispatch(setErrorId(timerId));
-    // }
+
     dispatch(setError(message));
+
+    dispatch(setErrorId(delayedResetErrorId()));
   };
 
   const instantErrorHide = () => {
-    clearTimeout(timerId);
     dispatch(setError(''));
+    clearTimeout(timerId);
   };
 
   const delayedResetErrorId = () => {

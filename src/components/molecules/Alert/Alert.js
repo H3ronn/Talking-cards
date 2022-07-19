@@ -7,7 +7,7 @@ const alertTypes = {
   warning: (mes) => <p>WARNING coming soon{mes}</p>,
 };
 
-const Alert = ({ message, type = 'success' }) => {
+const Alert = ({ message = '', type = 'success' }) => {
   const renderAlert = alertTypes[type];
   return renderAlert(message);
 };

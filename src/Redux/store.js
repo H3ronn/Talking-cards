@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import alertSlice from './alert/alertSlice';
 import cardsSlice from './cards/cardsSlice';
 import errorsSlice from './errors/errorsSlice';
 import userSlice from './user/userSlice';
@@ -26,5 +27,6 @@ export const store = configureStore({
     cards: cardsSlice,
     user: userSlice,
     errors: errorsSlice,
+    alert: alertSlice,
   },
 });

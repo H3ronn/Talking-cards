@@ -11,20 +11,22 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from 'firestore';
 import { useLocation } from 'react-router-dom';
 import { selectError } from 'redux/errors/errorsSlice';
+import { selectAlert } from 'redux/alert/alertSlice';
 
 const Root = () => {
-  const { instantErrorHide } = useError();
-  const { alert } = useAlert();
-  const { pathname } = useLocation();
-
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const { instantErrorHide } = useError();
+  const { hideAlert } = useAlert();
   const user = useSelector(selectUser);
   const { error } = useSelector(selectError);
-  console.log(error);
+  const { message, type } = useSelector(selectAlert);
 
   useEffect(() => {
-    console.log('hide');
-    instantErrorHide();
+    if (error || message) {
+      instantErrorHide();
+      hideAlert();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
@@ -41,7 +43,7 @@ const Root = () => {
 
   return (
     <>
-      {alert ? <Alert message={alert.message} type={alert.type} /> : null}
+      {message ? <Alert message={message} type={type} /> : null}
       {error ? <ErrorMessage message={error} /> : null}
       {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
     </>

@@ -1,20 +1,16 @@
-import { useState, createContext, useContext, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAlert, setAlert, setAlertId } from 'redux/alert/alertSlice';
 
-//types: success warning error info
-export const AlertContext = createContext({});
-
-export const AlertProvider = ({ children }) => {
-  const [alert, setAlert] = useState({});
-  const [timerId, setTimerId] = useState(0);
-
-  const { pathname } = useLocation();
+export const useAlert = () => {
+  const dispatch = useDispatch();
+  const { timerId } = useSelector(selectAlert);
 
   const dispatchAlert = (message, type) => {
     hideAlert();
-    setAlert({ message, type });
-    clearTimeout(timerId);
-    setTimerId(delayedHideAlert());
+
+    dispatch(setAlert({ message, type }));
+
+    dispatch(setAlertId(delayedHideAlert()));
   };
 
   const delayedHideAlert = () => {
@@ -24,18 +20,9 @@ export const AlertProvider = ({ children }) => {
   };
 
   const hideAlert = () => {
-    setAlert(null);
+    dispatch(setAlert({ message: null, type: null }));
+    clearTimeout(timerId);
   };
 
-  useEffect(() => {
-    hideAlert();
-  }, [pathname]);
-
-  return <AlertContext.Provider value={{ alert, dispatchAlert }}>{children}</AlertContext.Provider>;
-};
-
-export const useAlert = () => {
-  const alertContext = useContext(AlertContext);
-
-  return alertContext;
+  return { dispatchAlert, hideAlert };
 };
