@@ -1,35 +1,14 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useError } from 'hooks/useError';
 import { auth } from 'firestore';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { Link } from 'react-router-dom';
+import { RegisterForm, StyledLink } from './Register.styles';
 import { FormButtons, Wrapper, Heading } from 'views/Login/Login.styles';
 import Title from 'components/atoms/Title/Title';
 import Button from 'components/atoms/Button/Button';
 import { formatErrorMessage } from 'helpers/formatErrorMessage';
 import EmailField from 'components/molecules/EmailField/EmailField';
 import PasswordField from 'components/molecules/PasswordField/PasswordField';
-
-export const RegisterForm = styled.form`
-  width: 100%;
-  max-width: 400px;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const StyledLink = styled(Link)`
-  color: #b1b1b1;
-  font-size: 0.9rem;
-  text-decoration: none;
-  font-weight: 500;
-  &:hover {
-    color: ${({ theme }) => theme.colors.darkGrey};
-  }
-`;
-
-export const StyledButton = styled(Button)``;
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -54,6 +33,7 @@ const Register = () => {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
+
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
@@ -71,7 +51,7 @@ const Register = () => {
         <PasswordField onChange={handlePasswordChange} value={password} required />
         <FormButtons>
           <StyledLink to="/login">You already have account?</StyledLink>
-          <StyledButton>Sign&nbsp;up</StyledButton>
+          <Button>Sign&nbsp;up</Button>
         </FormButtons>
       </RegisterForm>
     </Wrapper>

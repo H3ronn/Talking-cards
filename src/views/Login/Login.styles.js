@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Button from 'components/atoms/Button/Button';
 import { Link } from 'react-router-dom';
 import Title from 'components/atoms/Title/Title';
 
@@ -51,5 +50,3 @@ export const StyledLink = styled(Link)`
     color: ${({ theme }) => theme.colors.darkGrey};
   }
 `;
-
-export const StyledButton = styled(Button)``;
