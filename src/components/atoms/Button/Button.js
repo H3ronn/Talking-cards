@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Button = styled.button`
+const Button = styled.button`
   margin-left: 20px;
   color: white;
   background-color: ${({ theme }) => theme.colors.blue};
@@ -17,6 +17,8 @@ export const Button = styled.button`
     transform: scale(1.05);
   }
 `;
+
+export default Button;
 // export const Button = styled.button`
 //   margin-left: 20px;
 //   color: white;

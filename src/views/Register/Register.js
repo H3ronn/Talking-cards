@@ -1,44 +1,52 @@
 import React, { useState } from 'react';
-import InputField from 'components/molecules/InputField/InputField';
 import styled from 'styled-components';
-import Title from 'components/atoms/Title/Title';
-import { Button } from 'components/atoms/Button/Button';
-import { Link } from 'react-router-dom';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { formatErrorMessage } from 'helpers/formatErrorMessage';
-import { auth } from 'firestore';
 import { useError } from 'hooks/useError';
+import { auth } from 'firestore';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { Link } from 'react-router-dom';
+import { FormButtons, FormWrapper, Heading } from 'views/Login/Login.styles';
+import InputField from 'components/molecules/InputField/InputField';
+import Title from 'components/atoms/Title/Title';
+import Button from 'components/atoms/Button/Button';
+import Presentation from 'components/organisms/Presentation/Presentation';
+import { formatErrorMessage } from 'helpers/formatErrorMessage';
+import userIcon from './userIcon.svg';
+import passwordIcon from './passwordIcon.svg';
 
 export const Wrapper = styled.div`
-  /* text-align: center; */
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
   align-items: center;
+  margin: 50px;
+  background-color: white;
+  border-radius: 30px;
+  width: 100%;
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+    height: max-content;
+    padding: 30px 0;
+  }
 `;
 
 export const RegisterForm = styled.form`
-  max-width: 30vw;
-  min-width: 300px;
+  width: 100%;
+  max-width: 400px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  input {
-    width: 100%;
-  }
-  div {
-    width: 100%;
-  }
 `;
 
 export const StyledLink = styled(Link)`
-  color: ${({ theme }) => theme.colors.grey};
-  font-size: 1.1rem;
-  margin-top: 8px;
+  color: #b1b1b1;
+  font-size: 0.9rem;
+  text-decoration: none;
+  font-weight: 500;
+  &:hover {
+    color: ${({ theme }) => theme.colors.darkGrey};
+  }
 `;
 
-export const StyledButton = styled(Button)`
-  margin-top: 10px;
-`;
+export const StyledButton = styled(Button)``;
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -69,31 +77,43 @@ const Register = () => {
 
   return (
     <Wrapper>
-      <Title>Register to Talking Card</Title>
-      <RegisterForm onSubmit={handleSignUp}>
-        <InputField
-          type="text"
-          label="E-mail"
-          name="email"
-          id="email"
-          onChange={handleEmailChange}
-          value={email}
-          placeholder="Your e-mail"
-          required
-        />
-        <InputField
-          type="password"
-          label="Password"
-          name="password"
-          id="password"
-          onChange={handlePasswordChange}
-          value={password}
-          placeholder="Password"
-          required
-        />
-        <StyledButton>Register</StyledButton>
-      </RegisterForm>
-      <StyledLink to="/login">You already have account?</StyledLink>
+      <FormWrapper>
+        <Heading>
+          <Title blue>Talking Cards</Title>
+          <Title as="h2">Create account</Title>
+          <p>We want to help you communicate!</p>
+          <small>You can use: email: test@test.pl password: testtest</small>
+        </Heading>
+        <RegisterForm onSubmit={handleSignUp}>
+          <InputField
+            type="text"
+            label="E-mail"
+            name="email"
+            id="email"
+            onChange={handleEmailChange}
+            value={email}
+            placeholder="Your e-mail"
+            required
+            icon={userIcon}
+          />
+          <InputField
+            type="password"
+            label="Password"
+            name="password"
+            id="password"
+            onChange={handlePasswordChange}
+            value={password}
+            placeholder="Password"
+            required
+            icon={passwordIcon}
+          />
+          <FormButtons>
+            <StyledLink to="/login">You already have account?</StyledLink>
+            <StyledButton>Sign&nbsp;up</StyledButton>
+          </FormButtons>
+        </RegisterForm>
+      </FormWrapper>
+      <Presentation />
     </Wrapper>
   );
 };

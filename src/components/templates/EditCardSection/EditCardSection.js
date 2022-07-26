@@ -4,7 +4,7 @@ import InputButton from 'components/atoms/InputButton/InputButton';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 import RangeInput from 'components/molecules/RangeInput/RangeInput';
-import { Button } from 'components/atoms/Button/Button';
+import Button from 'components/atoms/Button/Button';
 import WarningAlert from 'components/molecules/WarningAlert/WarningAlert';
 import { useCards } from 'hooks/useCards';
 import { useAlert } from 'hooks/useAlert';

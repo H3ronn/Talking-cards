@@ -1,81 +1,14 @@
 import React, { useState } from 'react';
-import InputField from 'components/molecules/InputField/InputField';
-import styled from 'styled-components';
-import { Button } from 'components/atoms/Button/Button';
-import { Link } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from 'firestore';
-import { formatErrorMessage } from 'helpers/formatErrorMessage';
 import { useError } from 'hooks/useError';
+import { Wrapper, FormWrapper, FormButtons, Heading, LoginForm, StyledButton, StyledLink } from './Login.styles';
+import InputField from 'components/molecules/InputField/InputField';
 import Presentation from 'components/organisms/Presentation/Presentation';
+import Title from 'components/atoms/Title/Title';
+import { formatErrorMessage } from 'helpers/formatErrorMessage';
 import userIcon from './userIcon.svg';
 import passwordIcon from './passwordIcon.svg';
-import Title from 'components/atoms/Title/Title';
-
-export const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  align-items: center;
-  margin: 50px;
-  background-color: white;
-  border-radius: 30px;
-  width: 100%;
-  @media (max-width: 800px) {
-    grid-template-columns: 1fr;
-    height: max-content;
-    padding: 30px 0;
-  }
-`;
-
-export const FormWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-export const Heading = styled.header`
-  padding: 10px 20px;
-
-  ${Title} {
-    display: none;
-    margin: 0;
-    @media (max-width: 800px) {
-      display: block;
-    }
-  }
-  p {
-    margin: 0;
-  }
-`;
-
-export const LoginForm = styled.form`
-  width: 100%;
-  max-width: 400px;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const FormButtons = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 10px;
-`;
-
-export const StyledLink = styled(Link)`
-  /* color: ${({ theme }) => theme.colors.grey}; */
-  color: #b1b1b1;
-  font-size: 0.9rem;
-  text-decoration: none;
-  font-weight: 500;
-  &:hover {
-    color: ${({ theme }) => theme.colors.darkGrey};
-  }
-`;
-
-export const StyledButton = styled(Button)``;
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -106,12 +39,6 @@ const Login = () => {
 
   return (
     <Wrapper>
-      {/* <span>
-          You can use: <br />
-          email: test@test.pl
-          <br />
-          password: testtest
-        </span> */}
       <FormWrapper>
         <Heading>
           <Title blue>Talking Cards</Title>
