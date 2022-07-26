@@ -8,12 +8,21 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from 'firestore';
 import { formatErrorMessage } from 'helpers/formatErrorMessage';
 import { useError } from 'hooks/useError';
+import Presentation from 'components/organisms/Presentation/Presentation';
 
 export const Wrapper = styled.div`
-  /* text-align: center; */
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
   align-items: center;
+  margin: 50px;
+  background-color: white;
+  border-radius: 30px;
+`;
+
+export const FormWrapper = styled.div`
+  /* justify-self: center; */
+  /* align-content: center; */
+  width: 100%;
 `;
 
 export const LoginForm = styled.form`
@@ -69,35 +78,37 @@ const Login = () => {
 
   return (
     <Wrapper>
-      <Title>Login to Talking Card</Title>
-      <span>
-        You can use: <br />
-        email: test@test.pl
-        <br />
-        password: testtest
-      </span>
-      <LoginForm onSubmit={handleLogin}>
-        <InputField
-          type="email"
-          label="E-mail"
-          name="email"
-          id="email"
-          onChange={handleEmailChange}
-          value={email}
-          required
-        />
-        <InputField
-          type="password"
-          label="Password"
-          name="password"
-          id="password"
-          onChange={handlePasswordChange}
-          value={password}
-          required
-        />
-        <StyledButton>Login</StyledButton>
-      </LoginForm>
-      <StyledLink to="/register">Don't have account?</StyledLink>
+      <FormWrapper>
+        <span>
+          You can use: <br />
+          email: test@test.pl
+          <br />
+          password: testtest
+        </span>
+        <LoginForm onSubmit={handleLogin}>
+          <InputField
+            type="email"
+            label="E-mail"
+            name="email"
+            id="email"
+            onChange={handleEmailChange}
+            value={email}
+            required
+          />
+          <InputField
+            type="password"
+            label="Password"
+            name="password"
+            id="password"
+            onChange={handlePasswordChange}
+            value={password}
+            required
+          />
+          <StyledButton>Login</StyledButton>
+        </LoginForm>
+        <StyledLink to="/register">Don't have account?</StyledLink>
+      </FormWrapper>
+      <Presentation />
     </Wrapper>
   );
 };
