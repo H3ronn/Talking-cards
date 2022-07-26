@@ -5,12 +5,11 @@ import { auth } from 'firestore';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 import { FormButtons, Wrapper, Heading } from 'views/Login/Login.styles';
-import InputField from 'components/molecules/InputField/InputField';
 import Title from 'components/atoms/Title/Title';
 import Button from 'components/atoms/Button/Button';
 import { formatErrorMessage } from 'helpers/formatErrorMessage';
-import userIcon from './userIcon.svg';
-import passwordIcon from './passwordIcon.svg';
+import EmailField from 'components/molecules/EmailField/EmailField';
+import PasswordField from 'components/molecules/PasswordField/PasswordField';
 
 export const RegisterForm = styled.form`
   width: 100%;
@@ -68,28 +67,8 @@ const Register = () => {
         <small>You can use: email: test@test.pl password: testtest</small>
       </Heading>
       <RegisterForm onSubmit={handleSignUp}>
-        <InputField
-          type="text"
-          label="E-mail"
-          name="email"
-          id="email"
-          onChange={handleEmailChange}
-          value={email}
-          placeholder="Your e-mail"
-          required
-          icon={userIcon}
-        />
-        <InputField
-          type="password"
-          label="Password"
-          name="password"
-          id="password"
-          onChange={handlePasswordChange}
-          value={password}
-          placeholder="Password"
-          required
-          icon={passwordIcon}
-        />
+        <EmailField onChange={handleEmailChange} value={email} required />
+        <PasswordField onChange={handlePasswordChange} value={password} required />
         <FormButtons>
           <StyledLink to="/login">You already have account?</StyledLink>
           <StyledButton>Sign&nbsp;up</StyledButton>
