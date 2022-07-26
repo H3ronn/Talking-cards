@@ -4,29 +4,13 @@ import { useError } from 'hooks/useError';
 import { auth } from 'firestore';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'react-router-dom';
-import { FormButtons, FormWrapper, Heading } from 'views/Login/Login.styles';
+import { FormButtons, Wrapper, Heading } from 'views/Login/Login.styles';
 import InputField from 'components/molecules/InputField/InputField';
 import Title from 'components/atoms/Title/Title';
 import Button from 'components/atoms/Button/Button';
-import Presentation from 'components/organisms/Presentation/Presentation';
 import { formatErrorMessage } from 'helpers/formatErrorMessage';
 import userIcon from './userIcon.svg';
 import passwordIcon from './passwordIcon.svg';
-
-export const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  align-items: center;
-  margin: 50px;
-  background-color: white;
-  border-radius: 30px;
-  width: 100%;
-  @media (max-width: 800px) {
-    grid-template-columns: 1fr;
-    height: max-content;
-    padding: 30px 0;
-  }
-`;
 
 export const RegisterForm = styled.form`
   width: 100%;
@@ -77,43 +61,40 @@ const Register = () => {
 
   return (
     <Wrapper>
-      <FormWrapper>
-        <Heading>
-          <Title blue>Talking Cards</Title>
-          <Title as="h2">Create account</Title>
-          <p>We want to help you communicate!</p>
-          <small>You can use: email: test@test.pl password: testtest</small>
-        </Heading>
-        <RegisterForm onSubmit={handleSignUp}>
-          <InputField
-            type="text"
-            label="E-mail"
-            name="email"
-            id="email"
-            onChange={handleEmailChange}
-            value={email}
-            placeholder="Your e-mail"
-            required
-            icon={userIcon}
-          />
-          <InputField
-            type="password"
-            label="Password"
-            name="password"
-            id="password"
-            onChange={handlePasswordChange}
-            value={password}
-            placeholder="Password"
-            required
-            icon={passwordIcon}
-          />
-          <FormButtons>
-            <StyledLink to="/login">You already have account?</StyledLink>
-            <StyledButton>Sign&nbsp;up</StyledButton>
-          </FormButtons>
-        </RegisterForm>
-      </FormWrapper>
-      <Presentation />
+      <Heading>
+        <Title blue>Talking Cards</Title>
+        <Title as="h2">Create account</Title>
+        <p>We want to help you communicate!</p>
+        <small>You can use: email: test@test.pl password: testtest</small>
+      </Heading>
+      <RegisterForm onSubmit={handleSignUp}>
+        <InputField
+          type="text"
+          label="E-mail"
+          name="email"
+          id="email"
+          onChange={handleEmailChange}
+          value={email}
+          placeholder="Your e-mail"
+          required
+          icon={userIcon}
+        />
+        <InputField
+          type="password"
+          label="Password"
+          name="password"
+          id="password"
+          onChange={handlePasswordChange}
+          value={password}
+          placeholder="Password"
+          required
+          icon={passwordIcon}
+        />
+        <FormButtons>
+          <StyledLink to="/login">You already have account?</StyledLink>
+          <StyledButton>Sign&nbsp;up</StyledButton>
+        </FormButtons>
+      </RegisterForm>
     </Wrapper>
   );
 };

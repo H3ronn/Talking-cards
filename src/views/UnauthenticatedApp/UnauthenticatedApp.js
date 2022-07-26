@@ -1,3 +1,4 @@
+import AuthTemplate from 'components/templates/AuthTemplate/AuthTemplate';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
@@ -15,11 +16,13 @@ const Wrapper = styled.div`
 const UnauthenticatedApp = () => {
   return (
     <Wrapper>
-      <Routes>
-        <Route path="*" element={<Login />} />
-        {/* <Route path="*" element={<Navigate to="/login" />} /> This causes a memory leak warning*/}
-        <Route path="/register" element={<Register />} />
-      </Routes>
+      <AuthTemplate>
+        <Routes>
+          <Route path="*" element={<Login />} />
+          {/* <Route path="*" element={<Navigate to="/login" />} /> This causes a memory leak warning*/}
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </AuthTemplate>
     </Wrapper>
   );
 };

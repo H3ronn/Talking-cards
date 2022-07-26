@@ -4,21 +4,6 @@ import { Link } from 'react-router-dom';
 import Title from 'components/atoms/Title/Title';
 
 export const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  align-items: center;
-  margin: 50px;
-  background-color: white;
-  border-radius: 30px;
-  width: 100%;
-  @media (max-width: 800px) {
-    grid-template-columns: 1fr;
-    height: max-content;
-    padding: 30px 0;
-  }
-`;
-
-export const FormWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
