@@ -8,6 +8,8 @@ const Wrapper = styled.div`
   background-color: #d8dde9;
   border: #d8dde9 0.1px solid; //without this it gets margin when we set margin in children
   min-height: 100vh;
+  display: flex;
+  align-items: center;
 `;
 
 const UnauthenticatedApp = () => {

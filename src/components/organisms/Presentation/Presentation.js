@@ -1,8 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Title from 'components/atoms/Title/Title';
-import img1 from './cards.png';
-import img2 from './create.png';
 
 export const Wrapper = styled.div`
   border-radius: 0 30px 30px 0;
