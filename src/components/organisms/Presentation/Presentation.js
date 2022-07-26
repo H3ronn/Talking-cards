@@ -5,11 +5,15 @@ import img1 from './cards.png';
 import img2 from './create.png';
 
 export const Wrapper = styled.div`
+  border-radius: 0 30px 30px 0;
   height: 100vh;
   width: 100%;
   border-left: solid 4px ${({ theme }) => theme.colors.blue};
   padding-left: 10px;
   background-color: #f5f7fa;
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
 export const SliderImg = styled.img`

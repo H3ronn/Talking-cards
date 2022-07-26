@@ -78,6 +78,7 @@ const Register = () => {
           id="email"
           onChange={handleEmailChange}
           value={email}
+          placeholder="Your e-mail"
           required
         />
         <InputField
@@ -87,6 +88,7 @@ const Register = () => {
           id="password"
           onChange={handlePasswordChange}
           value={password}
+          placeholder="Password"
           required
         />
         <StyledButton>Register</StyledButton>
