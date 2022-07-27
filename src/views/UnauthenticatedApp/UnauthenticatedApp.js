@@ -8,7 +8,6 @@ import Register from '../Register/Register';
 const Wrapper = styled.div`
   background-color: #d8dde9;
   padding: 50px;
-
   min-height: 100vh;
   display: flex;
   align-items: center;

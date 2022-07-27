@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Wrapper, SliderText, SliderImg, SliderButton, Line } from './Presentation.styles';
+import createCardImgSrc from './create.png';
+import cardListImgSrc from './cards.png';
+import blankCardImgSrc from './blankCard.jpg';
 
-const imagesArray = [require('./create.png').default, require('./cards.png').default];
+const imagesArray = [createCardImgSrc, cardListImgSrc];
 
 const Presentation = () => {
   const [page, setPage] = useState(1);
@@ -24,7 +27,7 @@ const Presentation = () => {
       </SliderButton>
       {page === 1 ? <SliderText>Create your own cards!</SliderText> : null}
       {page === 2 ? <SliderText>Print, edit and delete them!</SliderText> : null}
-      <SliderImg key={page} src={imagesArray[page - 1]} alt="" />
+      <SliderImg key={page} placeholderSrc={blankCardImgSrc} src={imagesArray[page - 1]} alt="" />
       {/* with key its rerendering when page change and triggering animation */}
     </Wrapper>
   );

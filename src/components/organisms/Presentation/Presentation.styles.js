@@ -1,3 +1,4 @@
+import ProgressiveImg from 'components/molecules/ProgressiveImg/ProgressiveImg';
 import styled, { keyframes } from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -29,8 +30,8 @@ to {
 }
 `;
 
-export const SliderImg = styled.img`
-  width: 70%;
+export const SliderImg = styled(ProgressiveImg)`
+  width: 500px;
   animation: ${flash} 0.6s ease-in-out;
 `;
 

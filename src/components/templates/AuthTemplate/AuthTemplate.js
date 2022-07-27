@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
   background-color: white;
   border-radius: 30px;
   padding: 10px 0;
+  width: 100vw;
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
     height: max-content;

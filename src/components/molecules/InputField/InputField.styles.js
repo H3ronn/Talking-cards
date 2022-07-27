@@ -16,10 +16,6 @@ export const Wrapper = styled.div`
     opacity: 1;
   }
 
-  &::after {
-    content: ${(props) => console.log(props)};
-  }
-
   img {
     position: absolute;
     top: 15px;

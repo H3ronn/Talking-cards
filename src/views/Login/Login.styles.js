@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Heading = styled.header`
-  padding: 10px 0;
+  padding: 10px 20px;
 
   ${Title} {
     &:first-child {
