@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAlert, setAlert, setAlertId } from 'redux/alert/alertSlice';
+import { selectAlert, setAlert, setAlertId } from 'store/alert/alertSlice';
 
 export const useAlert = () => {
   const dispatch = useDispatch();

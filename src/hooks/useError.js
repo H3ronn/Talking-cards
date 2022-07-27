@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectError, setError, setErrorId } from 'redux/errors/errorsSlice';
+import { selectError, setError, setErrorId } from 'store/errors/errorsSlice';
 
 export const useError = () => {
   const { timerId } = useSelector(selectError);

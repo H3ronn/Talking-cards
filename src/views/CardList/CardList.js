@@ -8,8 +8,8 @@ import { useAlert } from 'hooks/useAlert';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { db } from 'firestore';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from 'redux/user/userSlice';
-import { selectCards, setCards } from 'redux/cards/cardsSlice';
+import { selectUser } from 'store/user/userSlice';
+import { selectCards, setCards } from 'store/cards/cardsSlice';
 
 const CardList = () => {
   const { deleteCard } = useCards();

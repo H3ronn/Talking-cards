@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from 'firestore';
 import { useError } from 'hooks/useError';
-import { Wrapper, FormButtons, Heading, LoginForm, StyledButton, StyledLink } from './Login.styles';
+import { Wrapper, FormButtons, Heading, LoginForm, StyledLink } from './Login.styles';
 import Title from 'components/atoms/Title/Title';
 import { formatErrorMessage } from 'helpers/formatErrorMessage';
 import PasswordField from 'components/molecules/PasswordField/PasswordField';

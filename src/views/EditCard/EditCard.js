@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import EditCardSection from 'components/templates/EditCardSection/EditCardSection';
 import Title from 'components/atoms/Title/Title';
 import { useSelector } from 'react-redux';
-import { selectCards } from 'redux/cards/cardsSlice';
+import { selectCards } from 'store/cards/cardsSlice';
 
 const Wrapper = styled.div`
   display: flex;

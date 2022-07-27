@@ -5,8 +5,8 @@ import { addImageToStorage } from 'helpers/addImageToStorage';
 import { ref, deleteObject } from 'firebase/storage';
 import { useError } from 'hooks/useError';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from 'redux/user/userSlice';
-import { selectCards, setSelectedCard } from 'redux/cards/cardsSlice';
+import { selectUser } from 'store/user/userSlice';
+import { selectCards, setSelectedCard } from 'store/cards/cardsSlice';
 
 export const useCards = () => {
   const { cards } = useSelector(selectCards);
