@@ -7,10 +7,15 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 800px) {
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
 `;
 
 export const Heading = styled.header`
-  padding: 10px 20px;
+  padding: 10px 0;
 
   ${Title} {
     &:first-child {

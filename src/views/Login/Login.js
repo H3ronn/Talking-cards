@@ -40,6 +40,7 @@ const Login = () => {
     <Wrapper>
       <Heading>
         <Title blue>Talking Cards</Title>
+        <Title as="h2">Login</Title>
         <p>We want to help you communicate!</p>
         <small>You can use: email: test@test.pl password: testtest</small>
       </Heading>
