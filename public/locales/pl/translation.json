@@ -8,7 +8,17 @@
   "You already have account?": "Masz już konto?",
   "Password": "Hasło",
   "Your e-mail": "Adres e-mail",
+  "Create your own cards!": "Twórz własne karty!",
+  "Print, edit and delete them!": "Drukuj, edytuj i usuwaj do woli!",
+  "Card list": "Lista kart",
+  "Create card": "Stwórz kartę",
+  "FAQ": "FAQ",
+  "Log out": "Wyloguj",
+  "No cards": "Brak kart",
+  "Card successfully deleted": "Pomyślnie usunięto kartę",
+  "Your Cards!": "Twoje karty!",
   "User not found": "Nie znaleziono użytkownika",
+  "Logout failed. Try again or report the problem to us.": "Wylogowanie nie powiodło się. Spróbuj ponownie lub zgłoś nam problem.",
   "loginView": {
     "login": "Zalogujeee",
     "password": "Hasło"

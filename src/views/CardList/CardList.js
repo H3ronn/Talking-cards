@@ -10,6 +10,7 @@ import { db } from 'firestore';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'store/user/userSlice';
 import { selectCards, setCards } from 'store/cards/cardsSlice';
+import { useTranslation } from 'react-i18next';
 
 const CardList = () => {
   const { deleteCard } = useCards();
@@ -18,10 +19,12 @@ const CardList = () => {
   const { cards, loading } = useSelector(selectCards);
   const dispatch = useDispatch();
 
+  const { t } = useTranslation();
+
   const handleDeleteCard = async (id, image) => {
     const result = await deleteCard(id, image);
     if (result) {
-      dispatchAlert('Card successfully deleted', 'success');
+      dispatchAlert(t('Card successfully deleted'), 'success');
     }
   };
 
@@ -53,12 +56,12 @@ const CardList = () => {
 
     if (cards.length > 0) return <Gallery>{renderCards}</Gallery>;
 
-    return <Info>No cards</Info>;
+    return <Info>{t('No cards')}</Info>;
   };
 
   return (
     <Wrapper>
-      <Title>Your Cards!</Title>
+      <Title>{t('Your Cards!')}</Title>
       {optionalRender()}
     </Wrapper>
   );

@@ -59,6 +59,7 @@ export const LogoutButton = styled.button`
   background: none;
   font-size: 1rem;
   cursor: pointer;
+  width: max-content;
   @media (max-width: 750px) {
     max-width: 100px;
   }

@@ -3,11 +3,14 @@ import { Wrapper, SliderText, SliderImg, SliderButton, Line } from './Presentati
 import createCardImgSrc from './create.png';
 import cardListImgSrc from './cards.png';
 import blankCardImgSrc from './blankCard.jpg';
+import { useTranslation } from 'react-i18next';
 
 const imagesArray = [createCardImgSrc, cardListImgSrc];
 
 const Presentation = () => {
   const [page, setPage] = useState(1);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const intervalId = setTimeout(() => {
@@ -25,8 +28,8 @@ const Presentation = () => {
       <SliderButton onClick={() => setPage(2)}>
         <Line active={page === 2} />
       </SliderButton>
-      {page === 1 ? <SliderText>Create your own cards!</SliderText> : null}
-      {page === 2 ? <SliderText>Print, edit and delete them!</SliderText> : null}
+      {page === 1 ? <SliderText>{t('Create your own cards!')}</SliderText> : null}
+      {page === 2 ? <SliderText>{t('Print, edit and delete them!')}</SliderText> : null}
       <SliderImg key={page} placeholderSrc={blankCardImgSrc} src={imagesArray[page - 1]} alt="" />
       {/* with key its rerendering when page change and triggering animation */}
     </Wrapper>
