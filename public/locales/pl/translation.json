@@ -1,0 +1,16 @@
+{
+  "We want to help you communicate!": "Chcemy pomóc Ci się komunikować!",
+  "You can use: email: test@test.pl password: testtest": "Możesz skorzystać z konta: email:test@test.pl hasło: testtest",
+  "Login": "Zaloguj",
+  "Register": "Zarejestruj się",
+  "Sign In": "Zaloguj",
+  "Create account": "Utwórz konto",
+  "You already have account?": "Masz już konto?",
+  "Password": "Hasło",
+  "Your e-mail": "Adres e-mail",
+  "User not found": "Nie znaleziono użytkownika",
+  "loginView": {
+    "login": "Zalogujeee",
+    "password": "Hasło"
+  }
+}

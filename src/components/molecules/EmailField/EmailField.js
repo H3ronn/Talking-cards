@@ -1,15 +1,17 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import InputField from '../InputField/InputField';
 import userIcon from './userIcon.svg';
 
 const EmailField = ({ onChange, value, ...props }) => {
+  const { t } = useTranslation();
   return (
     <InputField
       type="email"
-      label="E-mail"
+      label={t('Your e-mail')}
       name="email"
       id="email"
-      placeholder="Your e-mail"
+      placeholder={t('Your e-mail')}
       icon={userIcon}
       onChange={onChange}
       value={value}
