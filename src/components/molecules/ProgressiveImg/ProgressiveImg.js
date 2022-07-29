@@ -9,6 +9,10 @@ const ProgressiveImg = ({ placeholderSrc, src, ...props }) => {
     img.onload = () => {
       setImgSrc(src);
     };
+
+    return () => {
+      img.onload = () => {};
+    };
   }, [src]);
 
   return <img {...{ src: imgSrc, ...props }} alt={props.alt || ''} />;
