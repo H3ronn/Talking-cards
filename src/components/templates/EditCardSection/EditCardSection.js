@@ -9,6 +9,7 @@ import WarningAlert from 'components/molecules/WarningAlert/WarningAlert';
 import { useCards } from 'hooks/useCards';
 import { useAlert } from 'hooks/useAlert';
 import throttle from 'lodash.throttle';
+import { useTranslation } from 'react-i18next';
 
 const initialState = {
   caption: `I'm happy`,
@@ -58,8 +59,9 @@ const EditCardSection = ({ cardStyle }) => {
   const [card, dispatch] = useReducer(reducer, initialState);
   const { addCard, overwriteCard } = useCards();
   const [previewView, setPreviewView] = useState(false);
-
   const { dispatchAlert } = useAlert();
+
+  const { t } = useTranslation();
 
   const handleEditCard = (e) => {
     dispatch({ type: actionTypes.changeStyle, payload: { field: e.target.name, value: e.target.value } });
@@ -72,13 +74,13 @@ const EditCardSection = ({ cardStyle }) => {
   const handleAddCard = async (e) => {
     e.preventDefault();
     if (card.image === null) {
-      dispatch({ type: actionTypes.throwError, payload: { error: 'You must add your image!' } });
+      dispatch({ type: actionTypes.throwError, payload: { error: t('You must add your image!') } });
       return;
     }
 
     const result = await addCard(card);
     if (result) {
-      dispatchAlert('Successfully added card', 'success');
+      dispatchAlert(t('Successfully added card'), 'success');
     }
   };
 
@@ -138,14 +140,14 @@ const EditCardSection = ({ cardStyle }) => {
         ref={cardRef}
       />
       <Form onSubmit={handleAddCard}>
-        <StyledInputField name="caption" id="caption" label="Caption" value={caption} onChange={handleEditCard} />
+        <StyledInputField name="caption" id="caption" label={t('Caption')} value={caption} onChange={handleEditCard} />
         <ButtonsWrapper>
-          <InputButton name="image" id="file" label="Choose image" accept="image/*" onChange={handleImageChange} />
+          <InputButton name="image" id="file" label={t('Choose image')} accept="image/*" onChange={handleImageChange} />
           <InputButton
             type="color"
             id="captionColor"
             name="captionColor"
-            label="Choose caption color"
+            label={t('Choose caption color')}
             value={captionColor}
             onChange={handleEditCard}
           />
@@ -154,21 +156,21 @@ const EditCardSection = ({ cardStyle }) => {
             id="bgColor"
             name="bgColor"
             value={bgColor}
-            label="Choose background color"
+            label={t('Choose background color')}
             onChange={handleEditCard}
           />
           <Button type="button" onClick={downloadJpg}>
-            Download jpg
+            {t('Download card')}
           </Button>
           {cardStyle ? (
             <Button type="button" onClick={() => overwriteCard(card)}>
-              Overwrite card
+              {t('Overwrite card')}
             </Button>
           ) : null}
-          <Button type="submit">Add card</Button>
+          <Button type="submit">{t('Add card')}</Button>
         </ButtonsWrapper>
         <RangeInput
-          label="Font size"
+          label={t('Font size')}
           value={fontSize}
           id="fontSize"
           name="fontSize"
@@ -177,7 +179,7 @@ const EditCardSection = ({ cardStyle }) => {
           handleControls={handleControls}
         />
         <RangeInput
-          label="Space"
+          label={t('Space')}
           value={spaceValue}
           id="spaceValue"
           name="spaceValue"
@@ -188,7 +190,7 @@ const EditCardSection = ({ cardStyle }) => {
           max="100"
         />
         <RangeInput
-          label="Image size"
+          label={t('Image size')}
           value={imageSize}
           id="imageSize"
           name="imageSize"
@@ -199,7 +201,7 @@ const EditCardSection = ({ cardStyle }) => {
           max="500"
         />
         <RangeInput
-          label="Image position"
+          label={t('Image position')}
           value={imagePosition}
           id="imagePosition"
           name="imagePosition"

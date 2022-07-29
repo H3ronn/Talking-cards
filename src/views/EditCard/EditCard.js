@@ -5,6 +5,7 @@ import EditCardSection from 'components/templates/EditCardSection/EditCardSectio
 import Title from 'components/atoms/Title/Title';
 import { useSelector } from 'react-redux';
 import { selectCards } from 'store/cards/cardsSlice';
+import { useTranslation } from 'react-i18next';
 
 const Wrapper = styled.div`
   display: flex;
@@ -16,6 +17,8 @@ const EditCard = () => {
   const { selectedCard } = useSelector(selectCards);
   const navigate = useNavigate();
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     if (!selectedCard) {
       navigate('/list');
@@ -24,7 +27,7 @@ const EditCard = () => {
 
   return (
     <Wrapper>
-      <Title>Edit your card</Title>
+      <Title>{t('Edit your card')}</Title>
       <EditCardSection cardStyle={selectedCard} />
     </Wrapper>
   );

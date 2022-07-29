@@ -2,6 +2,7 @@ import React from 'react';
 import EditCardSection from 'components/templates/EditCardSection/EditCardSection';
 import styled from 'styled-components';
 import Title from 'components/atoms/Title/Title';
+import { useTranslation } from 'react-i18next';
 
 const Wrapper = styled.div`
   display: flex;
@@ -10,9 +11,10 @@ const Wrapper = styled.div`
 `;
 
 const CreateCard = () => {
+  const { t } = useTranslation();
   return (
     <Wrapper>
-      <Title>Create card</Title>
+      <Title>{t('Create card')}</Title>
       <EditCardSection />
     </Wrapper>
   );
