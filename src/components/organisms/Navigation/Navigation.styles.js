@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import Title from 'components/atoms/Title/Title';
 import { NavLink } from 'react-router-dom';
+import LanguageSwitch from 'components/molecules/LanguageSwitch/LanguageSwitch';
 
 export const LinksWrapper = styled.div``;
 
 export const NavigationWrapper = styled.nav`
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 0.1fr;
+  grid-template-columns: 1fr 0.1fr 0.1fr;
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.lightGrey};
@@ -23,6 +24,12 @@ export const NavigationWrapper = styled.nav`
     }
     display: flex;
     align-items: center;
+  }
+`;
+
+export const StyledLanguageSwitch = styled(LanguageSwitch)`
+  @media (max-width: 750px) {
+    display: none;
   }
 `;
 
@@ -60,6 +67,7 @@ export const LogoutButton = styled.button`
   font-size: 1rem;
   cursor: pointer;
   width: max-content;
+  margin: 0 10px;
   @media (max-width: 750px) {
     max-width: 100px;
   }

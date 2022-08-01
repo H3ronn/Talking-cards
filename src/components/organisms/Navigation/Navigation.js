@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { NavigationWrapper, LinksWrapper, StyledTitle, Link, LogoutButton } from './Navigation.styles';
+import {
+  NavigationWrapper,
+  LinksWrapper,
+  StyledTitle,
+  Link,
+  LogoutButton,
+  StyledLanguageSwitch,
+} from './Navigation.styles';
 import MenuButton from 'components/atoms/MenuButton/MenuButton';
 import MobileNavigation from '../MobileNavigation/MobileNavigation';
 import { useError } from 'hooks/useError';
@@ -43,6 +50,7 @@ const Navigation = () => {
         <Link to="/create">{t('Create card')}</Link>
         <Link to="/faq">{t('FAQ')}</Link>
       </LinksWrapper>
+      <StyledLanguageSwitch />
       <LogoutButton onClick={handleLogout}>{t('Log out')}</LogoutButton>
       <MobileNavigation isOpen={isOpen} hideMenu={hideMobileMenu} />
     </NavigationWrapper>

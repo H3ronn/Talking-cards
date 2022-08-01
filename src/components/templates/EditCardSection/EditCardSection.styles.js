@@ -9,6 +9,7 @@ export const Wrapper = styled.main`
 `;
 
 export const StyledCard = styled(Card)`
+  z-index: ${({ theme }) => theme.zIndex.card};
   position: sticky;
   top: 10px;
 `;

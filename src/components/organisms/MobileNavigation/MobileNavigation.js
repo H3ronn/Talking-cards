@@ -1,4 +1,5 @@
 import Title from 'components/atoms/Title/Title';
+import LanguageSwitch from 'components/molecules/LanguageSwitch/LanguageSwitch';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Wrapper, StyledNavLink } from './MobileNavigation.styles';
@@ -27,7 +28,9 @@ const MobileNavigation = ({ isOpen = false, hideMenu }) => {
         <li>
           <StyledNavLink to="/faq">{t('FAQ')}</StyledNavLink>
         </li>
-        <li></li>
+        <li>
+          <LanguageSwitch />
+        </li>
       </ul>
     </Wrapper>
   );

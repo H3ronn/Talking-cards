@@ -2,8 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Presentation from 'components/organisms/Presentation/Presentation';
 import Title from 'components/atoms/Title/Title';
+import LanguageSwitch from 'components/molecules/LanguageSwitch/LanguageSwitch';
 
 export const Wrapper = styled.div`
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1.3fr;
   align-items: center;
@@ -30,15 +32,24 @@ export const Column = styled.div`
   }
 `;
 
+const StyledLanguageSwitch = styled(LanguageSwitch)`
+  position: fixed;
+  top: 10px;
+  left: 10px;
+`;
+
 const AuthTemplate = ({ children }) => {
   return (
-    <Wrapper>
-      {children}
-      <Column>
-        <Title>Talking Cards</Title>
-        <Presentation />
-      </Column>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <StyledLanguageSwitch />
+        {children}
+        <Column>
+          <Title>Talking Cards</Title>
+          <Presentation />
+        </Column>
+      </Wrapper>
+    </>
   );
 };
 
