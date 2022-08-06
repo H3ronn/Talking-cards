@@ -17,6 +17,7 @@
 ### Built With
 
 - [React.js](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
 - [styled-components](https://styled-components.com/)
 - [Firebase](https://firebase.google.com/)
 - [Storybook](https://storybook.js.org/)

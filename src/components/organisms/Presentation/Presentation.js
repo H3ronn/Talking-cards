@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Wrapper, SliderText, SliderImg, SliderButton, Line } from './Presentation.styles';
 import createCardImgSrc from './create.png';
 import cardListImgSrc from './cards.png';
-import blankCardImgSrc from './blankCard.jpg';
+import blankCardImgSrc from './blankCard.png';
 import { useTranslation } from 'react-i18next';
 
 const imagesArray = [createCardImgSrc, cardListImgSrc];
