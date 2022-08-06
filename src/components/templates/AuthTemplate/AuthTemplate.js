@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   align-items: center;
   background-color: white;
   border-radius: 30px;
-  padding: 10px 0;
+  padding: 10px;
   width: 100vw;
   @media (max-width: 800px) {
     grid-template-columns: 1fr;

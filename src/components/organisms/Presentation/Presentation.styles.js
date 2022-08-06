@@ -31,7 +31,9 @@ to {
 `;
 
 export const SliderImg = styled(ProgressiveImg)`
-  width: 500px;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
   animation: ${flash} 0.6s ease-in-out;
 `;
 
