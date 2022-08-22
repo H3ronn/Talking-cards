@@ -7,10 +7,6 @@ const options = [
   { value: 'en', label: 'English' },
 ];
 
-// const StyledSelect = styled(Select)`
-//   width: 100px;
-// `;
-
 const flag = (name) => {
   if (!name) return;
   return {
@@ -40,15 +36,14 @@ const styles = {
   },
 
   singleValue: (styles, { data }) => {
-    return { ...styles, ...flag(data.value) };
+    return { ...styles };
   },
 };
 
 const LanguageSwitch = ({ ...props }) => {
-  console.log(props);
   const { i18n } = useTranslation();
 
-  const getCurrenLanguageName = () => options.find((option) => option.value === i18n.language).label;
+  const getCurrentLanguageName = () => options.find((option) => option.value === i18n.language)?.label;
 
   return (
     <div {...props}>
@@ -56,7 +51,7 @@ const LanguageSwitch = ({ ...props }) => {
         options={options}
         styles={styles}
         isSearchable={false}
-        placeholder={getCurrenLanguageName()}
+        placeholder={getCurrentLanguageName()}
         onChange={({ value }) => i18n.changeLanguage(value)}
       />
     </div>
