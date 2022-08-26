@@ -23,7 +23,7 @@ const Faq = () => {
       />
       <Accordion
         question={t('Where can I send informations about bugs/features?')}
-        answer={t('To my e-mail czaplickibartosz0@gmail.com')}
+        answer={t('To my e-mail bartoszczaplicki0@gmail.com')}
       />
     </Wrapper>
   );
